@@ -1,0 +1,335 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Notificaciones — Centro de Tutorías</title>
+
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet" />
+
+  <link rel="stylesheet" href="css/plataforma.css" />
+</head>
+
+<body>
+
+  <!-- ════════════════════════════════════════════════════
+       ENCABEZADO NARANJA
+       Idéntico al de horarios.html y tutorias.html.
+       Ninguna pestaña de la barra queda activa porque
+       Notificaciones no es una sección de la barra nav.
+  ════════════════════════════════════════════════════ -->
+  <header class="encabezado-plataforma" aria-label="Encabezado principal">
+
+    <div class="encabezado-fila-superior">
+      <h1 class="encabezado-titulo">Centro de Tutorías</h1>
+
+      <div class="encabezado-acciones">
+
+        <!--
+          La campana sigue presente para mantener coherencia visual,
+          pero en esta página ya estamos EN notificaciones, por lo
+          que el data-accion apunta a sí mismo sin efecto externo.
+        -->
+        <button class="boton-icono"
+                aria-label="Notificaciones"
+                data-accion="notificaciones">
+          <svg viewBox="0 0 24 24" aria-hidden="true">
+            <path d="M18 8A6 6 0 0 0 6 8c0 7-3 9-3 9h18s-3-2-3-9"/>
+            <path d="M13.73 21a2 2 0 0 1-3.46 0"/>
+          </svg>
+        </button>
+
+        <button class="boton-icono"
+                aria-label="Configuración"
+                data-accion="configuracion">
+          <svg viewBox="0 0 24 24" aria-hidden="true">
+            <circle cx="7.5" cy="15.5" r="5.5"/>
+            <path d="M21 2l-9.6 9.6"/>
+            <path d="M15.5 7.5 19 4"/>
+          </svg>
+        </button>
+
+        <button class="boton-salir" data-accion="salir">Salir</button>
+      </div>
+    </div>
+
+    <!--
+      Barra de navegación: ninguna pestaña tiene --activa.
+      El usuario llegó aquí desde la campana, no desde las pestañas.
+    -->
+    <nav class="barra-navegacion" aria-label="Secciones" role="tablist">
+
+      <button class="pestana-nav pestana-nav--amplia"
+              role="tab" aria-selected="false"
+              data-accion="nav" data-valor="inicio">Inicio</button>
+
+      <button class="pestana-nav pestana-nav--amplia"
+              role="tab" aria-selected="false"
+              data-accion="nav" data-valor="horarios">Horarios</button>
+
+      <button class="pestana-nav pestana-nav--amplia"
+              role="tab" aria-selected="false"
+              data-accion="nav" data-valor="tutorias">Tutorías</button>
+
+      <button class="pestana-nav pestana-nav--amplia"
+              role="tab" aria-selected="false"
+              data-accion="nav" data-valor="foro">Foro</button>
+
+    </nav>
+
+  </header>
+
+
+  <!-- ════════════════════════════════════════════════════
+       CONTENIDO PRINCIPAL
+  ════════════════════════════════════════════════════ -->
+  <main class="contenido-notificaciones" role="main">
+
+    <!-- ──────────────────────────────────────────────
+         ENCABEZADO DE SECCIÓN
+    ────────────────────────────────────────────────── -->
+    <div class="encabezado-seccion">
+      <div class="fila-titulo">
+        <svg class="icono-seccion-tutorias" viewBox="0 0 24 24" aria-hidden="true">
+          <path d="M18 8A6 6 0 0 0 6 8c0 7-3 9-3 9h18s-3-2-3-9"/>
+          <path d="M13.73 21a2 2 0 0 1-3.46 0"/>
+        </svg>
+        <h2 class="titulo-pagina">Notificaciones</h2>
+      </div>
+      <p class="subtitulo-pagina">
+        Mantente al día con tus tutorías y actualizaciones
+      </p>
+    </div>
+
+
+    <!-- ──────────────────────────────────────────────
+         FILA SUPERIOR: CONTADOR + BOTÓN "MARCAR TODAS"
+    ────────────────────────────────────────────────── -->
+    <div class="barra-avisos">
+      <!--
+        id="contador-no-leidas" permite que el JS actualice
+        el número al marcar todas como leídas.
+      -->
+      <span class="etiqueta-cantidad-avisos"
+            id="contador-no-leidas">3 nuevas</span>
+
+      <button class="boton-marcar-todas"
+              data-accion="marcar-todas-leidas">
+        Marcar todas como leídas
+      </button>
+    </div>
+
+
+    <!-- ──────────────────────────────────────────────
+         LISTA DE AVISOS / NOTIFICACIONES
+         Cada <article> es una tarjeta independiente.
+         Las no leídas tienen .indicador-no-leido visible.
+         Al marcarlas, JS agrega .tarjeta-aviso--leida.
+    ────────────────────────────────────────────────── -->
+    <div class="lista-avisos" role="list">
+
+
+      <!-- ══ Aviso 1: Nueva tutoría agendada ══ -->
+      <article class="tarjeta-aviso" role="listitem">
+
+        <!-- Punto rojo de no leído (JS lo oculta al marcar) -->
+        <span class="indicador-no-leido" aria-label="No leído"></span>
+
+        <!-- Círculo de color con ícono SVG de la materia -->
+        <div class="aviso-circulo aviso-circulo--naranja" aria-hidden="true">
+          <!--
+            SVG cuadrícula de cuatro bloques + cruz — Matemáticas.
+          -->
+          <svg viewBox="0 0 24 24" aria-hidden="true">
+            <rect x="3" y="3" width="7" height="7" rx="1"/>
+            <rect x="14" y="3" width="7" height="7" rx="1"/>
+            <rect x="3" y="14" width="7" height="7" rx="1"/>
+            <line x1="14" y1="17.5" x2="21" y2="17.5"/>
+            <line x1="17.5" y1="14" x2="17.5" y2="21"/>
+          </svg>
+        </div>
+
+        <!-- Bloque de textos -->
+        <div class="aviso-textos">
+          <h3 class="aviso-titulo">Nueva tutoría de Matemáticas</h3>
+          <p class="aviso-descripcion">
+            Se ha programado una sesión extra de Matemáticas
+            para el viernes 9 de mayo a las 16:00
+          </p>
+          <span class="aviso-tiempo">Hace 2 horas</span>
+        </div>
+
+        <!-- Botón tilde: marca esta tarjeta como leída -->
+        <button class="boton-marcar-una"
+                aria-label="Marcar como leída"
+                data-accion="marcar-leida">
+          <svg viewBox="0 0 24 24" aria-hidden="true">
+            <polyline points="20 6 9 17 4 12"/>
+          </svg>
+        </button>
+
+      </article>
+
+
+      <!-- ══ Aviso 2: Recordatorio de Física ══ -->
+      <article class="tarjeta-aviso" role="listitem">
+
+        <span class="indicador-no-leido" aria-label="No leído"></span>
+
+        <div class="aviso-circulo aviso-circulo--verde" aria-hidden="true">
+          <!--
+            SVG sol de rayos — Física.
+          -->
+          <svg viewBox="0 0 24 24" aria-hidden="true">
+            <circle cx="12" cy="12" r="3"/>
+            <path d="M12 1v4M12 19v4M4.22 4.22l2.83 2.83M16.95 16.95l2.83 2.83M1 12h4M19 12h4M4.22 19.78l2.83-2.83M16.95 7.05l2.83-2.83"/>
+          </svg>
+        </div>
+
+        <div class="aviso-textos">
+          <h3 class="aviso-titulo">Recordatorio: Tutoría de Física</h3>
+          <p class="aviso-descripcion">
+            Tu sesión de Física con el Prof. Carlos Ruiz es
+            mañana a las 15:00 en el Laboratorio 7
+          </p>
+          <span class="aviso-tiempo">Hace 5 horas</span>
+        </div>
+
+        <button class="boton-marcar-una"
+                aria-label="Marcar como leída"
+                data-accion="marcar-leida">
+          <svg viewBox="0 0 24 24" aria-hidden="true">
+            <polyline points="20 6 9 17 4 12"/>
+          </svg>
+        </button>
+
+      </article>
+
+
+      <!-- ══ Aviso 3: Cambio de horario (alerta) ══ -->
+      <article class="tarjeta-aviso tarjeta-aviso--alerta" role="listitem">
+
+        <span class="indicador-no-leido" aria-label="No leído"></span>
+
+        <div class="aviso-circulo aviso-circulo--rojo" aria-hidden="true">
+          <!--
+            SVG reloj — cambio de horario.
+          -->
+          <svg viewBox="0 0 24 24" aria-hidden="true">
+            <circle cx="12" cy="12" r="10"/>
+            <polyline points="12 6 12 12 16 14"/>
+          </svg>
+        </div>
+
+        <div class="aviso-textos">
+          <h3 class="aviso-titulo">Cambio de horario</h3>
+          <p class="aviso-descripcion">
+            La tutoría de Química del miércoles se ha movido
+            de 15:30 a 16:00
+          </p>
+          <span class="aviso-tiempo">Hace 1 día</span>
+        </div>
+
+        <button class="boton-marcar-una"
+                aria-label="Marcar como leída"
+                data-accion="marcar-leida">
+          <svg viewBox="0 0 24 24" aria-hidden="true">
+            <polyline points="20 6 9 17 4 12"/>
+          </svg>
+        </button>
+
+      </article>
+
+
+      <!-- ══ Aviso 4: Nuevo mensaje del profesor (ya leído) ══ -->
+      <!--
+        Clase --leida desde el HTML para simular un aviso
+        que el alumno ya leyó. Sin punto rojo visible.
+      -->
+      <article class="tarjeta-aviso tarjeta-aviso--leida" role="listitem">
+
+        <!-- Sin .indicador-no-leido porque ya está leído -->
+
+        <div class="aviso-circulo aviso-circulo--morado" aria-hidden="true">
+          <!--
+            SVG sobre cerrado — mensaje del profesor.
+          -->
+          <svg viewBox="0 0 24 24" aria-hidden="true">
+            <rect x="2" y="4" width="20" height="16" rx="2"/>
+            <path d="m2 7 10 7 10-7"/>
+          </svg>
+        </div>
+
+        <div class="aviso-textos">
+          <h3 class="aviso-titulo">Nuevo mensaje del profesor</h3>
+          <p class="aviso-descripcion">
+            La Prof. Ana García compartió material adicional
+            para la próxima sesión de Álgebra
+          </p>
+          <span class="aviso-tiempo">Hace 2 días</span>
+        </div>
+
+        <!-- Botón tilde desactivado visualmente (ya leído) -->
+        <button class="boton-marcar-una boton-marcar-una--ya-leida"
+                aria-label="Ya leído"
+                data-accion="marcar-leida"
+                disabled>
+          <svg viewBox="0 0 24 24" aria-hidden="true">
+            <polyline points="20 6 9 17 4 12"/>
+          </svg>
+        </button>
+
+      </article>
+
+
+      <!-- ══ Aviso 5: Recordatorio general ══ -->
+      <article class="tarjeta-aviso tarjeta-aviso--leida" role="listitem">
+
+        <div class="aviso-circulo aviso-circulo--naranja" aria-hidden="true">
+          <!--
+            SVG estrella de cinco puntas — recordatorio general.
+          -->
+          <svg viewBox="0 0 24 24" aria-hidden="true">
+            <polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2"/>
+          </svg>
+        </div>
+
+        <div class="aviso-textos">
+          <h3 class="aviso-titulo">Recordatorio: Tutoría de Matemática mañana</h3>
+          <p class="aviso-descripcion">
+            No olvides tu sesión de Matemáticas de mañana.
+            Traé el ejercicio de integración resuelto.
+          </p>
+          <span class="aviso-tiempo">Hace 3 días</span>
+        </div>
+
+        <button class="boton-marcar-una boton-marcar-una--ya-leida"
+                aria-label="Ya leído"
+                data-accion="marcar-leida"
+                disabled>
+          <svg viewBox="0 0 24 24" aria-hidden="true">
+            <polyline points="20 6 9 17 4 12"/>
+          </svg>
+        </button>
+
+      </article>
+
+    </div><!-- /lista-avisos -->
+
+  </main>
+
+
+  <!-- ════════════════════════════════════════════════════
+       PIE DE PÁGINA MARRÓN
+  ════════════════════════════════════════════════════ -->
+  <footer class="pie-pagina">
+    <p>©2026 Centro de Tutorías — Todos los derechos reservados.<br>
+       Comprometidos con tu éxito académico.</p>
+  </footer>
+
+  <script src="js/principal.js"></script>
+
+</body>
+</html>
