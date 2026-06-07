@@ -41,7 +41,7 @@ function iniciarCarrusel() {
   }
 
   /* Arrancar el autoplay: avanza una diapositiva cada 4 segundos */
-  temporizadorAutoplay = setInterval(function() {
+  temporizadorAutoplay = setInterval(function () {
     irDiapositiva(indiceCarrusel + 1);
   }, 4000);
 }
@@ -119,16 +119,16 @@ function inicializarFormularioAcceso() {
   var formulario = document.getElementById('formulario-acceso');
   if (!formulario) { return; }
 
-  formulario.addEventListener('submit', function(evento) {
+  formulario.addEventListener('submit', function (evento) {
     evento.preventDefault(); /* evita recarga de página */
 
     /*
      * FormData lee todos los campos del formulario usando su
      * atributo "name". Es la forma nativa de recopilar campos en JS.
      */
-    var datos   = new FormData(this);
-    var correo  = datos.get('correo').trim();
-    var clave   = datos.get('clave');
+    var datos = new FormData(this);
+    var correo = datos.get('correo').trim();
+    var clave = datos.get('clave');
 
     /* Validación 1: campos vacíos */
     if (!correo || !clave) {
@@ -160,16 +160,16 @@ function inicializarFormularioRegistro() {
   var formulario = document.getElementById('formulario-registro');
   if (!formulario) { return; }
 
-  formulario.addEventListener('submit', function(evento) {
+  formulario.addEventListener('submit', function (evento) {
     evento.preventDefault();
 
-    var datos      = new FormData(this);
-    var nombre     = datos.get('nombre').trim();
-    var correo     = datos.get('correo').trim();
-    var clave      = datos.get('clave');
-    var claveRep   = datos.get('clave-repetida');
+    var datos = new FormData(this);
+    var nombre = datos.get('nombre').trim();
+    var correo = datos.get('correo').trim();
+    var clave = datos.get('clave');
+    var claveRep = datos.get('clave-repetida');
     var terminosEl = document.getElementById('casilla-terminos');
-    var terminos   = terminosEl ? terminosEl.checked : false;
+    var terminos = terminosEl ? terminosEl.checked : false;
 
     /* Validación 1: campos vacíos */
     if (!nombre || !correo || !clave || !claveRep) {
@@ -220,12 +220,12 @@ function inicializarFormularioRegistro() {
    hijo del botón (el SVG sería evento.objetivo, pero el botón
    tiene el data-accion).
 ══════════════════════════════════════════════════════════════ */
-document.addEventListener('click', function(evento) {
+document.addEventListener('click', function (evento) {
   var elemento = evento.target.closest('[data-accion]');
   if (!elemento) { return; }
 
   var accion = elemento.dataset.accion;
-  var valor  = elemento.dataset.valor;
+  var valor = elemento.dataset.valor;
 
   /* ── Botón Salir: redirige a login.html ── */
   if (accion === 'salir') {
@@ -294,7 +294,7 @@ document.addEventListener('click', function(evento) {
     } else if (valor === 'horarios') {
       window.location.href = 'horarios.html';
     } else if (valor === 'tutorias') {
-      alert('Sección Tutorías: próximamente.');
+      window.location.href = 'tutorias.html';
     } else if (valor === 'foro') {
       alert('Sección Foro: próximamente.');
     }
@@ -320,14 +320,6 @@ document.addEventListener('click', function(evento) {
   }
 });
 
-
-/* ══════════════════════════════════════════════════════════════
-   INICIALIZACIÓN AL CARGAR LA PÁGINA
-   Llamamos a las funciones de inicialización que correspondan
-   según los elementos presentes en el DOM.
-   Como el <script> está al final del <body>, el DOM ya existe
-   sin necesidad de DOMContentLoaded.
-══════════════════════════════════════════════════════════════ */
 inicializarFormularioAcceso();
 inicializarFormularioRegistro();
 iniciarCarrusel();

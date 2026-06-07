@@ -17,37 +17,50 @@
 ════════════════════════════════════════════════════════════════ */
 :root {
   /* Paleta principal */
-  --color-fondo:           #F5E5C0; /* beige: fondo global de la página        */
-  --color-marca:           #F5A623; /* naranja: encabezado, botones primarios   */
-  --color-marca-icono:     #BF6A02; /* naranja oscuro: íconos de sección        */
-  --color-marca-claro:     #FFF3E0; /* naranja muy pálido: pestaña activa       */
-  --color-blanco:          #FFFFFF;
-  --color-texto-oscuro:    #1C1C1E; /* casi negro: títulos                      */
-  --color-texto-medio:     #4A4A4A; /* gris oscuro: cuerpo de texto             */
-  --color-texto-claro:     #6B6B6B; /* gris medio: información secundaria       */
-  --color-borde-tabla:     #E8E0D0; /* borde sutil de la tabla de horarios      */
-  --color-fondo-pie:       #3E2723; /* marrón oscuro: pie de página             */
-  --color-texto-pie:       #FFCC80; /* dorado/amarillo: texto del pie           */
+  --color-fondo: #F5E5C0;
+  /* beige: fondo global de la página        */
+  --color-marca: #F5A623;
+  /* naranja: encabezado, botones primarios   */
+  --color-marca-icono: #BF6A02;
+  /* naranja oscuro: íconos de sección        */
+  --color-marca-claro: #FFF3E0;
+  /* naranja muy pálido: pestaña activa       */
+  --color-blanco: #FFFFFF;
+  --color-texto-oscuro: #1C1C1E;
+  /* casi negro: títulos                      */
+  --color-texto-medio: #4A4A4A;
+  /* gris oscuro: cuerpo de texto             */
+  --color-texto-claro: #6B6B6B;
+  /* gris medio: información secundaria       */
+  --color-borde-tabla: #E8E0D0;
+  /* borde sutil de la tabla de horarios      */
+  --color-fondo-pie: #3E2723;
+  /* marrón oscuro: pie de página             */
+  --color-texto-pie: #FFCC80;
+  /* dorado/amarillo: texto del pie           */
 
   /* Colores de tarjetas de tutorías */
   --color-tarjeta-naranja: #F5A623;
-  --color-tarjeta-verde:   #26A69A;
-  --color-tarjeta-morado:  #7B1FA2;
+  --color-tarjeta-verde: #26A69A;
+  --color-tarjeta-morado: #7B1FA2;
 
   /* Colores de píldoras de materias en la tabla */
-  --color-pildora-mat:     #F5A623; /* Naranja  — Matemáticas */
-  --color-pildora-fis:     #26A69A; /* Verde    — Física      */
-  --color-pildora-qui:     #7B1FA2; /* Morado   — Química     */
+  --color-pildora-mat: #F5A623;
+  /* Naranja  — Matemáticas */
+  --color-pildora-fis: #26A69A;
+  /* Verde    — Física      */
+  --color-pildora-qui: #7B1FA2;
+  /* Morado   — Química     */
 
   /* Geometría */
-  --radio-pequeno:   6px;
-  --radio-mediano:   12px;
-  --radio-grande:    16px;
-  --radio-capsula:   50px;
+  --radio-pequeno: 6px;
+  --radio-mediano: 12px;
+  --radio-grande: 16px;
+  --radio-capsula: 50px;
 
   /* Sombras */
   --sombra-tarjeta: 0 2px 12px rgba(0, 0, 0, 0.10);
-  --sombra-boton:   0 2px 8px  rgba(0, 0, 0, 0.18);
+  --sombra-boton: 0 2px 8px rgba(0, 0, 0, 0.18);
 }
 
 
@@ -57,7 +70,9 @@
    declarado, evitando desbordamientos.
    margin/padding a 0 elimina los espacios por defecto del navegador.
 ════════════════════════════════════════════════════════════════ */
-*, *::before, *::after {
+*,
+*::before,
+*::after {
   box-sizing: border-box;
   margin: 0;
   padding: 0;
@@ -95,7 +110,8 @@ body {
 }
 
 .encabezado-titulo {
-  font-size: 1.125rem; /* 18px */
+  font-size: 1.125rem;
+  /* 18px */
   font-weight: 800;
   color: var(--color-blanco);
   flex: 1;
@@ -164,7 +180,8 @@ body {
   border-radius: var(--radio-capsula);
   padding: 6px 14px;
   font-family: 'Inter', sans-serif;
-  font-size: 0.8125rem; /* 13px */
+  font-size: 0.8125rem;
+  /* 13px */
   font-weight: 600;
   cursor: pointer;
   white-space: nowrap;
@@ -297,17 +314,16 @@ body {
 /* Cada diapositiva */
 .diapositiva {
   min-width: 100%;
-  background-color: #FAFAF5; /* blanco cálido — simula hoja de cuaderno */
+  background-color: #FAFAF5;
+  /* blanco cálido — simula hoja de cuaderno */
   /*
    * background-image con repeating-linear-gradient dibuja las líneas
    * horizontales de un cuaderno, sin imágenes externas.
    */
-  background-image: repeating-linear-gradient(
-    to bottom,
-    transparent 0px,
-    transparent 31px,
-    #C5CAE9 32px
-  );
+  background-image: repeating-linear-gradient(to bottom,
+      transparent 0px,
+      transparent 31px,
+      #C5CAE9 32px);
   border-left: 6px solid var(--color-diapositiva, #F5A623);
   padding: 24px 20px 20px;
   display: flex;
@@ -360,7 +376,8 @@ body {
   display: flex;
   align-items: center;
   gap: 16px;
-  margin-left: 32px; /* espacio para no solapar flecha izquierda */
+  margin-left: 32px;
+  /* espacio para no solapar flecha izquierda */
   margin-right: 32px;
   flex: 1;
 }
@@ -553,7 +570,8 @@ body {
   border: none;
   border-radius: var(--radio-mediano);
   font-family: 'Inter', sans-serif;
-  font-size: 0.9375rem; /* 15px */
+  font-size: 0.9375rem;
+  /* 15px */
   font-weight: 600;
   cursor: pointer;
   transition: opacity 0.15s;
@@ -563,12 +581,19 @@ body {
   opacity: 0.80;
 }
 
+/* Estado deshabilitado: sin cupos disponibles */
+.boton-reservar:disabled {
+  opacity: 0.45;
+  cursor: not-allowed;
+}
+
 
 /* ════════════════════════════════════════════════════════════════
    SECCIÓN "¿NECESITAS AYUDA?"
 ════════════════════════════════════════════════════════════════ */
 .seccion-ayuda {
-  background-color: #FFF9E6; /* amarillo muy pálido */
+  background-color: #FFF9E6;
+  /* amarillo muy pálido */
   border-radius: var(--radio-grande);
   padding: 20px 16px;
   display: flex;
@@ -587,7 +612,8 @@ body {
 .tarjetas-ayuda {
   display: flex;
   gap: 12px;
-  flex-wrap: wrap; /* permite segunda fila en pantallas muy angostas */
+  flex-wrap: wrap;
+  /* permite segunda fila en pantallas muy angostas */
 }
 
 .tarjeta-contacto {
@@ -663,6 +689,12 @@ body {
   gap: 10px;
 }
 
+.encabezado-seccion {
+  background-color: #ffffff;
+  border-radius: 15px;
+  padding: 15px;
+}
+
 /* SVG del calendario — trazo naranja oscuro del Figma */
 .icono-calendario {
   width: 32px;
@@ -676,16 +708,19 @@ body {
 }
 
 .titulo-pagina {
-  font-size: 1.25rem;   /* 20px */
+  font-size: 1.25rem;
+  /* 20px */
   font-weight: 700;
   color: var(--color-texto-oscuro);
 }
 
 .subtitulo-pagina {
-  font-size: 0.875rem;  /* 14px */
+  font-size: 0.875rem;
+  /* 14px */
   color: var(--color-texto-claro);
   line-height: 1.5;
-  padding-left: 42px;   /* alineado con el texto del título (32px ícono + 10px gap) */
+  padding-left: 42px;
+  /* alineado con el texto del título (32px ícono + 10px gap) */
 }
 
 
@@ -706,7 +741,8 @@ body {
  */
 .envoltura-tabla {
   overflow-x: auto;
-  -webkit-overflow-scrolling: touch; /* scroll suave en iOS */
+  -webkit-overflow-scrolling: touch;
+  /* scroll suave en iOS */
 }
 
 /*
@@ -716,7 +752,8 @@ body {
  */
 .tabla-horarios {
   width: 100%;
-  min-width: 320px; /* evita que la tabla colapse en pantallas angostas */
+  min-width: 320px;
+  /* evita que la tabla colapse en pantallas angostas */
   border-collapse: collapse;
   font-size: 0.875rem;
 }
@@ -872,7 +909,8 @@ body {
 }
 
 .pie-pagina p {
-  font-size: 0.75rem; /* 12px */
+  font-size: 0.75rem;
+  /* 12px */
   color: var(--color-texto-pie);
   line-height: 1.6;
 }
@@ -924,7 +962,8 @@ body {
   }
 
   .subtitulo-pagina {
-    padding-left: 0; /* en móvil angosto quitamos la sangría */
+    padding-left: 0;
+    /* en móvil angosto quitamos la sangría */
   }
 
   .boton-salir {
