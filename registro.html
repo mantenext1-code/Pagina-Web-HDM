@@ -1,0 +1,178 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Registro — Centro de Tutorías</title>
+
+  <!-- Fuente Inter: <link> en lugar de @import para evitar error CORS en file:// -->
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet" />
+
+  <!-- Estilos de la interfaz de acceso (login + registro) -->
+  <link rel="stylesheet" href="css/acceso.css" />
+</head>
+
+<body>
+
+  <main role="main">
+    <div class="envoltura-tarjeta">
+
+      <!-- ZONA ENCABEZADO -->
+      <header class="zona-encabezado">
+        <div class="caja-logo" aria-hidden="true">
+          <!-- SVG libro abierto — reproducción del ícono del Figma -->
+          <svg viewBox="0 0 24 24" fill="none" stroke="#fff" stroke-width="2"
+               stroke-linecap="round" stroke-linejoin="round">
+            <path d="M2 6s2-2 5-2 5 2 5 2v14s-2-1-5-1-5 1-5 1V6z"/>
+            <path d="M12 6s2-2 5-2 5 2 5 2v14s-2-1-5-1-5 1-5 1V6z"/>
+            <line x1="12" y1="6" x2="12" y2="20"/>
+          </svg>
+        </div>
+        <h1 class="titulo-encabezado">Centro de Tutorías</h1>
+        <p class="subtitulo-encabezado">Crear Nueva Cuenta</p>
+      </header>
+
+      <!-- SECCIÓN FORMULARIO DE REGISTRO -->
+      <section class="tarjeta-formulario">
+        <h2 class="titulo-tarjeta">Registrarse</h2>
+
+        <form id="formulario-registro" novalidate>
+
+          <!-- Campo: Nombre Completo -->
+          <div class="grupo-campo">
+            <label class="etiqueta-campo" for="campo-nombre">Nombre Completo</label>
+            <div class="envoltorio-campo">
+              <!-- Ícono persona/usuario -->
+              <svg viewBox="0 0 24 24" aria-hidden="true">
+                <circle cx="12" cy="8" r="4"/>
+                <path d="M4 20c0-4 3.6-7 8-7s8 3 8 7"/>
+              </svg>
+              <input
+                class="campo-texto"
+                id="campo-nombre"
+                type="text"
+                name="nombre"
+                placeholder="Juan Pérez García"
+                autocomplete="name"
+                data-accion="campo"
+                data-valor="nombre"
+              />
+            </div>
+          </div>
+
+          <!-- Campo: Correo Electrónico -->
+          <div class="grupo-campo">
+            <label class="etiqueta-campo" for="campo-correo">Correo Electrónico</label>
+            <div class="envoltorio-campo">
+              <!-- Ícono sobre/correo -->
+              <svg viewBox="0 0 24 24" aria-hidden="true">
+                <rect x="2" y="4" width="20" height="16" rx="2"/>
+                <path d="m2 7 10 7 10-7"/>
+              </svg>
+              <input
+                class="campo-texto"
+                id="campo-correo"
+                type="email"
+                name="correo"
+                placeholder="tu.email@estudiante.edu"
+                autocomplete="email"
+                data-accion="campo"
+                data-valor="correo"
+              />
+            </div>
+          </div>
+
+          <!-- Campo: Contraseña -->
+          <div class="grupo-campo">
+            <label class="etiqueta-campo" for="campo-clave">Contraseña</label>
+            <div class="envoltorio-campo">
+              <!-- Ícono candado -->
+              <svg viewBox="0 0 24 24" aria-hidden="true">
+                <rect x="5" y="11" width="14" height="10" rx="2"/>
+                <path d="M8 11V7a4 4 0 0 1 8 0v4"/>
+              </svg>
+              <input
+                class="campo-texto"
+                id="campo-clave"
+                type="password"
+                name="clave"
+                placeholder="••••••••"
+                autocomplete="new-password"
+                data-accion="campo"
+                data-valor="clave"
+              />
+            </div>
+            <!--
+              <span> y no <label> porque no está vinculado a ningún
+              control de formulario — es solo texto informativo.
+            -->
+            <span class="ayuda-campo">Mínimo 6 caracteres</span>
+          </div>
+
+          <!-- Campo: Confirmar Contraseña -->
+          <div class="grupo-campo">
+            <label class="etiqueta-campo" for="campo-clave-repetida">Confirmar Contraseña</label>
+            <div class="envoltorio-campo">
+              <!-- Ícono candado -->
+              <svg viewBox="0 0 24 24" aria-hidden="true">
+                <rect x="5" y="11" width="14" height="10" rx="2"/>
+                <path d="M8 11V7a4 4 0 0 1 8 0v4"/>
+              </svg>
+              <input
+                class="campo-texto"
+                id="campo-clave-repetida"
+                type="password"
+                name="clave-repetida"
+                placeholder="••••••••"
+                autocomplete="new-password"
+                data-accion="campo"
+                data-valor="clave-repetida"
+              />
+            </div>
+          </div>
+
+          <!-- Fila: Acepto términos y condiciones -->
+          <!--
+            El <label> for="casilla-terminos" conecta todo el bloque de
+            texto al checkbox. Tocando cualquier parte del texto (incluidos
+            los enlaces naranjas) se activa la casilla — salvo en los
+            propios <a>, que tienen su propio comportamiento.
+          -->
+          <div class="fila-terminos">
+            <label for="casilla-terminos">
+              <input type="checkbox" id="casilla-terminos" data-accion="campo" data-valor="terminos" />
+              <span class="casilla-personalizada"></span>
+              <span class="texto-terminos">
+                Acepto los
+                <a class="enlace-naranja" href="#" data-accion="terminos">términos y condiciones</a>
+                y la
+                <a class="enlace-naranja" href="#" data-accion="privacidad">política de privacidad</a>
+              </span>
+            </label>
+          </div>
+
+          <button class="boton-principal" type="submit" data-accion="registro">
+            <svg width="16" height="16" viewBox="0 0 24 24" fill="none"
+                 stroke="#fff" stroke-width="2.5" stroke-linecap="round"
+                 stroke-linejoin="round" aria-hidden="true">
+              <circle cx="10" cy="8" r="4"/>
+              <path d="M2 20c0-4 3.6-7 8-7s8 3 8 7"/>
+              <line x1="19" y1="8" x2="19" y2="14"/>
+              <line x1="16" y1="11" x2="22" y2="11"/>
+            </svg>
+            Crear Cuenta
+          </button>
+
+        </form>
+      </section>
+
+    </div>
+  </main>
+
+  <!-- JS unificado del proyecto — al final del <body> para que el DOM exista -->
+  <script src="js/principal.js"></script>
+
+</body>
+</html>

@@ -1,0 +1,934 @@
+/*
+ * ════════════════════════════════════════════════════════════════
+ * plataforma.css — Estilos para las interfaces internas de la
+ *                  aplicación del Centro de Tutorías.
+ *
+ * Cubre: menu.html y horarios.html
+ * Fuente: Inter (cargada via <link> en el HTML)
+ * Resolución de referencia: 430px × 932px (iPhone 14 Pro Max)
+ * ════════════════════════════════════════════════════════════════
+ */
+
+
+/* ════════════════════════════════════════════════════════════════
+   VARIABLES CSS — Todos los tokens del diseño en un único lugar.
+   Si el cliente cambia el naranja, se toca UNA línea aquí y el
+   cambio se propaga a toda la plataforma automáticamente.
+════════════════════════════════════════════════════════════════ */
+:root {
+  /* Paleta principal */
+  --color-fondo:           #F5E5C0; /* beige: fondo global de la página        */
+  --color-marca:           #F5A623; /* naranja: encabezado, botones primarios   */
+  --color-marca-icono:     #BF6A02; /* naranja oscuro: íconos de sección        */
+  --color-marca-claro:     #FFF3E0; /* naranja muy pálido: pestaña activa       */
+  --color-blanco:          #FFFFFF;
+  --color-texto-oscuro:    #1C1C1E; /* casi negro: títulos                      */
+  --color-texto-medio:     #4A4A4A; /* gris oscuro: cuerpo de texto             */
+  --color-texto-claro:     #6B6B6B; /* gris medio: información secundaria       */
+  --color-borde-tabla:     #E8E0D0; /* borde sutil de la tabla de horarios      */
+  --color-fondo-pie:       #3E2723; /* marrón oscuro: pie de página             */
+  --color-texto-pie:       #FFCC80; /* dorado/amarillo: texto del pie           */
+
+  /* Colores de tarjetas de tutorías */
+  --color-tarjeta-naranja: #F5A623;
+  --color-tarjeta-verde:   #26A69A;
+  --color-tarjeta-morado:  #7B1FA2;
+
+  /* Colores de píldoras de materias en la tabla */
+  --color-pildora-mat:     #F5A623; /* Naranja  — Matemáticas */
+  --color-pildora-fis:     #26A69A; /* Verde    — Física      */
+  --color-pildora-qui:     #7B1FA2; /* Morado   — Química     */
+
+  /* Geometría */
+  --radio-pequeno:   6px;
+  --radio-mediano:   12px;
+  --radio-grande:    16px;
+  --radio-capsula:   50px;
+
+  /* Sombras */
+  --sombra-tarjeta: 0 2px 12px rgba(0, 0, 0, 0.10);
+  --sombra-boton:   0 2px 8px  rgba(0, 0, 0, 0.18);
+}
+
+
+/* ════════════════════════════════════════════════════════════════
+   RESET UNIVERSAL
+   box-sizing:border-box incluye padding y border DENTRO del ancho
+   declarado, evitando desbordamientos.
+   margin/padding a 0 elimina los espacios por defecto del navegador.
+════════════════════════════════════════════════════════════════ */
+*, *::before, *::after {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+}
+
+body {
+  font-family: 'Inter', sans-serif;
+  background-color: var(--color-fondo);
+  color: var(--color-texto-oscuro);
+  min-height: 100vh;
+}
+
+
+/* ════════════════════════════════════════════════════════════════
+   ENCABEZADO NARANJA
+   position:sticky + top:0 hace que el encabezado se "pegue"
+   al tope de la pantalla al hacer scroll.
+   z-index:100 lo mantiene por encima del resto del contenido.
+════════════════════════════════════════════════════════════════ */
+.encabezado-plataforma {
+  background-color: var(--color-marca);
+  position: sticky;
+  top: 0;
+  z-index: 100;
+  width: 100%;
+}
+
+/* Fila superior: título + campana + botón Salir */
+.encabezado-fila-superior {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 14px 16px 8px;
+  gap: 8px;
+}
+
+.encabezado-titulo {
+  font-size: 1.125rem; /* 18px */
+  font-weight: 800;
+  color: var(--color-blanco);
+  flex: 1;
+}
+
+/* Grupo derecho: campana + llave + botón Salir */
+.encabezado-acciones {
+  display: flex;
+  align-items: center;
+  gap: 6px;
+}
+
+/* Botones de ícono (campana y llave) */
+.boton-icono {
+  background: none;
+  border: none;
+  cursor: pointer;
+  padding: 5px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  border-radius: 50%;
+  transition: background-color 0.15s;
+}
+
+.boton-icono:active {
+  background-color: rgba(255, 255, 255, 0.20);
+}
+
+.boton-icono svg {
+  width: 20px;
+  height: 20px;
+  stroke: var(--color-blanco);
+  fill: none;
+  stroke-width: 2;
+  stroke-linecap: round;
+  stroke-linejoin: round;
+}
+
+/* Botón campana exclusivo del menú (tamaño original 22px) */
+.boton-campana {
+  background: none;
+  border: none;
+  cursor: pointer;
+  padding: 4px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.boton-campana svg {
+  width: 22px;
+  height: 22px;
+  stroke: var(--color-blanco);
+  fill: none;
+  stroke-width: 2;
+  stroke-linecap: round;
+  stroke-linejoin: round;
+}
+
+/* Botón "Salir" — cápsula blanca con texto naranja */
+.boton-salir {
+  background-color: var(--color-blanco);
+  color: var(--color-marca);
+  border: none;
+  border-radius: var(--radio-capsula);
+  padding: 6px 14px;
+  font-family: 'Inter', sans-serif;
+  font-size: 0.8125rem; /* 13px */
+  font-weight: 600;
+  cursor: pointer;
+  white-space: nowrap;
+  transition: opacity 0.15s;
+}
+
+.boton-salir:active {
+  opacity: 0.75;
+}
+
+
+/* ════════════════════════════════════════════════════════════════
+   BARRA DE NAVEGACIÓN CON PESTAÑAS / PÍLDORAS
+   overflow-x:auto permite scroll horizontal en móvil si las
+   pestañas no caben todas en la pantalla.
+   scrollbar-width:none oculta la barra de scroll del navegador.
+════════════════════════════════════════════════════════════════ */
+.barra-navegacion {
+  display: flex;
+  align-items: center;
+  gap: 4px;
+  padding: 6px 12px 12px;
+  overflow-x: auto;
+  scrollbar-width: none;
+}
+
+.barra-navegacion::-webkit-scrollbar {
+  display: none;
+}
+
+/* Variante del menú principal (gap y padding distintos) */
+.barra-navegacion--menu {
+  gap: 6px;
+  padding: 8px 16px 12px;
+}
+
+/* Pestaña base */
+.pestana-nav {
+  background: none;
+  border: none;
+  border-radius: var(--radio-capsula);
+  padding: 6px 14px;
+  font-family: 'Inter', sans-serif;
+  font-size: 0.8125rem;
+  font-weight: 500;
+  color: rgba(255, 255, 255, 0.80);
+  cursor: pointer;
+  white-space: nowrap;
+  transition: background-color 0.15s, color 0.15s;
+}
+
+/* Variante con más padding (horarios) */
+.pestana-nav--amplia {
+  padding: 7px 16px;
+}
+
+/*
+ * La clase --activa marca la pestaña seleccionada.
+ * Se agrega/quita con JS usando classList.
+ */
+.pestana-nav--activa {
+  background-color: var(--color-marca-claro);
+  color: var(--color-marca);
+  font-weight: 700;
+}
+
+/* Ícono llave al final de la barra de navegación (solo menú) */
+.icono-navegacion {
+  margin-left: auto;
+  background: none;
+  border: none;
+  cursor: pointer;
+  padding: 4px 8px;
+  display: flex;
+  align-items: center;
+}
+
+.icono-navegacion svg {
+  width: 18px;
+  height: 18px;
+  stroke: rgba(255, 255, 255, 0.85);
+  fill: none;
+  stroke-width: 2;
+  stroke-linecap: round;
+  stroke-linejoin: round;
+}
+
+
+/* ════════════════════════════════════════════════════════════════
+   CONTENIDO PRINCIPAL — MENÚ
+════════════════════════════════════════════════════════════════ */
+.contenido-menu {
+  display: flex;
+  flex-direction: column;
+  gap: 24px;
+  padding: 20px 16px 32px;
+  max-width: 480px;
+  margin: 0 auto;
+}
+
+
+/* ════════════════════════════════════════════════════════════════
+   CARRUSEL DE BANNERS
+   Funciona con overflow:hidden en el "visor" y translateX() en
+   el "pista". Cuando JS mueve la pista hacia la izquierda,
+   aparece la siguiente diapositiva.
+════════════════════════════════════════════════════════════════ */
+.carrusel {
+  position: relative;
+  border-radius: var(--radio-grande);
+  overflow: hidden;
+  box-shadow: var(--sombra-tarjeta);
+}
+
+/* Ventana del carrusel: solo muestra una diapositiva a la vez */
+.carrusel-visor {
+  overflow: hidden;
+  border-radius: var(--radio-grande);
+}
+
+/*
+ * display:flex pone las diapositivas una al lado de la otra.
+ * transition:transform mueve la pista suavemente al cambiar.
+ */
+.carrusel-pista {
+  display: flex;
+  transition: transform 0.4s ease;
+}
+
+/* Cada diapositiva */
+.diapositiva {
+  min-width: 100%;
+  background-color: #FAFAF5; /* blanco cálido — simula hoja de cuaderno */
+  /*
+   * background-image con repeating-linear-gradient dibuja las líneas
+   * horizontales de un cuaderno, sin imágenes externas.
+   */
+  background-image: repeating-linear-gradient(
+    to bottom,
+    transparent 0px,
+    transparent 31px,
+    #C5CAE9 32px
+  );
+  border-left: 6px solid var(--color-diapositiva, #F5A623);
+  padding: 24px 20px 20px;
+  display: flex;
+  align-items: center;
+  gap: 20px;
+  min-height: 160px;
+  position: relative;
+}
+
+/* Flecha "Anterior" en el lado izquierdo de la diapositiva */
+.diapositiva-flecha-anterior {
+  position: absolute;
+  left: 12px;
+  top: 50%;
+  transform: translateY(-50%);
+  background: none;
+  border: none;
+  cursor: pointer;
+  padding: 8px;
+  z-index: 2;
+  opacity: 0.5;
+}
+
+.diapositiva-flecha-anterior svg,
+.diapositiva-flecha-siguiente svg {
+  width: 28px;
+  height: 28px;
+  stroke: var(--color-diapositiva, #F5A623);
+  fill: none;
+  stroke-width: 2.5;
+  stroke-linecap: round;
+  stroke-linejoin: round;
+}
+
+/* Flecha "Siguiente" en el lado derecho de la diapositiva */
+.diapositiva-flecha-siguiente {
+  position: absolute;
+  right: 12px;
+  top: 50%;
+  transform: translateY(-50%);
+  background: none;
+  border: none;
+  cursor: pointer;
+  padding: 8px;
+  z-index: 2;
+}
+
+/* Área de contenido de la diapositiva (ícono + texto) */
+.diapositiva-contenido {
+  display: flex;
+  align-items: center;
+  gap: 16px;
+  margin-left: 32px; /* espacio para no solapar flecha izquierda */
+  margin-right: 32px;
+  flex: 1;
+}
+
+/* Caja de ícono de la materia */
+.diapositiva-caja-icono {
+  width: 64px;
+  height: 64px;
+  min-width: 64px;
+  border-radius: var(--radio-mediano);
+  background-color: var(--color-diapositiva, #F5A623);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.15);
+}
+
+.diapositiva-caja-icono svg {
+  width: 34px;
+  height: 34px;
+  stroke: #fff;
+  fill: none;
+  stroke-width: 1.8;
+  stroke-linecap: round;
+  stroke-linejoin: round;
+}
+
+.diapositiva-textos {
+  display: flex;
+  flex-direction: column;
+  gap: 2px;
+}
+
+.diapositiva-materia {
+  font-size: 1.25rem;
+  font-weight: 800;
+  color: var(--color-diapositiva, #F5A623);
+  line-height: 1.2;
+}
+
+.diapositiva-etiqueta {
+  font-size: 0.8125rem;
+  font-weight: 500;
+  color: var(--color-texto-medio);
+}
+
+.diapositiva-anio {
+  font-size: 0.875rem;
+  font-weight: 700;
+  color: var(--color-texto-oscuro);
+  margin-top: 4px;
+}
+
+/* Puntos indicadores del carrusel */
+.carrusel-puntos {
+  display: flex;
+  justify-content: center;
+  gap: 6px;
+  padding: 10px 0 12px;
+  background-color: #FAFAF5;
+}
+
+.punto-carrusel {
+  width: 8px;
+  height: 8px;
+  border-radius: 50%;
+  background-color: #D1C4A8;
+  border: none;
+  cursor: pointer;
+  padding: 0;
+  transition: background-color 0.2s, transform 0.2s;
+}
+
+/*
+ * El punto activo se vuelve naranja y un poco más grande.
+ * La clase la maneja JS cuando cambia el índice del carrusel.
+ */
+.punto-carrusel--activo {
+  background-color: var(--color-marca);
+  transform: scale(1.25);
+}
+
+
+/* ════════════════════════════════════════════════════════════════
+   SECCIÓN "TUTORÍAS DESTACADAS"
+════════════════════════════════════════════════════════════════ */
+.titulo-seccion {
+  font-size: 1.125rem;
+  font-weight: 700;
+  color: var(--color-texto-oscuro);
+  margin-bottom: 12px;
+}
+
+.lista-tarjetas {
+  display: flex;
+  flex-direction: column;
+  gap: 14px;
+}
+
+/* Tarjeta individual de tutoría */
+.tarjeta-tutoria {
+  background-color: var(--color-blanco);
+  border-radius: var(--radio-grande);
+  border-left: 5px solid var(--color-tarjeta, #F5A623);
+  padding: 16px;
+  box-shadow: var(--sombra-tarjeta);
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+}
+
+/* Fila superior de la tarjeta: ícono materia + nombre + profesor */
+.tarjeta-encabezado {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+}
+
+.tarjeta-icono {
+  width: 44px;
+  height: 44px;
+  min-width: 44px;
+  border-radius: 50%;
+  background-color: var(--color-tarjeta, #F5A623);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.tarjeta-icono svg {
+  width: 22px;
+  height: 22px;
+  stroke: #fff;
+  fill: none;
+  stroke-width: 2;
+  stroke-linecap: round;
+  stroke-linejoin: round;
+}
+
+.tarjeta-titulos {
+  display: flex;
+  flex-direction: column;
+  gap: 1px;
+}
+
+.tarjeta-materia {
+  font-size: 1rem;
+  font-weight: 700;
+  color: var(--color-tarjeta, #F5A623);
+}
+
+.tarjeta-profesor {
+  font-size: 0.8125rem;
+  color: var(--color-texto-claro);
+}
+
+/* Lista de detalles: días, horarios, lugar */
+.tarjeta-detalles {
+  display: flex;
+  flex-direction: column;
+  gap: 4px;
+  padding-left: 4px;
+}
+
+.tarjeta-fila-detalle {
+  display: flex;
+  align-items: center;
+  gap: 6px;
+  font-size: 0.8125rem;
+  color: var(--color-texto-medio);
+}
+
+.tarjeta-fila-detalle svg {
+  width: 14px;
+  height: 14px;
+  stroke: var(--color-tarjeta, #F5A623);
+  fill: none;
+  stroke-width: 2;
+  stroke-linecap: round;
+  stroke-linejoin: round;
+  flex-shrink: 0;
+}
+
+/* Botón "Reservar Tutoría" */
+.boton-reservar {
+  width: 100%;
+  height: 44px;
+  background-color: var(--color-tarjeta, #F5A623);
+  color: var(--color-blanco);
+  border: none;
+  border-radius: var(--radio-mediano);
+  font-family: 'Inter', sans-serif;
+  font-size: 0.9375rem; /* 15px */
+  font-weight: 600;
+  cursor: pointer;
+  transition: opacity 0.15s;
+}
+
+.boton-reservar:active {
+  opacity: 0.80;
+}
+
+
+/* ════════════════════════════════════════════════════════════════
+   SECCIÓN "¿NECESITAS AYUDA?"
+════════════════════════════════════════════════════════════════ */
+.seccion-ayuda {
+  background-color: #FFF9E6; /* amarillo muy pálido */
+  border-radius: var(--radio-grande);
+  padding: 20px 16px;
+  display: flex;
+  flex-direction: column;
+  gap: 14px;
+  box-shadow: var(--sombra-tarjeta);
+}
+
+.titulo-ayuda {
+  font-size: 1.0625rem;
+  font-weight: 700;
+  color: var(--color-texto-oscuro);
+  text-align: center;
+}
+
+.tarjetas-ayuda {
+  display: flex;
+  gap: 12px;
+  flex-wrap: wrap; /* permite segunda fila en pantallas muy angostas */
+}
+
+.tarjeta-contacto {
+  flex: 1;
+  min-width: 120px;
+  background-color: var(--color-blanco);
+  border-radius: var(--radio-mediano);
+  padding: 14px 12px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 8px;
+  box-shadow: var(--sombra-tarjeta);
+  text-align: center;
+}
+
+.contacto-icono {
+  width: 42px;
+  height: 42px;
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.contacto-icono svg {
+  width: 22px;
+  height: 22px;
+  stroke: #fff;
+  fill: none;
+  stroke-width: 2;
+  stroke-linecap: round;
+  stroke-linejoin: round;
+}
+
+.contacto-etiqueta {
+  font-size: 0.75rem;
+  color: var(--color-texto-claro);
+  font-weight: 500;
+}
+
+.contacto-valor {
+  font-size: 0.8125rem;
+  font-weight: 700;
+  color: var(--color-texto-oscuro);
+  word-break: break-all;
+}
+
+
+/* ════════════════════════════════════════════════════════════════
+   CONTENIDO PRINCIPAL — HORARIOS
+════════════════════════════════════════════════════════════════ */
+.contenido-horarios {
+  max-width: 520px;
+  margin: 0 auto;
+  padding: 24px 16px 40px;
+  display: flex;
+  flex-direction: column;
+  gap: 20px;
+}
+
+/* Bloque de título de sección: ícono calendario + título + subtítulo */
+.encabezado-seccion {
+  display: flex;
+  flex-direction: column;
+  gap: 6px;
+}
+
+/* Fila: ícono + título H2 */
+.fila-titulo {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+}
+
+/* SVG del calendario — trazo naranja oscuro del Figma */
+.icono-calendario {
+  width: 32px;
+  height: 32px;
+  stroke: var(--color-marca-icono);
+  fill: none;
+  stroke-width: 2;
+  stroke-linecap: round;
+  stroke-linejoin: round;
+  flex-shrink: 0;
+}
+
+.titulo-pagina {
+  font-size: 1.25rem;   /* 20px */
+  font-weight: 700;
+  color: var(--color-texto-oscuro);
+}
+
+.subtitulo-pagina {
+  font-size: 0.875rem;  /* 14px */
+  color: var(--color-texto-claro);
+  line-height: 1.5;
+  padding-left: 42px;   /* alineado con el texto del título (32px ícono + 10px gap) */
+}
+
+
+/* ════════════════════════════════════════════════════════════════
+   TARJETA DE LA TABLA DE HORARIOS
+════════════════════════════════════════════════════════════════ */
+.tarjeta-tabla {
+  background-color: var(--color-blanco);
+  border-radius: var(--radio-grande);
+  box-shadow: 0 4px 16px rgba(0, 0, 0, 0.08);
+  overflow: hidden;
+}
+
+/*
+ * overflow-x:auto en la envoltura permite scroll horizontal en
+ * móvil si la tabla no cabe. Es el patrón estándar para tablas
+ * responsivas sin romper el layout.
+ */
+.envoltura-tabla {
+  overflow-x: auto;
+  -webkit-overflow-scrolling: touch; /* scroll suave en iOS */
+}
+
+/*
+ * <table> es el elemento semántico correcto para datos tabulares
+ * (días vs horarios). border-collapse:collapse elimina el espacio
+ * doble entre celdas que los navegadores agregan por defecto.
+ */
+.tabla-horarios {
+  width: 100%;
+  min-width: 320px; /* evita que la tabla colapse en pantallas angostas */
+  border-collapse: collapse;
+  font-size: 0.875rem;
+}
+
+/* Encabezados de la tabla: Horario, L, M, Mi, J, V */
+.tabla-horarios thead th {
+  padding: 14px 10px;
+  text-align: center;
+  font-size: 0.8125rem;
+  font-weight: 700;
+  color: var(--color-texto-medio);
+  border-bottom: 1.5px solid var(--color-borde-tabla);
+  background-color: var(--color-blanco);
+}
+
+/* Primera columna del encabezado (Horario) alineada a la izquierda */
+.tabla-horarios thead th:first-child {
+  text-align: left;
+  padding-left: 16px;
+}
+
+/* Celdas del cuerpo de la tabla */
+.tabla-horarios tbody td {
+  padding: 12px 10px;
+  text-align: center;
+  border-bottom: 1px solid var(--color-borde-tabla);
+  vertical-align: middle;
+}
+
+/* Última fila sin borde inferior */
+.tabla-horarios tbody tr:last-child td {
+  border-bottom: none;
+}
+
+/* Celda de horario (primera columna) */
+.tabla-horarios tbody td:first-child {
+  text-align: left;
+  padding-left: 16px;
+  font-size: 0.8125rem;
+  font-weight: 500;
+  color: var(--color-texto-medio);
+  white-space: nowrap;
+}
+
+/* Celdas vacías: guión discreto */
+.celda-vacia {
+  color: var(--color-borde-tabla);
+  font-weight: 400;
+}
+
+/*
+ * Las píldoras (.pildora) son <span> con padding y border-radius alto.
+ * Usamos una variable CSS inline (style="--color-pildora: #...") para
+ * que cada píldora tenga su color sin necesidad de 3 clases separadas.
+ */
+.pildora {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  padding: 5px 12px;
+  border-radius: var(--radio-capsula);
+  background-color: var(--color-pildora, #F5A623);
+  color: var(--color-blanco);
+  font-size: 0.8125rem;
+  font-weight: 700;
+  line-height: 1;
+  white-space: nowrap;
+}
+
+
+/* ════════════════════════════════════════════════════════════════
+   SECCIÓN ¡IMPORTANTE! + DURACIÓN
+════════════════════════════════════════════════════════════════ */
+.seccion-importante {
+  display: flex;
+  flex-direction: column;
+  gap: 16px;
+  align-items: center;
+  padding: 4px 0;
+}
+
+/* Texto "¡Importante!" */
+.etiqueta-importante {
+  font-size: 1.125rem;
+  font-weight: 800;
+  color: var(--color-marca);
+  text-align: center;
+}
+
+/* Tarjeta del bloque duración */
+.tarjeta-duracion {
+  background-color: var(--color-blanco);
+  border-radius: var(--radio-grande);
+  box-shadow: 0 4px 16px rgba(0, 0, 0, 0.08);
+  padding: 20px;
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+}
+
+/* Fila: ícono reloj + título "Duración" */
+.duracion-fila {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+}
+
+/* Círculo naranja con ícono de reloj */
+.circulo-reloj {
+  width: 44px;
+  height: 44px;
+  min-width: 44px;
+  border-radius: 50%;
+  background-color: var(--color-marca-claro);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.circulo-reloj svg {
+  width: 24px;
+  height: 24px;
+  stroke: var(--color-marca-icono);
+  fill: none;
+  stroke-width: 2;
+  stroke-linecap: round;
+  stroke-linejoin: round;
+}
+
+.duracion-titulo {
+  font-size: 1rem;
+  font-weight: 700;
+  color: var(--color-texto-oscuro);
+}
+
+.duracion-texto {
+  font-size: 0.875rem;
+  color: var(--color-texto-medio);
+  line-height: 1.6;
+}
+
+
+/* ════════════════════════════════════════════════════════════════
+   PIE DE PÁGINA MARRÓN
+   No es "sticky" — aparece al final del contenido cuando el
+   usuario hace scroll hasta abajo.
+════════════════════════════════════════════════════════════════ */
+.pie-pagina {
+  background-color: var(--color-fondo-pie);
+  padding: 20px 16px;
+  text-align: center;
+}
+
+.pie-pagina p {
+  font-size: 0.75rem; /* 12px */
+  color: var(--color-texto-pie);
+  line-height: 1.6;
+}
+
+
+/* ════════════════════════════════════════════════════════════════
+   MEDIA QUERY — MÓVIL (≤ 768px)
+   La mayoría del diseño ya es fluido. Estos ajustes refinan
+   detalles en pantallas más pequeñas.
+════════════════════════════════════════════════════════════════ */
+@media (max-width: 768px) {
+  .encabezado-titulo {
+    font-size: 1rem;
+  }
+
+  /* Menú */
+  .contenido-menu {
+    padding: 16px 12px 28px;
+    gap: 20px;
+  }
+
+  .diapositiva {
+    min-height: 140px;
+    padding: 20px 16px 16px;
+  }
+
+  .diapositiva-caja-icono {
+    width: 54px;
+    height: 54px;
+    min-width: 54px;
+  }
+
+  .diapositiva-materia {
+    font-size: 1.0625rem;
+  }
+
+  .tarjetas-ayuda {
+    flex-direction: column;
+  }
+
+  /* Horarios */
+  .contenido-horarios {
+    padding: 20px 12px 36px;
+    gap: 18px;
+  }
+
+  .titulo-pagina {
+    font-size: 1.125rem;
+  }
+
+  .subtitulo-pagina {
+    padding-left: 0; /* en móvil angosto quitamos la sangría */
+  }
+
+  .boton-salir {
+    padding: 5px 12px;
+    font-size: 0.75rem;
+  }
+}
