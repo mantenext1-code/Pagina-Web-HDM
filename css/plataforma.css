@@ -28,8 +28,8 @@
   --color-texto-pie:       #FFCC80;
 
   --color-tarjeta-naranja: #F5A623;
-  --color-tarjeta-verde:   #26A69A;
-  --color-tarjeta-morado:  #7B1FA2;
+  --color-tarjeta-verde: #26A69A;
+  --color-tarjeta-morado: #7B1FA2;
 
   --color-pildora-mat:     #F5A623;
   --color-pildora-fis:     #26A69A;
@@ -41,14 +41,16 @@
   --radio-capsula:   50px;
 
   --sombra-tarjeta: 0 2px 12px rgba(0, 0, 0, 0.10);
-  --sombra-boton:   0 2px 8px  rgba(0, 0, 0, 0.18);
+  --sombra-boton: 0 2px 8px rgba(0, 0, 0, 0.18);
 }
 
 
 /* ════════════════════════════════════════════════════════════════
    RESET UNIVERSAL
 ════════════════════════════════════════════════════════════════ */
-*, *::before, *::after {
+*,
+*::before,
+*::after {
   box-sizing: border-box;
   margin: 0;
   padding: 0;
@@ -509,6 +511,12 @@ body {
   opacity: 0.80;
 }
 
+/* Estado deshabilitado: sin cupos disponibles */
+.boton-reservar:disabled {
+  opacity: 0.45;
+  cursor: not-allowed;
+}
+
 
 /* ════════════════════════════════════════════════════════════════
    SECCIÓN ¿NECESITAS AYUDA?
@@ -605,6 +613,12 @@ body {
   display: flex;
   align-items: center;
   gap: 10px;
+}
+
+.encabezado-seccion {
+  background-color: #ffffff;
+  border-radius: 15px;
+  padding: 15px;
 }
 
 .icono-calendario {
@@ -870,6 +884,10 @@ body {
   stroke-linecap: round;
   stroke-linejoin: round;
 }
+
+  .subtitulo-pagina {
+    padding-left: 0;
+  }
 
 .notificacion-textos {
   flex: 1;

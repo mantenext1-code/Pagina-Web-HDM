@@ -140,16 +140,16 @@ function inicializarFormularioRegistro() {
   var formulario = document.getElementById('formulario-registro');
   if (!formulario) { return; }
 
-  formulario.addEventListener('submit', function(evento) {
+  formulario.addEventListener('submit', function (evento) {
     evento.preventDefault();
 
-    var datos      = new FormData(this);
-    var nombre     = datos.get('nombre').trim();
-    var correo     = datos.get('correo').trim();
-    var clave      = datos.get('clave');
-    var claveRep   = datos.get('clave-repetida');
+    var datos = new FormData(this);
+    var nombre = datos.get('nombre').trim();
+    var correo = datos.get('correo').trim();
+    var clave = datos.get('clave');
+    var claveRep = datos.get('clave-repetida');
     var terminosEl = document.getElementById('casilla-terminos');
-    var terminos   = terminosEl ? terminosEl.checked : false;
+    var terminos = terminosEl ? terminosEl.checked : false;
 
     if (!nombre || !correo || !clave || !claveRep) {
       alert('Por favor, completá todos los campos.');
@@ -190,12 +190,12 @@ function inicializarFormularioRegistro() {
    DELEGACIÓN DE EVENTOS — CLIC GLOBAL
    Un solo listener maneja TODOS los clics de la app.
 ══════════════════════════════════════════════════════════════ */
-document.addEventListener('click', function(evento) {
+document.addEventListener('click', function (evento) {
   var elemento = evento.target.closest('[data-accion]');
   if (!elemento) { return; }
 
   var accion = elemento.dataset.accion;
-  var valor  = elemento.dataset.valor;
+  var valor = elemento.dataset.valor;
 
   /* ── Botón Salir ── */
   if (accion === 'salir') {

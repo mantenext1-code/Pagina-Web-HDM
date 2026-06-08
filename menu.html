@@ -1,5 +1,6 @@
 <!DOCTYPE html>
 <html lang="es">
+
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
@@ -34,12 +35,10 @@
           aria-label en botones sin texto visible es obligatorio
           para accesibilidad — describe el botón a lectores de pantalla.
         -->
-        <button class="boton-campana"
-                aria-label="Notificaciones"
-                data-accion="notificaciones">
+        <button class="boton-campana" aria-label="Notificaciones" data-accion="notificaciones">
           <svg viewBox="0 0 24 24" aria-hidden="true">
-            <path d="M18 8A6 6 0 0 0 6 8c0 7-3 9-3 9h18s-3-2-3-9"/>
-            <path d="M13.73 21a2 2 0 0 1-3.46 0"/>
+            <path d="M18 8A6 6 0 0 0 6 8c0 7-3 9-3 9h18s-3-2-3-9" />
+            <path d="M13.73 21a2 2 0 0 1-3.46 0" />
           </svg>
         </button>
 
@@ -54,34 +53,25 @@
       <nav> es el elemento semántico para barras de navegación.
       role="tablist" indica que las pestañas son un grupo de opciones.
     -->
-    <nav class="barra-navegacion barra-navegacion--menu"
-         aria-label="Secciones principales"
-         role="tablist">
+    <nav class="barra-navegacion barra-navegacion--menu" aria-label="Secciones principales" role="tablist">
 
-      <button class="pestana-nav pestana-nav--activa"
-              role="tab" aria-selected="true"
-              data-accion="nav" data-valor="inicio">Inicio</button>
+      <button class="pestana-nav pestana-nav--activa" role="tab" aria-selected="true" data-accion="nav"
+        data-valor="inicio">Inicio</button>
 
-      <button class="pestana-nav"
-              role="tab" aria-selected="false"
-              data-accion="nav" data-valor="horarios">Horarios</button>
+      <button class="pestana-nav" role="tab" aria-selected="false" data-accion="nav"
+        data-valor="horarios">Horarios</button>
 
-      <button class="pestana-nav"
-              role="tab" aria-selected="false"
-              data-accion="nav" data-valor="tutorias">Tutorías</button>
+      <button class="pestana-nav" role="tab" aria-selected="false" data-accion="nav"
+        data-valor="tutorias">Tutorías</button>
 
-      <button class="pestana-nav"
-              role="tab" aria-selected="false"
-              data-accion="nav" data-valor="foro">Foro</button>
+      <button class="pestana-nav" role="tab" aria-selected="false" data-accion="nav" data-valor="foro">Foro</button>
 
       <!-- Ícono llave / configuración -->
-      <button class="icono-navegacion"
-              aria-label="Configuración"
-              data-accion="configuracion">
+      <button class="icono-navegacion" aria-label="Configuración" data-accion="configuracion">
         <svg viewBox="0 0 24 24" aria-hidden="true">
-          <circle cx="7.5" cy="15.5" r="5.5"/>
-          <path d="M21 2l-9.6 9.6"/>
-          <path d="M15.5 7.5 19 4"/>
+          <circle cx="7.5" cy="15.5" r="5.5" />
+          <path d="M21 2l-9.6 9.6" />
+          <path d="M15.5 7.5 19 4" />
         </svg>
       </button>
 
@@ -113,20 +103,19 @@
 
             <!-- DIAPOSITIVA 1: Matemáticas -->
             <div class="diapositiva" style="--color-diapositiva: #F5A623;">
-              <button class="diapositiva-flecha-anterior"
-                      aria-label="Diapositiva anterior"
-                      data-accion="carrusel-anterior">
+              <button class="diapositiva-flecha-anterior" aria-label="Diapositiva anterior"
+                data-accion="carrusel-anterior">
                 <svg viewBox="0 0 24 24" aria-hidden="true">
-                  <polyline points="15 18 9 12 15 6"/>
+                  <polyline points="15 18 9 12 15 6" />
                 </svg>
               </button>
               <div class="diapositiva-contenido">
                 <div class="diapositiva-caja-icono">
                   <!-- Ícono: símbolo de gráfica para Matemáticas -->
                   <svg viewBox="0 0 24 24" aria-hidden="true">
-                    <polyline points="3 17 9 11 13 15 22 4"/>
-                    <polyline points="22 4 22 10"/>
-                    <polyline points="14 4 22 4"/>
+                    <polyline points="3 17 9 11 13 15 22 4" />
+                    <polyline points="22 4 22 10" />
+                    <polyline points="14 4 22 4" />
                   </svg>
                 </div>
                 <div class="diapositiva-textos">
@@ -135,32 +124,30 @@
                   <span class="diapositiva-anio">2026</span>
                 </div>
               </div>
-              <button class="diapositiva-flecha-siguiente"
-                      aria-label="Diapositiva siguiente"
-                      data-accion="carrusel-siguiente">
+              <button class="diapositiva-flecha-siguiente" aria-label="Diapositiva siguiente"
+                data-accion="carrusel-siguiente">
                 <svg viewBox="0 0 24 24" aria-hidden="true">
-                  <polyline points="9 18 15 12 9 6"/>
+                  <polyline points="9 18 15 12 9 6" />
                 </svg>
               </button>
             </div>
 
             <!-- DIAPOSITIVA 2: Física -->
             <div class="diapositiva" style="--color-diapositiva: #26A69A;">
-              <button class="diapositiva-flecha-anterior"
-                      aria-label="Diapositiva anterior"
-                      data-accion="carrusel-anterior">
+              <button class="diapositiva-flecha-anterior" aria-label="Diapositiva anterior"
+                data-accion="carrusel-anterior">
                 <svg viewBox="0 0 24 24" aria-hidden="true">
-                  <polyline points="15 18 9 12 15 6"/>
+                  <polyline points="15 18 9 12 15 6" />
                 </svg>
               </button>
               <div class="diapositiva-contenido">
                 <div class="diapositiva-caja-icono">
                   <!-- Ícono: átomo para Física -->
                   <svg viewBox="0 0 24 24" aria-hidden="true">
-                    <circle cx="12" cy="12" r="2"/>
-                    <ellipse cx="12" cy="12" rx="10" ry="4" transform="rotate(0 12 12)"/>
-                    <ellipse cx="12" cy="12" rx="10" ry="4" transform="rotate(60 12 12)"/>
-                    <ellipse cx="12" cy="12" rx="10" ry="4" transform="rotate(120 12 12)"/>
+                    <circle cx="12" cy="12" r="2" />
+                    <ellipse cx="12" cy="12" rx="10" ry="4" transform="rotate(0 12 12)" />
+                    <ellipse cx="12" cy="12" rx="10" ry="4" transform="rotate(60 12 12)" />
+                    <ellipse cx="12" cy="12" rx="10" ry="4" transform="rotate(120 12 12)" />
                   </svg>
                 </div>
                 <div class="diapositiva-textos">
@@ -169,30 +156,28 @@
                   <span class="diapositiva-anio">2026</span>
                 </div>
               </div>
-              <button class="diapositiva-flecha-siguiente"
-                      aria-label="Diapositiva siguiente"
-                      data-accion="carrusel-siguiente">
+              <button class="diapositiva-flecha-siguiente" aria-label="Diapositiva siguiente"
+                data-accion="carrusel-siguiente">
                 <svg viewBox="0 0 24 24" aria-hidden="true">
-                  <polyline points="9 18 15 12 9 6"/>
+                  <polyline points="9 18 15 12 9 6" />
                 </svg>
               </button>
             </div>
 
             <!-- DIAPOSITIVA 3: Química -->
             <div class="diapositiva" style="--color-diapositiva: #7B1FA2;">
-              <button class="diapositiva-flecha-anterior"
-                      aria-label="Diapositiva anterior"
-                      data-accion="carrusel-anterior">
+              <button class="diapositiva-flecha-anterior" aria-label="Diapositiva anterior"
+                data-accion="carrusel-anterior">
                 <svg viewBox="0 0 24 24" aria-hidden="true">
-                  <polyline points="15 18 9 12 15 6"/>
+                  <polyline points="15 18 9 12 15 6" />
                 </svg>
               </button>
               <div class="diapositiva-contenido">
                 <div class="diapositiva-caja-icono">
                   <!-- Ícono: matraz de laboratorio para Química -->
                   <svg viewBox="0 0 24 24" aria-hidden="true">
-                    <path d="M9 3h6v6l3 9H6l3-9V3z"/>
-                    <line x1="6" y1="14" x2="18" y2="14"/>
+                    <path d="M9 3h6v6l3 9H6l3-9V3z" />
+                    <line x1="6" y1="14" x2="18" y2="14" />
                   </svg>
                 </div>
                 <div class="diapositiva-textos">
@@ -201,31 +186,30 @@
                   <span class="diapositiva-anio">2026</span>
                 </div>
               </div>
-              <button class="diapositiva-flecha-siguiente"
-                      aria-label="Diapositiva siguiente"
-                      data-accion="carrusel-siguiente">
+              <button class="diapositiva-flecha-siguiente" aria-label="Diapositiva siguiente"
+                data-accion="carrusel-siguiente">
                 <svg viewBox="0 0 24 24" aria-hidden="true">
-                  <polyline points="9 18 15 12 9 6"/>
+                  <polyline points="9 18 15 12 9 6" />
                 </svg>
               </button>
             </div>
 
             <!-- DIAPOSITIVA 4: Inglés -->
             <div class="diapositiva" style="--color-diapositiva: #1565C0;">
-              <button class="diapositiva-flecha-anterior"
-                      aria-label="Diapositiva anterior"
-                      data-accion="carrusel-anterior">
+              <button class="diapositiva-flecha-anterior" aria-label="Diapositiva anterior"
+                data-accion="carrusel-anterior">
                 <svg viewBox="0 0 24 24" aria-hidden="true">
-                  <polyline points="15 18 9 12 15 6"/>
+                  <polyline points="15 18 9 12 15 6" />
                 </svg>
               </button>
               <div class="diapositiva-contenido">
                 <div class="diapositiva-caja-icono">
                   <!-- Ícono: globo terráqueo para Inglés -->
                   <svg viewBox="0 0 24 24" aria-hidden="true">
-                    <circle cx="12" cy="12" r="10"/>
-                    <line x1="2" y1="12" x2="22" y2="12"/>
-                    <path d="M12 2a15.3 15.3 0 0 1 4 10 15.3 15.3 0 0 1-4 10 15.3 15.3 0 0 1-4-10 15.3 15.3 0 0 1 4-10z"/>
+                    <circle cx="12" cy="12" r="10" />
+                    <line x1="2" y1="12" x2="22" y2="12" />
+                    <path
+                      d="M12 2a15.3 15.3 0 0 1 4 10 15.3 15.3 0 0 1-4 10 15.3 15.3 0 0 1-4-10 15.3 15.3 0 0 1 4-10z" />
                   </svg>
                 </div>
                 <div class="diapositiva-textos">
@@ -234,31 +218,29 @@
                   <span class="diapositiva-anio">2026</span>
                 </div>
               </div>
-              <button class="diapositiva-flecha-siguiente"
-                      aria-label="Diapositiva siguiente"
-                      data-accion="carrusel-siguiente">
+              <button class="diapositiva-flecha-siguiente" aria-label="Diapositiva siguiente"
+                data-accion="carrusel-siguiente">
                 <svg viewBox="0 0 24 24" aria-hidden="true">
-                  <polyline points="9 18 15 12 9 6"/>
+                  <polyline points="9 18 15 12 9 6" />
                 </svg>
               </button>
             </div>
 
             <!-- DIAPOSITIVA 5: Literatura -->
             <div class="diapositiva" style="--color-diapositiva: #2E7D32;">
-              <button class="diapositiva-flecha-anterior"
-                      aria-label="Diapositiva anterior"
-                      data-accion="carrusel-anterior">
+              <button class="diapositiva-flecha-anterior" aria-label="Diapositiva anterior"
+                data-accion="carrusel-anterior">
                 <svg viewBox="0 0 24 24" aria-hidden="true">
-                  <polyline points="15 18 9 12 15 6"/>
+                  <polyline points="15 18 9 12 15 6" />
                 </svg>
               </button>
               <div class="diapositiva-contenido">
                 <div class="diapositiva-caja-icono">
                   <!-- Ícono: libro abierto para Literatura -->
                   <svg viewBox="0 0 24 24" aria-hidden="true">
-                    <path d="M2 6s2-2 5-2 5 2 5 2v14s-2-1-5-1-5 1-5 1V6z"/>
-                    <path d="M12 6s2-2 5-2 5 2 5 2v14s-2-1-5-1-5 1-5 1V6z"/>
-                    <line x1="12" y1="6" x2="12" y2="20"/>
+                    <path d="M2 6s2-2 5-2 5 2 5 2v14s-2-1-5-1-5 1-5 1V6z" />
+                    <path d="M12 6s2-2 5-2 5 2 5 2v14s-2-1-5-1-5 1-5 1V6z" />
+                    <line x1="12" y1="6" x2="12" y2="20" />
                   </svg>
                 </div>
                 <div class="diapositiva-textos">
@@ -267,30 +249,28 @@
                   <span class="diapositiva-anio">2026</span>
                 </div>
               </div>
-              <button class="diapositiva-flecha-siguiente"
-                      aria-label="Diapositiva siguiente"
-                      data-accion="carrusel-siguiente">
+              <button class="diapositiva-flecha-siguiente" aria-label="Diapositiva siguiente"
+                data-accion="carrusel-siguiente">
                 <svg viewBox="0 0 24 24" aria-hidden="true">
-                  <polyline points="9 18 15 12 9 6"/>
+                  <polyline points="9 18 15 12 9 6" />
                 </svg>
               </button>
             </div>
 
             <!-- DIAPOSITIVA 6: Historia -->
             <div class="diapositiva" style="--color-diapositiva: #BF360C;">
-              <button class="diapositiva-flecha-anterior"
-                      aria-label="Diapositiva anterior"
-                      data-accion="carrusel-anterior">
+              <button class="diapositiva-flecha-anterior" aria-label="Diapositiva anterior"
+                data-accion="carrusel-anterior">
                 <svg viewBox="0 0 24 24" aria-hidden="true">
-                  <polyline points="15 18 9 12 15 6"/>
+                  <polyline points="15 18 9 12 15 6" />
                 </svg>
               </button>
               <div class="diapositiva-contenido">
                 <div class="diapositiva-caja-icono">
                   <!-- Ícono: reloj antiguo para Historia -->
                   <svg viewBox="0 0 24 24" aria-hidden="true">
-                    <circle cx="12" cy="12" r="10"/>
-                    <polyline points="12 6 12 12 16 14"/>
+                    <circle cx="12" cy="12" r="10" />
+                    <polyline points="12 6 12 12 16 14" />
                   </svg>
                 </div>
                 <div class="diapositiva-textos">
@@ -299,11 +279,10 @@
                   <span class="diapositiva-anio">2026</span>
                 </div>
               </div>
-              <button class="diapositiva-flecha-siguiente"
-                      aria-label="Diapositiva siguiente"
-                      data-accion="carrusel-siguiente">
+              <button class="diapositiva-flecha-siguiente" aria-label="Diapositiva siguiente"
+                data-accion="carrusel-siguiente">
                 <svg viewBox="0 0 24 24" aria-hidden="true">
-                  <polyline points="9 18 15 12 9 6"/>
+                  <polyline points="9 18 15 12 9 6" />
                 </svg>
               </button>
             </div>
@@ -312,27 +291,14 @@
         </div><!-- /carrusel-visor -->
 
         <!-- Puntos indicadores -->
-        <div class="carrusel-puntos"
-             id="carrusel-puntos"
-             aria-label="Indicador de diapositivas">
-          <button class="punto-carrusel punto-carrusel--activo"
-                  data-accion="carrusel-ir" data-valor="0"
-                  aria-label="Diapositiva 1"></button>
-          <button class="punto-carrusel"
-                  data-accion="carrusel-ir" data-valor="1"
-                  aria-label="Diapositiva 2"></button>
-          <button class="punto-carrusel"
-                  data-accion="carrusel-ir" data-valor="2"
-                  aria-label="Diapositiva 3"></button>
-          <button class="punto-carrusel"
-                  data-accion="carrusel-ir" data-valor="3"
-                  aria-label="Diapositiva 4"></button>
-          <button class="punto-carrusel"
-                  data-accion="carrusel-ir" data-valor="4"
-                  aria-label="Diapositiva 5"></button>
-          <button class="punto-carrusel"
-                  data-accion="carrusel-ir" data-valor="5"
-                  aria-label="Diapositiva 6"></button>
+        <div class="carrusel-puntos" id="carrusel-puntos" aria-label="Indicador de diapositivas">
+          <button class="punto-carrusel punto-carrusel--activo" data-accion="carrusel-ir" data-valor="0"
+            aria-label="Diapositiva 1"></button>
+          <button class="punto-carrusel" data-accion="carrusel-ir" data-valor="1" aria-label="Diapositiva 2"></button>
+          <button class="punto-carrusel" data-accion="carrusel-ir" data-valor="2" aria-label="Diapositiva 3"></button>
+          <button class="punto-carrusel" data-accion="carrusel-ir" data-valor="3" aria-label="Diapositiva 4"></button>
+          <button class="punto-carrusel" data-accion="carrusel-ir" data-valor="4" aria-label="Diapositiva 5"></button>
+          <button class="punto-carrusel" data-accion="carrusel-ir" data-valor="5" aria-label="Diapositiva 6"></button>
         </div>
 
       </div><!-- /carrusel -->
@@ -355,9 +321,9 @@
           <div class="tarjeta-encabezado">
             <div class="tarjeta-icono">
               <svg viewBox="0 0 24 24" aria-hidden="true">
-                <polyline points="3 17 9 11 13 15 22 4"/>
-                <polyline points="22 4 22 10"/>
-                <polyline points="14 4 22 4"/>
+                <polyline points="3 17 9 11 13 15 22 4" />
+                <polyline points="22 4 22 10" />
+                <polyline points="14 4 22 4" />
               </svg>
             </div>
             <div class="tarjeta-titulos">
@@ -370,34 +336,32 @@
             <!-- Ícono calendario: días -->
             <div class="tarjeta-fila-detalle">
               <svg viewBox="0 0 24 24" aria-hidden="true">
-                <rect x="3" y="4" width="18" height="18" rx="2"/>
-                <line x1="16" y1="2" x2="16" y2="6"/>
-                <line x1="8" y1="2" x2="8" y2="6"/>
-                <line x1="3" y1="10" x2="21" y2="10"/>
+                <rect x="3" y="4" width="18" height="18" rx="2" />
+                <line x1="16" y1="2" x2="16" y2="6" />
+                <line x1="8" y1="2" x2="8" y2="6" />
+                <line x1="3" y1="10" x2="21" y2="10" />
               </svg>
               <span>Lunes y Miércoles</span>
             </div>
             <!-- Ícono reloj: horarios -->
             <div class="tarjeta-fila-detalle">
               <svg viewBox="0 0 24 24" aria-hidden="true">
-                <circle cx="12" cy="12" r="10"/>
-                <polyline points="12 6 12 12 16 14"/>
+                <circle cx="12" cy="12" r="10" />
+                <polyline points="12 6 12 12 16 14" />
               </svg>
               <span>2 horarios</span>
             </div>
             <!-- Ícono ubicación: lugar -->
             <div class="tarjeta-fila-detalle">
               <svg viewBox="0 0 24 24" aria-hidden="true">
-                <path d="M21 10c0 7-9 13-9 13S3 17 3 10a9 9 0 1 1 18 0z"/>
-                <circle cx="12" cy="10" r="3"/>
+                <path d="M21 10c0 7-9 13-9 13S3 17 3 10a9 9 0 1 1 18 0z" />
+                <circle cx="12" cy="10" r="3" />
               </svg>
               <span>Biblioteca</span>
             </div>
           </div>
 
-          <button class="boton-reservar"
-                  data-accion="reservar"
-                  data-valor="matematicas">
+          <button class="boton-reservar" data-accion="reservar" data-valor="matematicas">
             Reservar Tutoría
           </button>
         </article>
@@ -407,10 +371,10 @@
           <div class="tarjeta-encabezado">
             <div class="tarjeta-icono">
               <svg viewBox="0 0 24 24" aria-hidden="true">
-                <circle cx="12" cy="12" r="2"/>
-                <ellipse cx="12" cy="12" rx="10" ry="4" transform="rotate(0 12 12)"/>
-                <ellipse cx="12" cy="12" rx="10" ry="4" transform="rotate(60 12 12)"/>
-                <ellipse cx="12" cy="12" rx="10" ry="4" transform="rotate(120 12 12)"/>
+                <circle cx="12" cy="12" r="2" />
+                <ellipse cx="12" cy="12" rx="10" ry="4" transform="rotate(0 12 12)" />
+                <ellipse cx="12" cy="12" rx="10" ry="4" transform="rotate(60 12 12)" />
+                <ellipse cx="12" cy="12" rx="10" ry="4" transform="rotate(120 12 12)" />
               </svg>
             </div>
             <div class="tarjeta-titulos">
@@ -422,32 +386,30 @@
           <div class="tarjeta-detalles">
             <div class="tarjeta-fila-detalle">
               <svg viewBox="0 0 24 24" aria-hidden="true">
-                <rect x="3" y="4" width="18" height="18" rx="2"/>
-                <line x1="16" y1="2" x2="16" y2="6"/>
-                <line x1="8" y1="2" x2="8" y2="6"/>
-                <line x1="3" y1="10" x2="21" y2="10"/>
+                <rect x="3" y="4" width="18" height="18" rx="2" />
+                <line x1="16" y1="2" x2="16" y2="6" />
+                <line x1="8" y1="2" x2="8" y2="6" />
+                <line x1="3" y1="10" x2="21" y2="10" />
               </svg>
               <span>Martes y Jueves</span>
             </div>
             <div class="tarjeta-fila-detalle">
               <svg viewBox="0 0 24 24" aria-hidden="true">
-                <circle cx="12" cy="12" r="10"/>
-                <polyline points="12 6 12 12 16 14"/>
+                <circle cx="12" cy="12" r="10" />
+                <polyline points="12 6 12 12 16 14" />
               </svg>
               <span>2 horarios</span>
             </div>
             <div class="tarjeta-fila-detalle">
               <svg viewBox="0 0 24 24" aria-hidden="true">
-                <path d="M21 10c0 7-9 13-9 13S3 17 3 10a9 9 0 1 1 18 0z"/>
-                <circle cx="12" cy="10" r="3"/>
+                <path d="M21 10c0 7-9 13-9 13S3 17 3 10a9 9 0 1 1 18 0z" />
+                <circle cx="12" cy="10" r="3" />
               </svg>
               <span>Laboratorio 1</span>
             </div>
           </div>
 
-          <button class="boton-reservar"
-                  data-accion="reservar"
-                  data-valor="fisica">
+          <button class="boton-reservar" data-accion="reservar" data-valor="fisica">
             Reservar Tutoría
           </button>
         </article>
@@ -457,8 +419,8 @@
           <div class="tarjeta-encabezado">
             <div class="tarjeta-icono">
               <svg viewBox="0 0 24 24" aria-hidden="true">
-                <path d="M9 3h6v6l3 9H6l3-9V3z"/>
-                <line x1="6" y1="14" x2="18" y2="14"/>
+                <path d="M9 3h6v6l3 9H6l3-9V3z" />
+                <line x1="6" y1="14" x2="18" y2="14" />
               </svg>
             </div>
             <div class="tarjeta-titulos">
@@ -470,32 +432,30 @@
           <div class="tarjeta-detalles">
             <div class="tarjeta-fila-detalle">
               <svg viewBox="0 0 24 24" aria-hidden="true">
-                <rect x="3" y="4" width="18" height="18" rx="2"/>
-                <line x1="16" y1="2" x2="16" y2="6"/>
-                <line x1="8" y1="2" x2="8" y2="6"/>
-                <line x1="3" y1="10" x2="21" y2="10"/>
+                <rect x="3" y="4" width="18" height="18" rx="2" />
+                <line x1="16" y1="2" x2="16" y2="6" />
+                <line x1="8" y1="2" x2="8" y2="6" />
+                <line x1="3" y1="10" x2="21" y2="10" />
               </svg>
               <span>Miércoles y Viernes</span>
             </div>
             <div class="tarjeta-fila-detalle">
               <svg viewBox="0 0 24 24" aria-hidden="true">
-                <circle cx="12" cy="12" r="10"/>
-                <polyline points="12 6 12 12 16 14"/>
+                <circle cx="12" cy="12" r="10" />
+                <polyline points="12 6 12 12 16 14" />
               </svg>
               <span>2 horarios</span>
             </div>
             <div class="tarjeta-fila-detalle">
               <svg viewBox="0 0 24 24" aria-hidden="true">
-                <path d="M21 10c0 7-9 13-9 13S3 17 3 10a9 9 0 1 1 18 0z"/>
-                <circle cx="12" cy="10" r="3"/>
+                <path d="M21 10c0 7-9 13-9 13S3 17 3 10a9 9 0 1 1 18 0z" />
+                <circle cx="12" cy="10" r="3" />
               </svg>
               <span>Biblioteca</span>
             </div>
           </div>
 
-          <button class="boton-reservar"
-                  data-accion="reservar"
-                  data-valor="quimica">
+          <button class="boton-reservar" data-accion="reservar" data-valor="quimica">
             Reservar Tutoría
           </button>
         </article>
@@ -517,8 +477,8 @@
           <div class="contacto-icono" style="background-color: #F5A623;">
             <!-- Ícono sobre/correo -->
             <svg viewBox="0 0 24 24" aria-hidden="true">
-              <rect x="2" y="4" width="20" height="16" rx="2"/>
-              <path d="m2 7 10 7 10-7"/>
+              <rect x="2" y="4" width="20" height="16" rx="2" />
+              <path d="m2 7 10 7 10-7" />
             </svg>
           </div>
           <span class="contacto-etiqueta">Correo electrónico</span>
@@ -537,7 +497,7 @@
                        A2 2 0 0 1 3.6 2h3a2 2 0 0 1 2 1.72
                        c.127.96.361 1.903.7 2.81a2 2 0 0 1-.45 2.11L8.09 9.91
                        a16 16 0 0 0 6 6l1.27-1.27a2 2 0 0 1 2.11-.45
-                       c.907.339 1.85.573 2.81.7A2 2 0 0 1 22 16.92z"/>
+                       c.907.339 1.85.573 2.81.7A2 2 0 0 1 22 16.92z" />
             </svg>
           </div>
           <span class="contacto-etiqueta">Teléfono</span>
@@ -558,11 +518,12 @@
   ════════════════════════════════════════════════════ -->
   <footer class="pie-pagina">
     <p>©2026 Centro de Tutorías — Todos los derechos reservados.<br>
-       Comprometidos con tu éxito académico.</p>
+      Comprometidos con tu éxito académico.</p>
   </footer>
 
   <!-- JS unificado del proyecto — al final del <body> para que el DOM exista -->
   <script src="js/principal.js"></script>
 
 </body>
+
 </html>

@@ -16,21 +16,30 @@
    y el cambio se propaga a toda la interfaz automáticamente.
 ════════════════════════════════════════════════════════════════ */
 :root {
-  --color-fondo-pagina:     #F5E5C0; /* crema: fondo de toda la página          */
-  --color-fondo-tarjeta:    #FFFFFF; /* blanco: tarjeta del formulario           */
-  --color-marca:            #F5A623; /* naranja: botones, enlaces, casilla       */
-  --color-texto-titulo:     #1C1C1E; /* casi negro: títulos y valores            */
-  --color-texto-cuerpo:     #3A3A3C; /* gris oscuro: etiquetas de campo          */
-  --color-texto-secundario: #6B6B6B; /* gris medio: subtítulo del encabezado     */
-  --color-borde-campo:      #D1D1D6; /* gris claro: borde de campos en reposo    */
-  --color-marcador:         #AEAEB2; /* gris suave: texto de marcador (placeholder) */
-  --color-icono-campo:      #AEAEB2; /* gris suave: íconos dentro del campo      */
+  --color-fondo-pagina: #F5E5C0;
+  /* crema: fondo de toda la página          */
+  --color-fondo-tarjeta: #FFFFFF;
+  /* blanco: tarjeta del formulario           */
+  --color-marca: #F5A623;
+  /* naranja: botones, enlaces, casilla       */
+  --color-texto-titulo: #1C1C1E;
+  /* casi negro: títulos y valores            */
+  --color-texto-cuerpo: #3A3A3C;
+  /* gris oscuro: etiquetas de campo          */
+  --color-texto-secundario: #6B6B6B;
+  /* gris medio: subtítulo del encabezado     */
+  --color-borde-campo: #D1D1D6;
+  /* gris claro: borde de campos en reposo    */
+  --color-marcador: #AEAEB2;
+  /* gris suave: texto de marcador (placeholder) */
+  --color-icono-campo: #AEAEB2;
+  /* gris suave: íconos dentro del campo      */
 
   /* Radios geométricos extraídos del Figma */
-  --radio-campo:   8px;
+  --radio-campo: 8px;
   --radio-tarjeta: 16px;
-  --radio-boton:   12px;
-  --radio-logo:    16px;
+  --radio-boton: 12px;
+  --radio-logo: 16px;
 }
 
 
@@ -42,7 +51,9 @@
    El reset de margin/padding elimina los espacios que los
    navegadores agregan por defecto (cada uno los pone diferente).
 ════════════════════════════════════════════════════════════════ */
-*, *::before, *::after {
+*,
+*::before,
+*::after {
   box-sizing: border-box;
   margin: 0;
   padding: 0;
@@ -61,8 +72,10 @@ body {
   min-height: 100vh;
   display: flex;
   justify-content: center;
-  align-items: flex-start; /* alineado arriba para que el scroll sea natural en móvil */
-  padding: 2rem 1rem;      /* margen exterior para que la tarjeta no toque los bordes */
+  align-items: flex-start;
+  /* alineado arriba para que el scroll sea natural en móvil */
+  padding: 2rem 1rem;
+  /* margen exterior para que la tarjeta no toque los bordes */
 }
 
 
@@ -79,7 +92,8 @@ body {
   border-radius: var(--radio-tarjeta);
   overflow: hidden;
   display: flex;
-  flex-direction: column; /* apila encabezado crema + sección blanca verticalmente */
+  flex-direction: column;
+  /* apila encabezado crema + sección blanca verticalmente */
 }
 
 
@@ -118,14 +132,16 @@ body {
 }
 
 .titulo-encabezado {
-  font-size: 1.25rem;   /* 20px — título principal del app */
+  font-size: 1.25rem;
+  /* 20px — título principal del app */
   font-weight: 700;
   color: var(--color-texto-titulo);
   text-align: center;
 }
 
 .subtitulo-encabezado {
-  font-size: 0.8125rem; /* 13px — subtítulo secundario */
+  font-size: 0.8125rem;
+  /* 13px — subtítulo secundario */
   font-weight: 400;
   color: var(--color-texto-secundario);
   text-align: center;
@@ -147,7 +163,8 @@ body {
 }
 
 .titulo-tarjeta {
-  font-size: 1.125rem; /* 18px */
+  font-size: 1.125rem;
+  /* 18px */
   font-weight: 700;
   color: var(--color-texto-titulo);
   text-align: center;
@@ -160,18 +177,21 @@ body {
 .grupo-campo {
   display: flex;
   flex-direction: column;
-  gap: 0.375rem; /* 6px entre la etiqueta y el campo */
+  gap: 0.375rem;
+  /* 6px entre la etiqueta y el campo */
 }
 
 .etiqueta-campo {
-  font-size: 0.875rem; /* 14px — legible en móvil sin ser grande */
+  font-size: 0.875rem;
+  /* 14px — legible en móvil sin ser grande */
   font-weight: 500;
   color: var(--color-texto-cuerpo);
 }
 
 /* Texto de ayuda debajo del campo (ej. "Mínimo 6 caracteres") */
 .ayuda-campo {
-  font-size: 0.75rem; /* 12px — secundario, no debe competir con la etiqueta */
+  font-size: 0.75rem;
+  /* 12px — secundario, no debe competir con la etiqueta */
   color: var(--color-texto-secundario);
   margin-top: 0.25rem;
 }
@@ -198,7 +218,8 @@ body {
   stroke-width: 1.8;
   stroke-linecap: round;
   stroke-linejoin: round;
-  pointer-events: none; /* el ícono NO intercepta toques del usuario */
+  pointer-events: none;
+  /* el ícono NO intercepta toques del usuario */
 }
 
 /*
@@ -208,18 +229,23 @@ body {
  * -webkit-appearance:none elimina estilos nativos del navegador.
  */
 .campo-texto {
-  width: 100%;        /* ocupa todo el ancho del contenedor padre */
-  height: 48px;       /* área de toque cómoda para dedos en móvil */
-  padding-left: 40px; /* espacio para el ícono izquierdo */
+  width: 100%;
+  /* ocupa todo el ancho del contenedor padre */
+  height: 48px;
+  /* área de toque cómoda para dedos en móvil */
+  padding-left: 40px;
+  /* espacio para el ícono izquierdo */
   padding-right: 12px;
   font-family: 'Inter', sans-serif;
-  font-size: 1rem;    /* 16px — evita zoom automático en iOS */
+  font-size: 1rem;
+  /* 16px — evita zoom automático en iOS */
   color: var(--color-texto-titulo);
   background-color: #FFFFFF;
   border: 1px solid var(--color-borde-campo);
   border-radius: var(--radio-campo);
   outline: none;
-  -webkit-appearance: none; /* prefijo para Safari/iOS */
+  -webkit-appearance: none;
+  /* prefijo para Safari/iOS */
   appearance: none;
   transition: border-color 0.15s;
 }
@@ -273,12 +299,12 @@ body {
   transition: background-color 0.15s, border-color 0.15s;
 }
 
-.etiqueta-recordar input:checked + .casilla-personalizada {
+.etiqueta-recordar input:checked+.casilla-personalizada {
   background-color: var(--color-marca);
   border-color: var(--color-marca);
 }
 
-.etiqueta-recordar input:checked + .casilla-personalizada::after {
+.etiqueta-recordar input:checked+.casilla-personalizada::after {
   content: '';
   display: block;
   width: 8px;
@@ -323,17 +349,18 @@ body {
   display: flex;
   align-items: center;
   justify-content: center;
-  margin-top: 2px; /* alineación visual con la primera línea del texto */
+  margin-top: 2px;
+  /* alineación visual con la primera línea del texto */
   background-color: transparent;
   transition: background-color 0.15s, border-color 0.15s;
 }
 
-.fila-terminos input:checked + .casilla-personalizada {
+.fila-terminos input:checked+.casilla-personalizada {
   background-color: var(--color-marca);
   border-color: var(--color-marca);
 }
 
-.fila-terminos input:checked + .casilla-personalizada::after {
+.fila-terminos input:checked+.casilla-personalizada::after {
   content: '';
   display: block;
   width: 8px;
@@ -344,7 +371,8 @@ body {
 }
 
 .texto-terminos {
-  font-size: 0.875rem; /* 14px */
+  font-size: 0.875rem;
+  /* 14px */
   color: var(--color-texto-cuerpo);
   line-height: 1.5;
 }
@@ -377,7 +405,8 @@ body {
   background-color: var(--color-marca);
   color: #FFFFFF;
   font-family: 'Inter', sans-serif;
-  font-size: 1rem;    /* 16px — no dispara zoom en iOS (es un botón, no un campo) */
+  font-size: 1rem;
+  /* 16px — no dispara zoom en iOS (es un botón, no un campo) */
   font-weight: 600;
   border: none;
   border-radius: var(--radio-boton);
@@ -413,7 +442,6 @@ body {
   text-decoration: underline;
 }
 
-
 /* ════════════════════════════════════════════════════════════════
    MEDIA QUERY — MÓVIL (≤ 768px)
    La mayoría del diseño ya es fluido. Estos ajustes refinan
@@ -426,7 +454,8 @@ body {
   }
 
   .envoltura-tarjeta {
-    width: 100%; /* en móvil pequeño la tarjeta ocupa todo el ancho útil */
+    width: 100%;
+    /* en móvil pequeño la tarjeta ocupa todo el ancho útil */
   }
 
   .zona-encabezado {
@@ -434,7 +463,8 @@ body {
   }
 
   .tarjeta-formulario {
-    padding: 1.5rem; /* reducimos el padding interior en pantalla chica */
+    padding: 1.5rem;
+    /* reducimos el padding interior en pantalla chica */
     gap: 1rem;
   }
 
@@ -445,7 +475,8 @@ body {
   /* font-size en campos NUNCA puede bajar de 16px en móvil.
      Esta regla refuerza el valor base en caso de herencia accidental. */
   .campo-texto {
-    font-size: 1rem; /* 16px — obligatorio para evitar zoom en iOS */
+    font-size: 1rem;
+    /* 16px — obligatorio para evitar zoom en iOS */
     height: 48px;
   }
 
