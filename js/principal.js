@@ -261,7 +261,10 @@ document.addEventListener('click', function(evento) {
       /* ✅ CORRECCIÓN: antes mostraba alert, ahora navega */
       window.location.href = 'tutorias.html';
     } else if (valor === 'foro') {
-      alert('Sección Foro: próximamente.');
+      window.location.href = 'foro.html';
+    } else if (valor === 'configuracion') {
+      /* ✅ Redirige a la pantalla de configuración */
+      window.location.href = 'configuracion.html';
     }
     return;
   }
@@ -281,7 +284,8 @@ document.addEventListener('click', function(evento) {
 
   /* ── Configuración ── */
   if (accion === 'configuracion') {
-    alert('Configuración: próximamente.');
+    /* ✅ CORRECCIÓN: antes mostraba alert, ahora navega */
+    window.location.href = 'configuracion.html';
     return;
   }
 
@@ -364,9 +368,115 @@ document.addEventListener('click', function(evento) {
 });
 
 
+
+
+/* ══════════════════════════════════════════════════════════════
+   FORO — Lógica de publicación de mensajes
+   Se suma al listener global de delegación ya existente arriba.
+   Usamos un segundo listener específico para no modificar el
+   bloque principal y evitar conflictos en Git.
+══════════════════════════════════════════════════════════════ */
+document.addEventListener('click', function(evento) {
+  var elemento = evento.target.closest('[data-accion]');
+  if (!elemento) { return; }
+
+  /* ── Publicar mensaje en el foro ── */
+  if (elemento.dataset.accion === 'publicar-mensaje') {
+    /*
+     * El submit real lo maneja el listener del formulario más abajo.
+     * Este bloque queda como punto de extensión para feedback visual.
+     */
+    return;
+  }
+});
+
+/* ── Formulario de nuevo mensaje en el foro ── */
+var formularioForo = document.getElementById('formulario-foro');
+
+if (formularioForo) {
+  formularioForo.addEventListener('submit', function(evento) {
+    evento.preventDefault();
+
+    var datos   = new FormData(formularioForo);
+    var mensaje = datos.get('mensaje').trim();
+
+    if (!mensaje) {
+      alert('Por favor, escribí tu mensaje antes de publicar.');
+      return;
+    }
+
+    alert('Mensaje publicado correctamente.\n"' + mensaje + '"');
+    formularioForo.reset();
+  });
+}
+
 /* ══════════════════════════════════════════════════════════════
    INICIALIZACIÓN AL CARGAR LA PÁGINA
 ══════════════════════════════════════════════════════════════ */
 inicializarFormularioAcceso();
 inicializarFormularioRegistro();
 iniciarCarrusel();
+
+
+/* ══════════════════════════════════════════════════════════════
+   CONFIGURACIÓN — Lógica de la pantalla configuracion.html
+   Se agrega como listener adicional para no alterar el bloque
+   principal y evitar conflictos en el repositorio.
+══════════════════════════════════════════════════════════════ */
+document.addEventListener('click', function(evento) {
+  var elemento = evento.target.closest('[data-accion]');
+  if (!elemento) { return; }
+
+  var accion = elemento.dataset.accion;
+
+  /* ── Guardar cambios de perfil ── */
+  if (accion === 'guardar-perfil') {
+    var campoNombre = document.getElementById('campo-nombre');
+    var campoCorreo = document.getElementById('campo-correo');
+
+    var nombre = campoNombre ? campoNombre.value.trim() : '';
+    var correo = campoCorreo ? campoCorreo.value.trim() : '';
+
+    if (!nombre || !correo) {
+      alert('Por favor, completá todos los campos antes de guardar.');
+      return;
+    }
+
+    var regexCorreo = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+    if (!regexCorreo.test(correo)) {
+      alert('El formato del correo electrónico no es válido.');
+      return;
+    }
+
+    alert('¡Cambios guardados correctamente!\nNombre: ' + nombre + '\nCorreo: ' + correo);
+    return;
+  }
+
+  /* ── Cambiar contraseña ── */
+  if (accion === 'cambiar-contrasena') {
+    alert('Cambio de contraseña: en breve recibirás un correo con el enlace para restablecerla.');
+    return;
+  }
+
+  /* ── Centro de ayuda ── */
+  if (accion === 'centro-ayuda') {
+    evento.preventDefault();
+    alert('Centro de ayuda: esta sección estará disponible próximamente.');
+    return;
+  }
+
+  /* ── Interruptor de notificación (toggle) ── */
+  if (accion === 'alternar-notificacion') {
+    var opcion     = elemento.dataset.opcion || 'esta opción';
+    var activado   = elemento.checked;
+    var nombresMapa = {
+      'recordatorios':    'Recordatorios de tutorías',
+      'cambios-horario':  'Cambios de horario',
+      'nuevos-tutores':   'Nuevos tutores disponibles'
+    };
+    var etiqueta = nombresMapa[opcion] || opcion;
+    var estadoTexto = activado ? 'activada' : 'desactivada';
+    alert('Preferencia actualizada:\n"' + etiqueta + '" fue ' + estadoTexto + '.');
+    return;
+  }
+});
