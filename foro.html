@@ -1,0 +1,287 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Foro — Centro de Tutorías</title>
+
+  <!-- Fuente Inter: <link> en lugar de @import para evitar error CORS en file:// -->
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap"
+        rel="stylesheet" />
+
+  <!--
+    Mismo CSS que horarios.html, notificaciones.html y tutorias.html.
+    El foro es una sección interna: le corresponde plataforma.css.
+    Los estilos propios del foro se agregan al FINAL de ese archivo.
+  -->
+  <link rel="stylesheet" href="css/plataforma.css" />
+</head>
+
+<body>
+
+  <!-- ════════════════════════════════════════════════════
+       ENCABEZADO NARANJA
+       Idéntico al de horarios.html y notificaciones.html:
+       mismas clases, mismo orden de elementos.
+  ════════════════════════════════════════════════════ -->
+  <header class="encabezado-plataforma" aria-label="Encabezado principal">
+
+    <div class="encabezado-fila-superior">
+      <h1 class="encabezado-titulo">Centro de Tutorías</h1>
+
+      <div class="encabezado-acciones">
+
+        <button class="boton-icono"
+                aria-label="Notificaciones"
+                data-accion="notificaciones">
+          <svg viewBox="0 0 24 24" aria-hidden="true">
+            <path d="M18 8A6 6 0 0 0 6 8c0 7-3 9-3 9h18s-3-2-3-9"/>
+            <path d="M13.73 21a2 2 0 0 1-3.46 0"/>
+          </svg>
+        </button>
+
+        <button class="boton-icono"
+                aria-label="Configuración"
+                data-accion="configuracion">
+          <svg viewBox="0 0 24 24" aria-hidden="true">
+            <circle cx="7.5" cy="15.5" r="5.5"/>
+            <path d="M21 2l-9.6 9.6"/>
+            <path d="M15.5 7.5 19 4"/>
+          </svg>
+        </button>
+
+        <button class="boton-salir" data-accion="salir">Salir</button>
+      </div>
+    </div>
+
+    <!--
+      La pestaña "Foro" lleva pestana-nav--activa porque esta
+      es la página actual. aria-selected="true" lo refuerza
+      para lectores de pantalla.
+      pestana-nav--amplia distribuye el ancho igual que en
+      horarios.html y notificaciones.html.
+    -->
+    <nav class="barra-navegacion" aria-label="Secciones" role="tablist">
+
+      <button class="pestana-nav pestana-nav--amplia"
+              role="tab" aria-selected="false"
+              data-accion="nav" data-valor="inicio">Inicio</button>
+
+      <button class="pestana-nav pestana-nav--amplia"
+              role="tab" aria-selected="false"
+              data-accion="nav" data-valor="horarios">Horarios</button>
+
+      <button class="pestana-nav pestana-nav--amplia"
+              role="tab" aria-selected="false"
+              data-accion="nav" data-valor="tutorias">Tutorías</button>
+
+      <button class="pestana-nav pestana-nav--amplia pestana-nav--activa"
+              role="tab" aria-selected="true"
+              data-accion="nav" data-valor="foro">Foro</button>
+
+    </nav>
+
+  </header>
+
+
+  <!-- ════════════════════════════════════════════════════
+       CONTENIDO PRINCIPAL
+       .contenido-foro tiene el mismo padding/gap que los
+       demás .contenido-* definidos en plataforma.css.
+  ════════════════════════════════════════════════════ -->
+  <main class="contenido-foro" role="main">
+
+    <!-- ── ENCABEZADO DE SECCIÓN ── -->
+    <!--
+      Mismo patrón que horarios.html: .encabezado-seccion
+      contiene .fila-titulo (ícono SVG + h2) y .subtitulo-pagina.
+    -->
+    <div class="encabezado-seccion">
+      <div class="fila-titulo">
+        <!--
+          Ícono burbuja de diálogo — representa el foro.
+          fill del path en naranja de marca porque el ícono
+          es sólido (no de contorno) según el Figma.
+        -->
+        <div class="icono-seccion-foro" aria-hidden="true">
+          <svg viewBox="0 0 24 24" aria-hidden="true">
+            <path d="M21 15a2 2 0 0 1-2 2H7l-4 4V5a2 2 0 0 1 2-2h14a2 2 0 0 1 2 2z"/>
+          </svg>
+        </div>
+        <h2 class="titulo-pagina">Foro</h2>
+      </div>
+      <p class="subtitulo-pagina">
+        Coloca tu mensaje así nosotros podremos tenerlo en cuenta
+      </p>
+    </div>
+
+
+    <!-- ── FORMULARIO DE NUEVO MENSAJE ── -->
+    <!--
+      <form novalidate> desactiva la validación nativa del navegador.
+      principal.js toma el control mediante el id "formulario-foro".
+    -->
+    <form class="foro-formulario" id="formulario-foro" novalidate>
+      <!--
+        <textarea> (no <input>) es el elemento correcto para texto
+        de múltiples líneas. rows="4" da la altura inicial sin JS.
+        font-size:1rem obligatorio — iOS hace zoom si es menor.
+      -->
+      <textarea
+        class="foro-area-texto"
+        id="campo-mensaje-foro"
+        name="mensaje"
+        rows="4"
+        placeholder="Escribe tu mensaje..."
+        aria-label="Escribe tu mensaje para el foro"
+      ></textarea>
+
+      <button class="foro-boton-publicar"
+              type="submit"
+              data-accion="publicar-mensaje">
+        Publicar
+      </button>
+    </form>
+
+
+    <!-- ── LISTA DE COMENTARIOS ── -->
+    <!--
+      <ul> es el elemento semántico correcto para una colección
+      de comentarios sin orden numérico. El CSS resetea los
+      estilos nativos de lista (bullets, sangría).
+    -->
+    <ul class="foro-lista-comentarios" aria-label="Comentarios del foro">
+
+      <!-- COMENTARIO 1: Juliana Ochoa -->
+      <!--
+        <li> pertenece a la lista.
+        <article> indica que el comentario es contenido independiente.
+      -->
+      <li>
+        <article class="foro-comentario">
+          <div class="foro-comentario-cabecera">
+            <!-- Círculo con ícono de persona -->
+            <div class="foro-avatar" aria-hidden="true">
+              <svg viewBox="0 0 24 24">
+                <circle cx="12" cy="8" r="4"/>
+                <path d="M4 20c0-4 3.6-7 8-7s8 3 8 7"/>
+              </svg>
+            </div>
+            <div class="foro-comentario-meta">
+              <strong class="foro-nombre-usuario">Juliana Ochoa</strong>
+              <!--
+                <time> es el elemento semántico HTML5 para fechas y horas.
+                datetime contiene el valor legible por máquina (ISO 8601).
+              -->
+              <time class="foro-hora-comentario" datetime="2026-06-08T10:00">
+                Hace 1 hora
+              </time>
+            </div>
+          </div>
+          <p class="foro-texto-comentario">
+            Me gustaría que se agregara una tutoría de informática
+            para personas de 4to año.
+          </p>
+        </article>
+      </li>
+
+      <!-- COMENTARIO 2: Ramiro Pérez -->
+      <li>
+        <article class="foro-comentario">
+          <div class="foro-comentario-cabecera">
+            <div class="foro-avatar" aria-hidden="true">
+              <svg viewBox="0 0 24 24">
+                <circle cx="12" cy="8" r="4"/>
+                <path d="M4 20c0-4 3.6-7 8-7s8 3 8 7"/>
+              </svg>
+            </div>
+            <div class="foro-comentario-meta">
+              <strong class="foro-nombre-usuario">Ramiro Pérez</strong>
+              <time class="foro-hora-comentario" datetime="2026-06-08T09:00">
+                Hace 2 hs
+              </time>
+            </div>
+          </div>
+          <p class="foro-texto-comentario">
+            Podrían agregar una tutoría de economía en la tarde,
+            nos sería muy útil. Gracias.
+          </p>
+        </article>
+      </li>
+
+      <!-- COMENTARIO 3: Santino Bressia (texto en cursiva — sancionado) -->
+      <li>
+        <article class="foro-comentario">
+          <div class="foro-comentario-cabecera">
+            <div class="foro-avatar" aria-hidden="true">
+              <svg viewBox="0 0 24 24">
+                <circle cx="12" cy="8" r="4"/>
+                <path d="M4 20c0-4 3.6-7 8-7s8 3 8 7"/>
+              </svg>
+            </div>
+            <div class="foro-comentario-meta">
+              <strong class="foro-nombre-usuario">Santino Bressia</strong>
+              <time class="foro-hora-comentario" datetime="2026-06-08T08:00">
+                Hace 3 hs
+              </time>
+            </div>
+          </div>
+          <!--
+            --sancionado aplica cursiva + color suave al texto
+            del tercer comentario, tal como se ve en el Figma.
+          -->
+          <p class="foro-texto-comentario foro-texto-comentario--sancionado">
+            Si podría agregar una tutoría de matemática, es muy
+            difícil seguir el ritmo de la que hay.
+          </p>
+        </article>
+      </li>
+
+    </ul>
+
+
+    <!-- ── BLOQUE ¡IMPORTANTE! ── -->
+    <div class="foro-bloque-importante">
+      <p class="foro-texto-importante">¡Importante!</p>
+    </div>
+
+
+    <!-- ── TARJETA DE AVISO DE RESPETO ── -->
+    <div class="foro-tarjeta-aviso">
+      <!--
+        Ícono persona + escudo: círculo de persona con un
+        escudo superpuesto, dibujado con SVG nativo.
+      -->
+      <div class="foro-aviso-icono" aria-hidden="true">
+        <svg viewBox="0 0 24 24">
+          <circle cx="10" cy="7" r="3.5"/>
+          <path d="M2 20c0-4 3.2-7 8-7"/>
+          <path d="M18 13l-4 2v3c0 2 4 3 4 3s4-1 4-3v-3l-4-2z"/>
+        </svg>
+      </div>
+      <div class="foro-aviso-contenido">
+        <h3 class="foro-aviso-titulo">Recuerda mantener el respeto</h3>
+        <p class="foro-aviso-descripcion">
+          En caso de faltas de respeto el mensaje será eliminado y
+          el estudiante será avisado y penalizado según gravedad.
+        </p>
+      </div>
+    </div>
+
+
+  </main>
+
+
+  <!-- PIE DE PÁGINA MARRÓN — misma clase que todos los demás -->
+  <footer class="pie-pagina">
+    <p>©2026 Centro de Tutorías — Todos los derechos reservados.<br>
+       Comprometidos con tu éxito académico.</p>
+  </footer>
+
+  <!-- JS unificado del proyecto — al final del <body> para que el DOM exista -->
+  <script src="js/principal.js"></script>
+
+</body>
+</html>
