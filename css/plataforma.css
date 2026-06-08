@@ -1307,3 +1307,598 @@ body {
 @media (max-width: 360px) {
   .sesion-acciones { flex-direction: column; }
 }
+
+/* ════════════════════════════════════════════════════════════════
+   FORO (foro.html)
+   Prefijo .foro- en todos los selectores específicos para no
+   colisionar con los demás módulos al hacer merge.
+════════════════════════════════════════════════════════════════ */
+
+/* Contenedor principal — mismo patrón que .contenido-horarios */
+.contenido-foro {
+  max-width: 520px;
+  margin: 0 auto;
+  padding: 24px 16px 40px;
+  display: flex;
+  flex-direction: column;
+  gap: 20px;
+}
+
+/* Caja naranja del ícono burbuja de diálogo */
+.icono-seccion-foro {
+  width: 36px;
+  height: 36px;
+  min-width: 36px;
+  background-color: var(--color-marca);
+  border-radius: var(--radio-mediano);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.icono-seccion-foro svg {
+  width: 20px;
+  height: 20px;
+  /* fill sólido blanco porque el ícono de burbuja es relleno, no contorno */
+  fill: var(--color-blanco);
+  stroke: none;
+}
+
+/* ── FORMULARIO DE NUEVO MENSAJE ── */
+.foro-formulario {
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+}
+
+/*
+ * <textarea> con font-size:1rem obligatorio.
+ * iOS Safari hace zoom automático en campos con font-size < 16px.
+ * resize:vertical permite agrandar verticalmente pero NO
+ * horizontalmente, evitando que rompa el layout de la página.
+ */
+.foro-area-texto {
+  width: 100%;
+  padding: 14px;
+  font-family: 'Inter', sans-serif;
+  font-size: 1rem;
+  color: var(--color-texto-oscuro);
+  background-color: var(--color-blanco);
+  border: 1.5px solid var(--color-borde-tabla);
+  border-radius: var(--radio-mediano);
+  resize: vertical;
+  outline: none;
+  line-height: 1.6;
+  -webkit-appearance: none;
+  appearance: none;
+}
+
+.foro-area-texto::placeholder {
+  color: var(--color-texto-claro);
+  font-size: 0.9375rem;
+}
+
+/* Botón Publicar — mismos tokens que .boton-reservar de plataforma.css */
+.foro-boton-publicar {
+  align-self: flex-end;
+  height: 44px;
+  padding: 0 28px;
+  background-color: var(--color-marca);
+  color: var(--color-blanco);
+  font-family: 'Inter', sans-serif;
+  font-size: 0.9375rem;
+  font-weight: 600;
+  border: none;
+  border-radius: var(--radio-mediano);
+  cursor: pointer;
+  transition: opacity 0.15s;
+}
+
+.foro-boton-publicar:active {
+  opacity: 0.80;
+}
+
+/* ── LISTA DE COMENTARIOS ── */
+/* Reseteamos bullets y sangría nativos del <ul> */
+.foro-lista-comentarios {
+  list-style: none;
+  padding: 0;
+  margin: 0;
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+}
+
+/* Tarjeta individual de comentario */
+.foro-comentario {
+  background-color: var(--color-blanco);
+  border-radius: var(--radio-grande);
+  border: 1.5px solid var(--color-borde-tabla);
+  padding: 14px 16px;
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+  box-shadow: var(--sombra-tarjeta);
+}
+
+/* Fila superior: avatar + nombre + hora */
+.foro-comentario-cabecera {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+}
+
+/* Círculo gris con ícono de persona naranja */
+.foro-avatar {
+  width: 38px;
+  height: 38px;
+  min-width: 38px;
+  border-radius: 50%;
+  background-color: #F0EDE8;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-shrink: 0;
+}
+
+.foro-avatar svg {
+  width: 20px;
+  height: 20px;
+  fill: none;
+  stroke: var(--color-marca);
+  stroke-width: 2;
+  stroke-linecap: round;
+  stroke-linejoin: round;
+}
+
+.foro-comentario-meta {
+  display: flex;
+  flex-direction: column;
+  gap: 2px;
+}
+
+.foro-nombre-usuario {
+  font-size: 0.9375rem;
+  font-weight: 700;
+  color: var(--color-texto-oscuro);
+}
+
+/* <time> es el elemento semántico HTML5 para fechas y horas */
+.foro-hora-comentario {
+  font-size: 0.75rem;
+  color: var(--color-texto-claro);
+}
+
+/* Texto del comentario alineado con el nombre (avatar 38px + gap 10px) */
+.foro-texto-comentario {
+  font-size: 0.875rem;
+  color: var(--color-texto-medio);
+  line-height: 1.6;
+  padding-left: 48px;
+}
+
+/* Comentario sancionado: cursiva + tono más suave */
+.foro-texto-comentario--sancionado {
+  font-style: italic;
+  color: var(--color-texto-claro);
+}
+
+/* ── BLOQUE ¡IMPORTANTE! ── */
+.foro-bloque-importante {
+  text-align: center;
+  padding: 4px 0;
+}
+
+.foro-texto-importante {
+  font-size: 1.25rem;
+  font-weight: 800;
+  color: var(--color-marca);
+  letter-spacing: 0.01em;
+}
+
+/* ── TARJETA DE AVISO DE RESPETO ── */
+.foro-tarjeta-aviso {
+  background-color: var(--color-blanco);
+  border-radius: var(--radio-grande);
+  border: 1.5px solid var(--color-borde-tabla);
+  padding: 16px;
+  display: flex;
+  align-items: flex-start;
+  gap: 14px;
+  box-shadow: var(--sombra-tarjeta);
+}
+
+/* Círculo naranja pálido con ícono persona+escudo */
+.foro-aviso-icono {
+  width: 46px;
+  height: 46px;
+  min-width: 46px;
+  border-radius: 50%;
+  background-color: var(--color-marca-claro);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-shrink: 0;
+}
+
+.foro-aviso-icono svg {
+  width: 26px;
+  height: 26px;
+  fill: none;
+  stroke: var(--color-marca);
+  stroke-width: 1.8;
+  stroke-linecap: round;
+  stroke-linejoin: round;
+}
+
+.foro-aviso-contenido {
+  display: flex;
+  flex-direction: column;
+  gap: 6px;
+}
+
+.foro-aviso-titulo {
+  font-size: 1rem;
+  font-weight: 700;
+  color: var(--color-texto-oscuro);
+}
+
+.foro-aviso-descripcion {
+  font-size: 0.875rem;
+  color: var(--color-texto-medio);
+  line-height: 1.6;
+}
+
+/* ── MEDIA QUERY MÓVIL ≤ 768px ── */
+@media (max-width: 768px) {
+  .contenido-foro {
+    padding: 20px 12px 36px;
+    gap: 18px;
+  }
+
+  /* En pantallas muy angostas quitamos la sangría del texto */
+  .foro-texto-comentario {
+    padding-left: 0;
+  }
+
+  /* El botón Publicar ocupa todo el ancho en móvil */
+  .foro-boton-publicar {
+    align-self: stretch;
+    width: 100%;
+  }
+}
+
+
+/* ════════════════════════════════════════════════════════════════
+   CONFIGURACIÓN (configuracion.html)
+   Prefijo .bloque-configuracion en todos los selectores
+   específicos para no colisionar con los demás módulos.
+════════════════════════════════════════════════════════════════ */
+
+/* ── Contenedor principal ── */
+.contenido-configuracion {
+  max-width: 520px;
+  margin: 0 auto;
+  padding: 24px 16px 40px;
+  display: flex;
+  flex-direction: column;
+  gap: 20px;
+}
+
+/* ── Ícono de engranaje en el encabezado de sección ── */
+.icono-seccion-configuracion {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-shrink: 0;
+}
+
+.icono-seccion-configuracion svg {
+  width: 32px;
+  height: 32px;
+  stroke: var(--color-marca-icono);
+  fill: none;
+  stroke-width: 2;
+  stroke-linecap: round;
+  stroke-linejoin: round;
+}
+
+/* ── Bloque de sección (tarjeta blanca) ── */
+.bloque-configuracion {
+  background-color: var(--color-blanco);
+  border-radius: var(--radio-grande);
+  box-shadow: var(--sombra-tarjeta);
+  overflow: hidden;
+}
+
+/* ── Encabezado del bloque: franja con ícono + título ── */
+.bloque-config-encabezado {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  padding: 14px 16px;
+  border-bottom: 1.5px solid var(--color-borde-tabla);
+}
+
+/* Círculo naranja con ícono blanco */
+.icono-bloque-config {
+  width: 36px;
+  height: 36px;
+  min-width: 36px;
+  border-radius: var(--radio-mediano);
+  background-color: var(--color-marca);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-shrink: 0;
+}
+
+.icono-bloque-config svg {
+  width: 20px;
+  height: 20px;
+  stroke: var(--color-blanco);
+  fill: none;
+  stroke-width: 2;
+  stroke-linecap: round;
+  stroke-linejoin: round;
+}
+
+.bloque-config-titulo {
+  font-size: 1rem;
+  font-weight: 700;
+  color: var(--color-texto-oscuro);
+}
+
+/* ── Cuerpo del bloque ── */
+.bloque-config-cuerpo {
+  padding: 16px;
+  display: flex;
+  flex-direction: column;
+  gap: 14px;
+}
+
+/* Variante para el bloque de enlaces (menos gap) */
+.bloque-config-cuerpo--enlaces {
+  gap: 0;
+  padding: 0;
+}
+
+/* ── Campo de formulario (etiqueta + entrada) ── */
+.campo-formulario {
+  display: flex;
+  flex-direction: column;
+  gap: 6px;
+}
+
+.etiqueta-campo {
+  font-size: 0.8125rem;
+  font-weight: 600;
+  color: var(--color-texto-medio);
+}
+
+/*
+ * .entrada-texto — campo de texto/email.
+ * font-size: 1rem obligatorio para evitar el zoom
+ * automático de iOS Safari en campos con < 16px.
+ */
+.entrada-texto {
+  width: 100%;
+  height: 48px;
+  padding: 0 14px;
+  font-family: 'Inter', sans-serif;
+  font-size: 1rem;
+  color: var(--color-texto-oscuro);
+  background-color: var(--color-blanco);
+  border: 1.5px solid var(--color-borde-tabla);
+  border-radius: var(--radio-mediano);
+  outline: none;
+  -webkit-appearance: none;
+  appearance: none;
+  transition: border-color 0.15s;
+}
+
+.entrada-texto:focus {
+  border-color: var(--color-marca);
+}
+
+.entrada-texto::placeholder {
+  color: var(--color-texto-claro);
+}
+
+/* ── Botón principal naranja (guardar) ── */
+.boton-guardar-cambios {
+  width: 100%;
+  height: 48px;
+  background-color: var(--color-marca);
+  color: var(--color-blanco);
+  border: none;
+  border-radius: var(--radio-mediano);
+  font-family: 'Inter', sans-serif;
+  font-size: 0.9375rem;
+  font-weight: 700;
+  cursor: pointer;
+  transition: opacity 0.15s;
+  margin-top: 2px;
+}
+
+.boton-guardar-cambios:active {
+  opacity: 0.80;
+}
+
+/* ── Fila de interruptor (toggle) ── */
+.fila-interruptor {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 12px;
+  padding-bottom: 14px;
+  border-bottom: 1px solid var(--color-borde-tabla);
+}
+
+.fila-interruptor--sin-borde {
+  padding-bottom: 0;
+  border-bottom: none;
+}
+
+.interruptor-textos {
+  display: flex;
+  flex-direction: column;
+  gap: 2px;
+  flex: 1;
+  min-width: 0;
+}
+
+.interruptor-etiqueta {
+  font-size: 0.9375rem;
+  font-weight: 600;
+  color: var(--color-texto-oscuro);
+}
+
+.interruptor-descripcion {
+  font-size: 0.75rem;
+  color: var(--color-texto-claro);
+  line-height: 1.4;
+}
+
+/*
+ * Palanca (toggle switch) — construida con CSS puro.
+ * El <input type="checkbox"> está oculto; el <span class="interruptor-riel">
+ * actúa como riel visual y su ::before es el pulgar móvil.
+ */
+.interruptor-palanca {
+  position: relative;
+  display: inline-flex;
+  align-items: center;
+  flex-shrink: 0;
+  cursor: pointer;
+}
+
+.interruptor-casilla {
+  position: absolute;
+  opacity: 0;
+  width: 0;
+  height: 0;
+  pointer-events: none;
+}
+
+.interruptor-riel {
+  display: block;
+  width: 50px;
+  height: 28px;
+  border-radius: var(--radio-capsula);
+  background-color: #D0CCCA;
+  transition: background-color 0.2s;
+  position: relative;
+}
+
+/* Pulgar del interruptor */
+.interruptor-riel::before {
+  content: '';
+  position: absolute;
+  top: 3px;
+  left: 3px;
+  width: 22px;
+  height: 22px;
+  border-radius: 50%;
+  background-color: var(--color-blanco);
+  box-shadow: 0 1px 4px rgba(0,0,0,0.20);
+  transition: transform 0.2s;
+}
+
+/* Estado activado */
+.interruptor-casilla:checked + .interruptor-riel {
+  background-color: var(--color-marca);
+}
+
+.interruptor-casilla:checked + .interruptor-riel::before {
+  transform: translateX(22px);
+}
+
+/* ── Botón secundario (contorno naranja) ── */
+.boton-secundario-config {
+  width: 100%;
+  height: 48px;
+  background-color: transparent;
+  color: var(--color-marca);
+  border: 1.5px solid var(--color-marca);
+  border-radius: var(--radio-mediano);
+  font-family: 'Inter', sans-serif;
+  font-size: 0.9375rem;
+  font-weight: 600;
+  cursor: pointer;
+  transition: background-color 0.15s, color 0.15s;
+}
+
+.boton-secundario-config:active {
+  background-color: var(--color-marca-claro);
+}
+
+/* ── Enlaces de soporte ── */
+.enlace-soporte {
+  display: block;
+  padding: 14px 16px;
+  font-size: 0.9375rem;
+  font-weight: 500;
+  color: var(--color-marca-icono);
+  text-decoration: none;
+  border-bottom: 1px solid var(--color-borde-tabla);
+  transition: background-color 0.15s;
+}
+
+.enlace-soporte:last-child {
+  border-bottom: none;
+}
+
+.enlace-soporte:active {
+  background-color: var(--color-marca-claro);
+}
+
+/* ── Media query móvil ≤ 768px ── */
+@media (max-width: 768px) {
+  .contenido-configuracion {
+    padding: 20px 12px 36px;
+    gap: 16px;
+  }
+}
+
+/* ── Ícono llave inglesa en la barra de navegación ──
+ *
+ * .icono-nav-configuracion es el botón que contiene el SVG
+ * de la llave inglesa del Figma. Se posiciona al extremo
+ * derecho de la barra usando margin-left: auto.
+ *
+ * A diferencia de .pestana-nav (que muestra texto con fondo
+ * redondeado al activarse), este ícono muestra el estado
+ * activo con un círculo semitransparente detrás del SVG,
+ * igual al tratamiento visual que tienen los botones de
+ * acción en la fila superior del encabezado.
+ */
+.icono-nav-configuracion {
+  margin-left: auto;
+  background: none;
+  border: none;
+  cursor: pointer;
+  padding: 4px 6px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  border-radius: 50%;
+  flex-shrink: 0;
+  transition: background-color 0.15s;
+}
+
+.icono-nav-configuracion svg {
+  /* Dimensiones exactas del Figma: 30×31 */
+  width: 30px;
+  height: 31px;
+  display: block;
+}
+
+/* Estado activo: círculo blanco semitransparente detrás del ícono */
+.icono-nav-configuracion--activo {
+  background-color: rgba(255, 255, 255, 0.22);
+}
+
+.icono-nav-configuracion:active {
+  background-color: rgba(255, 255, 255, 0.30);
+}
