@@ -1,5 +1,6 @@
 <!DOCTYPE html>
 <html lang="es">
+
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
@@ -11,7 +12,7 @@
   <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet" />
 
   <!-- Estilos de la interfaz de acceso (login + registro) -->
-  <link rel="stylesheet" href="css/acceso.css" />
+  <link rel="stylesheet" href="../css/acceso.css" />
 </head>
 
 <body>
@@ -27,11 +28,11 @@
       <header class="zona-encabezado">
         <div class="caja-logo" aria-hidden="true">
           <!-- SVG libro abierto — reproducción del ícono del Figma -->
-          <svg viewBox="0 0 24 24" fill="none" stroke="#fff" stroke-width="2"
-               stroke-linecap="round" stroke-linejoin="round">
-            <path d="M2 6s2-2 5-2 5 2 5 2v14s-2-1-5-1-5 1-5 1V6z"/>
-            <path d="M12 6s2-2 5-2 5 2 5 2v14s-2-1-5-1-5 1-5 1V6z"/>
-            <line x1="12" y1="6" x2="12" y2="20"/>
+          <svg viewBox="0 0 24 24" fill="none" stroke="#fff" stroke-width="2" stroke-linecap="round"
+            stroke-linejoin="round">
+            <path d="M2 6s2-2 5-2 5 2 5 2v14s-2-1-5-1-5 1-5 1V6z" />
+            <path d="M12 6s2-2 5-2 5 2 5 2v14s-2-1-5-1-5 1-5 1V6z" />
+            <line x1="12" y1="6" x2="12" y2="20" />
           </svg>
         </div>
         <h1 class="titulo-encabezado">Centro de Tutorías</h1>
@@ -60,19 +61,11 @@
             <div class="envoltorio-campo">
               <!-- Ícono sobre/correo -->
               <svg viewBox="0 0 24 24" aria-hidden="true">
-                <rect x="2" y="4" width="20" height="16" rx="2"/>
-                <path d="m2 7 10 7 10-7"/>
+                <rect x="2" y="4" width="20" height="16" rx="2" />
+                <path d="m2 7 10 7 10-7" />
               </svg>
-              <input
-                class="campo-texto"
-                id="campo-correo"
-                type="email"
-                name="correo"
-                placeholder="tu.email@estudiante.edu"
-                autocomplete="email"
-                data-accion="campo"
-                data-valor="correo"
-              />
+              <input class="campo-texto" id="campo-correo" type="email" name="correo"
+                placeholder="tu.email@estudiante.edu" autocomplete="email" data-accion="campo" data-valor="correo" />
             </div>
           </div>
 
@@ -82,19 +75,11 @@
             <div class="envoltorio-campo">
               <!-- Ícono candado -->
               <svg viewBox="0 0 24 24" aria-hidden="true">
-                <rect x="5" y="11" width="14" height="10" rx="2"/>
-                <path d="M8 11V7a4 4 0 0 1 8 0v4"/>
+                <rect x="5" y="11" width="14" height="10" rx="2" />
+                <path d="M8 11V7a4 4 0 0 1 8 0v4" />
               </svg>
-              <input
-                class="campo-texto"
-                id="campo-clave"
-                type="password"
-                name="clave"
-                placeholder="••••••••"
-                autocomplete="current-password"
-                data-accion="campo"
-                data-valor="clave"
-              />
+              <input class="campo-texto" id="campo-clave" type="password" name="clave" placeholder="••••••••"
+                autocomplete="current-password" data-accion="campo" data-valor="clave" />
             </div>
           </div>
 
@@ -120,12 +105,11 @@
             además del toque/clic — comportamiento esperado en móvil.
           -->
           <button class="boton-principal" type="submit" data-accion="acceso">
-            <svg width="16" height="16" viewBox="0 0 24 24" fill="none"
-                 stroke="#fff" stroke-width="2.5" stroke-linecap="round"
-                 stroke-linejoin="round" aria-hidden="true">
-              <path d="M15 3h4a2 2 0 0 1 2 2v14a2 2 0 0 1-2 2h-4"/>
-              <polyline points="10 17 15 12 10 7"/>
-              <line x1="15" y1="12" x2="3" y2="12"/>
+            <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="#fff" stroke-width="2.5"
+              stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+              <path d="M15 3h4a2 2 0 0 1 2 2v14a2 2 0 0 1-2 2h-4" />
+              <polyline points="10 17 15 12 10 7" />
+              <line x1="15" y1="12" x2="3" y2="12" />
             </svg>
             Iniciar Sesión
           </button>
@@ -141,7 +125,8 @@
   </main>
 
   <!-- JS unificado del proyecto — al final del <body> para que el DOM exista -->
-  <script src="js/principal.js"></script>
+  <script src="../js/principal.js"></script>
 
 </body>
+
 </html>

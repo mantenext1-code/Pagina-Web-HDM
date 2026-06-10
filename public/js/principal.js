@@ -24,7 +24,7 @@
 /* ══════════════════════════════════════════════════════════════
    ESTADO DEL CARRUSEL
 ══════════════════════════════════════════════════════════════ */
-var indiceCarrusel    = 0;
+var indiceCarrusel = 0;
 var totalDiapositivas = 6;
 var temporizadorAutoplay;
 
@@ -41,7 +41,7 @@ function iniciarCarrusel() {
     totalDiapositivas = diapositivas.length;
   }
 
-  temporizadorAutoplay = setInterval(function() {
+  temporizadorAutoplay = setInterval(function () {
     irDiapositiva(indiceCarrusel + 1);
   }, 4000);
 }
@@ -103,12 +103,12 @@ function inicializarFormularioAcceso() {
   var formulario = document.getElementById('formulario-acceso');
   if (!formulario) { return; }
 
-  formulario.addEventListener('submit', function(evento) {
+  formulario.addEventListener('submit', function (evento) {
     evento.preventDefault();
 
-    var datos  = new FormData(this);
+    var datos = new FormData(this);
     var correo = datos.get('correo').trim();
-    var clave  = datos.get('clave');
+    var clave = datos.get('clave');
 
     if (!correo || !clave) {
       alert('Por favor, completá todos los campos.');
@@ -122,9 +122,6 @@ function inicializarFormularioAcceso() {
     }
 
     console.log('Acceso enviado:', { correo: correo });
-
-    /* ✅ CORRECCIÓN: redirige al menú tras el inicio de sesión exitoso */
-    alert('¡Bienvenido/a! Iniciando sesión…');
     window.location.href = 'menu.html';
   });
 }
@@ -140,18 +137,18 @@ function inicializarFormularioRegistro() {
   var formulario = document.getElementById('formulario-registro');
   if (!formulario) { return; }
 
-  formulario.addEventListener('submit', function (evento) {
+  formulario.addEventListener('submit', async function (evento) {
     evento.preventDefault();
-
-    var datos = new FormData(this);
-    var nombre = datos.get('nombre').trim();
-    var correo = datos.get('correo').trim();
-    var clave = datos.get('clave');
+    const Usuario = {
+      nombre: document.getElementById('campo-nombre').value,
+      correo: document.getElementById('campo-correo').value,
+      contraseña: document.getElementById('campo-clave').value
+    }
     var claveRep = datos.get('clave-repetida');
     var terminosEl = document.getElementById('casilla-terminos');
     var terminos = terminosEl ? terminosEl.checked : false;
 
-    if (!nombre || !correo || !clave || !claveRep) {
+    if (!Usuario.nombre || !Usuario.correo || !Usuario.contraseña || !claveRep) {
       alert('Por favor, completá todos los campos.');
       return;
     }
@@ -177,14 +174,28 @@ function inicializarFormularioRegistro() {
       return;
     }
 
-    console.log('Registro enviado:', { nombre: nombre, correo: correo });
+    try {
+      const respuesta = await fetch('http://localhost:3000/Tutorias_db', {
+        method: 'POST',
+        headers: {
+          'Content-Type': 'application/json'
+        },
+        body: JSON.stringify(Usuario)
+      });
 
-    /* ✅ CORRECCIÓN: redirige al login para que el usuario inicie sesión */
-    alert('¡Cuenta creada exitosamente! Por favor, iniciá sesión.');
+      if (respuesta.ok) {
+        alert('✅ Usuario guardado exitosamente!');
+        formulario.reset();
+      }
+    } catch (error) {
+      console.error('Error:', error);
+      alert('❌ Error al guardar el usuario');
+    }
+
+    console.log('Registro enviado:', { nombre: nombre, correo: correo });
     window.location.href = 'login.html';
   });
 }
-
 
 /* ══════════════════════════════════════════════════════════════
    DELEGACIÓN DE EVENTOS — CLIC GLOBAL
@@ -376,7 +387,7 @@ document.addEventListener('click', function (evento) {
    Usamos un segundo listener específico para no modificar el
    bloque principal y evitar conflictos en Git.
 ══════════════════════════════════════════════════════════════ */
-document.addEventListener('click', function(evento) {
+document.addEventListener('click', function (evento) {
   var elemento = evento.target.closest('[data-accion]');
   if (!elemento) { return; }
 
@@ -394,10 +405,10 @@ document.addEventListener('click', function(evento) {
 var formularioForo = document.getElementById('formulario-foro');
 
 if (formularioForo) {
-  formularioForo.addEventListener('submit', function(evento) {
+  formularioForo.addEventListener('submit', function (evento) {
     evento.preventDefault();
 
-    var datos   = new FormData(formularioForo);
+    var datos = new FormData(formularioForo);
     var mensaje = datos.get('mensaje').trim();
 
     if (!mensaje) {
@@ -423,7 +434,7 @@ iniciarCarrusel();
    Se agrega como listener adicional para no alterar el bloque
    principal y evitar conflictos en el repositorio.
 ══════════════════════════════════════════════════════════════ */
-document.addEventListener('click', function(evento) {
+document.addEventListener('click', function (evento) {
   var elemento = evento.target.closest('[data-accion]');
   if (!elemento) { return; }
 
@@ -467,12 +478,12 @@ document.addEventListener('click', function(evento) {
 
   /* ── Interruptor de notificación (toggle) ── */
   if (accion === 'alternar-notificacion') {
-    var opcion     = elemento.dataset.opcion || 'esta opción';
-    var activado   = elemento.checked;
+    var opcion = elemento.dataset.opcion || 'esta opción';
+    var activado = elemento.checked;
     var nombresMapa = {
-      'recordatorios':    'Recordatorios de tutorías',
-      'cambios-horario':  'Cambios de horario',
-      'nuevos-tutores':   'Nuevos tutores disponibles'
+      'recordatorios': 'Recordatorios de tutorías',
+      'cambios-horario': 'Cambios de horario',
+      'nuevos-tutores': 'Nuevos tutores disponibles'
     };
     var etiqueta = nombresMapa[opcion] || opcion;
     var estadoTexto = activado ? 'activada' : 'desactivada';
