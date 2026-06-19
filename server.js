@@ -26,11 +26,11 @@ app.get('/', (req, res) => {
 });
 
 app.post('/api/usuarios/mysql', async (req, res) => {
-    const { nombre, correo, clave } = req.body;
+    const { nombre, correo, contraseña } = req.body;
     try {
         const [result] = await poolMySQL.execute(
-            'INSERT INTO usuarios (nombre, correo, clave) VALUES (?, ?, ?)',
-            [nombre, correo, clave]
+            'INSERT INTO usuarios (nombre, correo, contraseña) VALUES (?, ?, ?)',
+            [nombre, correo, contraseña]
         );
         res.json({
             mensaje: 'Usuario guardado en MariaDB',
@@ -58,11 +58,11 @@ app.delete('/api/usuarios/mysql/:id', async (req, res) => {
 
 app.put('/api/usuarios/mysql/:id', async (req, res) => {
     const { id } = req.params;
-    const { nombre, correo } = req.body;
+    const { nombre, correo, contraseña } = req.body;
 
     const [result] = await poolMySQL.execute(
-        'UPDATE usuarios SET nombre = ?, correo = ? WHERE id = ?',
-        [nombre, correo, id]
+        'UPDATE usuarios SET nombre = ?, correo = ?, contraseña = ? WHERE id = ?',
+        [nombre, correo, contraseña, id]
     );
 
     if (result.affectedRows === 0) {

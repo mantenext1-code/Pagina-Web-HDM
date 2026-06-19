@@ -1,24 +1,4 @@
-/*
- * ════════════════════════════════════════════════════════════════
- * principal.js — Lógica JavaScript centralizada del proyecto
- *               "Centro de Tutorías — Portal Estudiantil"
- *
- * Cubre: login.html, registro.html, menu.html, horarios.html,
- *        tutorias.html, notificaciones.html
- *
- * Técnica: Vanilla JS clásico (sin módulos, sin import/export)
- *          para garantizar funcionamiento en file:// local.
- *          Delegación de eventos en document: un solo listener
- *          maneja todos los clics filtrando por data-accion.
- *
- * CAMBIOS RESPECTO A LA VERSIÓN ANTERIOR:
- *   1. inicializarFormularioAcceso()  → redirige a menu.html tras el éxito
- *   2. inicializarFormularioRegistro() → redirige a login.html tras el éxito
- *   3. Acción 'notificaciones'        → redirige a notificaciones.html
- *   4. Acción 'nav' valor 'tutorias'  → redirige a tutorias.html
- *   5. Acciones nuevas de tutorias.html y notificaciones.html
- * ════════════════════════════════════════════════════════════════
- */
+
 
 
 /* ══════════════════════════════════════════════════════════════
@@ -125,56 +105,59 @@ function inicializarFormularioAcceso() {
     window.location.href = 'menu.html';
   });
 }
-
-const formulario = document.getElementById('formulario-registro');
-formulario.addEventListener('submit', async (evento) => {
-  evento.preventDefault();
-  const Usuario = {
-    nombre: document.getElementById('campo-nombre').value,
-    correo: document.getElementById('campo-correo').value,
-    contraseña: document.getElementById('campo-clave').value
-  }
-  let claveRep = datos.get('clave-repetida');
-  let terminosEl = document.getElementById('casilla-terminos');
-  let terminos = terminosEl ? terminosEl.checked : false;
-
-  let formCorreo = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
-
-  if (!Usuario.nombre || !Usuario.correo || !Usuario.contraseña || !claveRep) {
-    alert('Por favor, completá todos los campos.');
-  }
-  else if (!formCorreo.test(Usuario.correo)) {
-    alert('El formato del correo no es válido.');
-  }
-  else if (Usuario.clave.length < 6) {
-    alert('La contraseña debe tener al menos 6 caracteres.');
-  }
-  else if (Usuario.clave !== claveRep) {
-    alert('Las contraseñas no coinciden.');
-  }
-  else if (!terminos) {
-    alert('Debés aceptar los términos y condiciones para continuar.');
-  }
-  else {
-    try {
-      const respuesta = await fetch('http://localhost:3000/api/usuarios', {
-        method: 'POST',
-        headers: {
-          'Content-Type': 'application/json'
-        },
-        body: JSON.stringify(Usuario)
-      });
-      if (respuesta.ok) {
-        alert('✅ Usuario guardado exitosamente!');
-        formulario.reset();
-        window.location.href = 'login.html';
-      }
-    } catch (error) {
-      console.error('Error:', error);
-      alert('❌ Error al guardar el usuario');
+function FormularioRegistro() {
+  const formulario = document.getElementById('formulario-registro');
+  if (!formulario) { return; }
+  formulario.addEventListener('submit', async (evento) => {
+    evento.preventDefault();
+    const Usuario = {
+      nombre: document.getElementById('campo-nombre').value,
+      correo: document.getElementById('campo-correo').value,
+      contraseña: document.getElementById('campo-clave').value
     }
-  }
-});
+    let claveRep = document.getElementById('campo-clave-repetida').value;
+    let terminosEl = document.getElementById('casilla-terminos');
+    let terminos = terminosEl ? terminosEl.checked : false;
+
+    let formCorreo = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+
+    if (!Usuario.nombre || !Usuario.correo || !Usuario.contraseña || !claveRep) {
+      alert('Por favor, completá todos los campos.');
+    }
+    else if (!formCorreo.test(Usuario.correo)) {
+      alert('El formato del correo no es válido.');
+    }
+    else if (Usuario.contraseña.length < 6) {
+      alert('La contraseña debe tener al menos 6 caracteres.');
+    }
+    else if (Usuario.contraseña !== claveRep) {
+      alert('Las contraseñas no coinciden.');
+    }
+    else if (!terminos) {
+      alert('Debés aceptar los términos y condiciones para continuar.');
+    }
+    else {
+      try {
+        const respuesta = await fetch('http://localhost:3000/api/usuarios/mysql', {
+          method: 'POST',
+          headers: {
+            'Content-Type': 'application/json'
+          },
+          body: JSON.stringify(Usuario)
+        });
+        if (respuesta.ok) {
+          alert('✅ Usuario guardado exitosamente!');
+          formulario.reset();
+          window.location.href = 'login.html';
+        }
+      } catch (error) {
+        console.error('Error:', error);
+        alert('❌ Error al guardar el usuario');
+      }
+    }
+  });
+}
+
 
 
 document.addEventListener('click', function (evento) {
@@ -396,10 +379,7 @@ if (formularioForo) {
     formularioForo.reset();
   });
 }
-
-/* ══════════════════════════════════════════════════════════════
-   INICIALIZACIÓN AL CARGAR LA PÁGINA
-══════════════════════════════════════════════════════════════ */
+FormularioRegistro();
 inicializarFormularioAcceso();
 iniciarCarrusel();
 
