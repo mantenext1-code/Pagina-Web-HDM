@@ -79,30 +79,41 @@ function actiletPestana(pestanaPresionada) {
       después del alert de éxito para que el usuario sea
       redirigido automáticamente al menú principal.
 ══════════════════════════════════════════════════════════════ */
-function inicializarFormularioAcceso() {
+function FormularioLogin() {
   let formulario = document.getElementById('formulario-acceso');
   if (!formulario) { return; }
 
-  formulario.addEventListener('submit', function (evento) {
+  formulario.addEventListener('submit', async (evento) => {
     evento.preventDefault();
 
-    let datos = new FormData(this);
-    let correo = datos.get('correo').trim();
-    let clave = datos.get('clave');
+    let correo = document.getElementById('campo-correo').value;
+    let contraseña = document.getElementById('campo-clave').value;
 
-    if (!correo || !clave) {
+    const comprobacionCorreo = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+    if (!correo || !contraseña) {
       alert('Por favor, completá todos los campos.');
-      return;
     }
-
-    let regexCorreo = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
-    if (!regexCorreo.test(correo)) {
+    else if (!comprobacionCorreo.test(correo)) {
       alert('El formato del correo no es válido.');
-      return;
     }
-
-    console.log('Acceso enviado:', { correo: correo });
-    window.location.href = 'menu.html';
+    else {
+      const respuesta = await fetch('http://localhost:3000/api/usuarios/mysql', {
+        method: 'GET',
+        headers: {
+          'Content-Type': 'application/json'
+        }
+      });
+      const datos = await respuesta.json();
+      datos.forEach(Usuario => {
+        if (Usuario.correo === correo && Usuario.contraseña === contraseña) {
+          alert('✅ Usuario logueado exitosamente!');
+          formulario.reset();
+          window.location.href = 'menu.html';
+        } else {
+          alert('❌ Usuario o contraseña incorrectos');
+        }
+      })
+    }
   });
 }
 function FormularioRegistro() {
@@ -380,7 +391,7 @@ if (formularioForo) {
   });
 }
 FormularioRegistro();
-inicializarFormularioAcceso();
+FormularioLogin();
 iniciarCarrusel();
 
 
