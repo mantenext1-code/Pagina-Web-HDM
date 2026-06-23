@@ -1,0 +1,396 @@
+/*
+ * ════════════════════════════════════════════════════════════════
+ * estilos-horarios.css — Estilos para el flujo "Reservar Tutoría"
+ * Paso 3: Seleccionar horario
+ *
+ * Cubre: horario-matematica.html, horario-fisica.html,
+ * horario-quimica.html, horario-ingles.html,
+ * horario-literatura.html, horario-historia.html
+ *
+ * SISTEMA DE TEMAS: idéntico a estilos-reserva.css.
+ * Cada materia aplica una clase .tema-* en el <body>.
+ * ════════════════════════════════════════════════════════════════
+ */
+
+
+/* ════════════════════════════════════════════════════════════════
+   VARIABLES CSS GLOBALES
+════════════════════════════════════════════════════════════════ */
+:root {
+  --color-fondo:           #F5E5C0;
+  --color-marca:           #F5A623;
+  --color-marca-icono:     #BF6A02;
+  --color-marca-claro:     #FFF3E0;
+  --color-blanco:          #FFFFFF;
+  --color-texto-oscuro:    #1C1C1E;
+  --color-texto-medio:     #4A4A4A;
+  --color-texto-claro:     #6B6B6B;
+  --color-borde-tabla:     #E8E0D0;
+  --color-fondo-pie:       #3E2723;
+  --color-texto-pie:       #FFCC80;
+
+  --radio-pequeno:   6px;
+  --radio-mediano:   12px;
+  --radio-grande:    16px;
+  --radio-capsula:   50px;
+
+  --sombra-tarjeta: 0 2px 12px rgba(0, 0, 0, 0.10);
+  --sombra-boton:   0 2px 8px  rgba(0, 0, 0, 0.18);
+
+  --color-tema:       var(--color-marca);
+  --color-tema-claro: var(--color-marca-claro);
+}
+
+
+/* ════════════════════════════════════════════════════════════════
+   TEMAS DE COLOR — uno por materia
+════════════════════════════════════════════════════════════════ */
+.tema-naranja { --color-tema: #F97316; --color-tema-claro: #FFEDD5; }
+.tema-verde   { --color-tema: #10B981; --color-tema-claro: #D1FAE5; }
+.tema-morado  { --color-tema: #8B5CF6; --color-tema-claro: #EDE9FE; }
+.tema-rojo    { --color-tema: #EF4444; --color-tema-claro: #FEE2E2; }
+.tema-azul    { --color-tema: #3B82F6; --color-tema-claro: #DBEAFE; }
+.tema-amarillo{ --color-tema: #EAB308; --color-tema-claro: #FEF9C3; }
+
+
+/* ════════════════════════════════════════════════════════════════
+   RESET UNIVERSAL
+════════════════════════════════════════════════════════════════ */
+*, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+body {
+  font-family: 'Inter', sans-serif;
+  background-color: var(--color-fondo);
+  color: var(--color-texto-oscuro);
+  min-height: 100vh;
+}
+
+
+/* ════════════════════════════════════════════════════════════════
+   ENCABEZADO NARANJA
+════════════════════════════════════════════════════════════════ */
+.encabezado-plataforma {
+  background-color: var(--color-marca);
+  position: sticky;
+  top: 0;
+  z-index: 100;
+  width: 100%;
+}
+
+.encabezado-fila-superior {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 14px 16px 8px;
+  gap: 8px;
+}
+
+.encabezado-titulo {
+  font-size: 1.125rem;
+  font-weight: 800;
+  color: var(--color-blanco);
+  flex: 1;
+}
+
+.encabezado-acciones {
+  display: flex;
+  align-items: center;
+  gap: 6px;
+}
+
+.boton-icono {
+  background: none;
+  border: none;
+  cursor: pointer;
+  padding: 5px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  border-radius: 50%;
+  transition: background-color 0.15s;
+}
+.boton-icono:active { background-color: rgba(255,255,255,0.20); }
+.boton-icono svg {
+  width: 20px; height: 20px;
+  stroke: var(--color-blanco);
+  fill: none; stroke-width: 2;
+  stroke-linecap: round; stroke-linejoin: round;
+}
+
+.boton-salir {
+  background-color: var(--color-blanco);
+  color: var(--color-marca);
+  border: none;
+  border-radius: var(--radio-capsula);
+  padding: 6px 14px;
+  font-family: 'Inter', sans-serif;
+  font-size: 0.8125rem;
+  font-weight: 600;
+  cursor: pointer;
+  white-space: nowrap;
+  transition: opacity 0.15s;
+}
+.boton-salir:active { opacity: 0.75; }
+
+
+/* ════════════════════════════════════════════════════════════════
+   BARRA DE NAVEGACIÓN
+════════════════════════════════════════════════════════════════ */
+.barra-navegacion {
+  display: flex;
+  align-items: center;
+  gap: 4px;
+  padding: 6px 12px 12px;
+  overflow-x: auto;
+  scrollbar-width: none;
+}
+.barra-navegacion::-webkit-scrollbar { display: none; }
+
+.pestana-nav {
+  background: none;
+  border: none;
+  border-radius: var(--radio-capsula);
+  padding: 7px 16px;
+  font-family: 'Inter', sans-serif;
+  font-size: 0.8125rem;
+  font-weight: 500;
+  color: rgba(255,255,255,0.80);
+  cursor: pointer;
+  white-space: nowrap;
+  transition: background-color 0.15s, color 0.15s;
+}
+.pestana-nav--activa {
+  background-color: var(--color-marca-claro);
+  color: var(--color-marca);
+  font-weight: 700;
+}
+
+
+/* ════════════════════════════════════════════════════════════════
+   CONTENIDO PRINCIPAL
+════════════════════════════════════════════════════════════════ */
+.contenido-reserva {
+  max-width: 480px;
+  margin: 0 auto;
+  padding: 20px 16px 32px;
+  display: flex;
+  flex-direction: column;
+  gap: 18px;
+}
+
+.tarjeta-reserva {
+  background-color: var(--color-blanco);
+  border-radius: var(--radio-grande);
+  box-shadow: var(--sombra-tarjeta);
+  padding: 18px 16px 20px;
+  display: flex;
+  flex-direction: column;
+  gap: 16px;
+}
+
+
+/* ── Encabezado del flujo ── */
+.reserva-encabezado { display: flex; flex-direction: column; gap: 4px; }
+
+.reserva-fila-titulo { display: flex; align-items: center; gap: 10px; }
+
+.reserva-icono-titulo {
+  width: 34px; height: 34px; min-width: 34px;
+  border-radius: var(--radio-mediano);
+  background-color: var(--color-tema);
+  display: flex; align-items: center; justify-content: center;
+  flex-shrink: 0;
+}
+.reserva-icono-titulo svg {
+  width: 19px; height: 19px;
+  stroke: var(--color-blanco); fill: none;
+  stroke-width: 2; stroke-linecap: round; stroke-linejoin: round;
+}
+
+.reserva-titulo  { font-size: 1.0625rem; font-weight: 800; color: var(--color-texto-oscuro); }
+.reserva-subtitulo { font-size: 0.8125rem; color: var(--color-texto-claro); line-height: 1.5; }
+
+
+/* ════════════════════════════════════════════════════════════════
+   INDICADOR DE PASOS
+════════════════════════════════════════════════════════════════ */
+.indicador-pasos {
+  display: flex;
+  align-items: flex-start;
+  justify-content: space-between;
+  padding: 4px 4px 0;
+}
+
+.paso {
+  display: flex; flex-direction: column;
+  align-items: center; gap: 6px;
+  flex: 1; position: relative;
+}
+
+.paso:not(:last-child)::after {
+  content: '';
+  position: absolute;
+  top: 13px;
+  left: calc(50% + 18px);
+  width: calc(100% - 36px);
+  height: 2px;
+  background-color: var(--color-borde-tabla);
+  z-index: 0;
+}
+.paso--completo:not(:last-child)::after { background-color: var(--color-tema); }
+
+.paso-circulo {
+  width: 26px; height: 26px;
+  border-radius: 50%;
+  background-color: var(--color-borde-tabla);
+  color: var(--color-texto-claro);
+  display: flex; align-items: center; justify-content: center;
+  font-size: 0.75rem; font-weight: 700;
+  position: relative; z-index: 1;
+  transition: background-color 0.15s, color 0.15s;
+}
+.paso--completo .paso-circulo,
+.paso--activo   .paso-circulo {
+  background-color: var(--color-tema);
+  color: var(--color-blanco);
+}
+
+.paso-etiqueta {
+  font-size: 0.6875rem; font-weight: 500;
+  color: var(--color-texto-claro); text-align: center;
+}
+.paso--activo .paso-etiqueta { color: var(--color-tema); font-weight: 700; }
+
+
+/* ════════════════════════════════════════════════════════════════
+   SECCIÓN "SELECCIONAR HORARIO"
+════════════════════════════════════════════════════════════════ */
+.reserva-seccion-titulo {
+  font-size: 0.875rem; font-weight: 700; color: var(--color-texto-oscuro);
+}
+
+/* Tarjeta resumen de materia + día */
+.tarjeta-materia-resumen {
+  display: flex; align-items: center; gap: 12px;
+  padding: 12px 14px;
+  border-radius: var(--radio-mediano);
+  border: 1.5px solid var(--color-tema);
+  background-color: var(--color-tema-claro);
+}
+
+.materia-resumen-icono {
+  width: 38px; height: 38px; min-width: 38px;
+  border-radius: var(--radio-mediano);
+  background-color: var(--color-tema);
+  display: flex; align-items: center; justify-content: center;
+  flex-shrink: 0;
+}
+.materia-resumen-icono svg {
+  width: 21px; height: 21px;
+  stroke: var(--color-blanco); fill: none;
+  stroke-width: 2; stroke-linecap: round; stroke-linejoin: round;
+}
+
+.materia-resumen-textos { display: flex; flex-direction: column; gap: 2px; }
+.materia-resumen-nombre { font-size: 0.9375rem; font-weight: 700; color: var(--color-texto-oscuro); }
+.materia-resumen-dia    { font-size: 0.75rem; color: var(--color-texto-medio); }
+
+
+/* ── Lista de horarios seleccionables ── */
+.lista-horarios {
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+}
+
+.tarjeta-horario {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  width: 100%;
+  padding: 13px 14px;
+  border-radius: var(--radio-mediano);
+  border: 1.5px solid var(--color-borde-tabla);
+  background-color: var(--color-blanco);
+  cursor: pointer;
+  text-align: left;
+  font-family: 'Inter', sans-serif;
+  transition: border-color 0.15s, background-color 0.15s;
+}
+.tarjeta-horario:hover,
+.tarjeta-horario:focus-visible {
+  border-color: var(--color-tema);
+  background-color: var(--color-tema-claro);
+}
+
+.tarjeta-horario-icono {
+  width: 30px; height: 30px; min-width: 30px;
+  border-radius: 50%;
+  background-color: var(--color-tema-claro);
+  display: flex; align-items: center; justify-content: center;
+  flex-shrink: 0;
+}
+.tarjeta-horario-icono svg {
+  width: 16px; height: 16px;
+  stroke: var(--color-tema); fill: none;
+  stroke-width: 2.2; stroke-linecap: round; stroke-linejoin: round;
+}
+
+.tarjeta-horario-hora {
+  font-size: 0.9375rem; font-weight: 600;
+  color: var(--color-texto-oscuro); flex: 1;
+}
+
+.tarjeta-horario-flecha {
+  width: 16px; height: 16px;
+  stroke: var(--color-texto-claro); fill: none;
+  stroke-width: 2; stroke-linecap: round; stroke-linejoin: round;
+  flex-shrink: 0;
+}
+
+
+/* ════════════════════════════════════════════════════════════════
+   BOTÓN VOLVER
+════════════════════════════════════════════════════════════════ */
+.boton-volver {
+  display: inline-flex; align-items: center; gap: 6px;
+  background: none; border: none;
+  padding: 4px 2px;
+  font-family: 'Inter', sans-serif;
+  font-size: 0.875rem; font-weight: 600;
+  color: var(--color-tema);
+  cursor: pointer; align-self: flex-start;
+}
+.boton-volver svg {
+  width: 16px; height: 16px;
+  stroke: var(--color-tema); fill: none;
+  stroke-width: 2.3; stroke-linecap: round; stroke-linejoin: round;
+}
+.boton-volver:active { opacity: 0.7; }
+
+
+/* ════════════════════════════════════════════════════════════════
+   PIE DE PÁGINA
+════════════════════════════════════════════════════════════════ */
+.pie-pagina {
+  background-color: var(--color-fondo-pie);
+  color: var(--color-texto-pie);
+  text-align: center;
+  padding: 18px 16px;
+  font-size: 0.75rem;
+  line-height: 1.6;
+}
+
+
+/* ════════════════════════════════════════════════════════════════
+   MEDIA QUERIES
+════════════════════════════════════════════════════════════════ */
+@media (max-width: 768px) {
+  .contenido-reserva { padding: 16px 12px 28px; gap: 14px; }
+  .indicador-pasos   { padding: 2px 0 0; }
+  .paso-etiqueta     { font-size: 0.625rem; }
+}
+@media (max-width: 360px) {
+  .paso:not(:last-child)::after { left: calc(50% + 14px); width: calc(100% - 28px); }
+  .paso-circulo { width: 22px; height: 22px; font-size: 0.6875rem; }
+}

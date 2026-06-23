@@ -3,7 +3,7 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>Reservar Tutoría — Historia — Centro de Tutorías</title>
+  <title>Reservar Tutoría — Física — Centro de Tutorías</title>
 
   <!-- Fuente Inter: <link> en lugar de @import para evitar error CORS en file:// -->
   <link rel="preconnect" href="https://fonts.googleapis.com" />
@@ -14,8 +14,8 @@
   <link rel="stylesheet" href="estilos-reserva.css" />
 </head>
 
-<!-- .tema-amarillo inyecta --color-tema y --color-tema-claro para Historia -->
-<body class="tema-amarillo">
+<!-- .tema-verde inyecta --color-tema y --color-tema-claro para Física -->
+<body class="tema-verde">
 
   <!-- ════════════════════════════════════════════════════
        ENCABEZADO NARANJA (idéntico al resto de la plataforma)
@@ -123,20 +123,19 @@
         <div class="tarjeta-materia-resumen" style="margin-top: 10px; margin-bottom: 14px;">
           <span class="materia-resumen-icono" aria-hidden="true">
             <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
-              <circle cx="12" cy="12" r="10"/>
-              <polyline points="12 6 12 12 16 14"/>
+              <circle cx="12" cy="12" r="3"/>
+              <path d="M12 1v4M12 19v4M4.22 4.22l2.83 2.83M16.95 16.95l2.83 2.83M1 12h4M19 12h4M4.22 19.78l2.83-2.83M16.95 7.05l2.83-2.83"/>
             </svg>
           </span>
           <div class="materia-resumen-textos">
-            <span class="materia-resumen-nombre">Historia</span>
-            <span class="materia-resumen-profesor">Prof. José Lucero</span>
+            <span class="materia-resumen-nombre">Física</span>
+            <span class="materia-resumen-profesor">Prof. Carlos Ruiz</span>
           </div>
         </div>
 
-        <!-- Lista de días disponibles para Historia -->
+        <!-- Lista de días disponibles para Física -->
         <div class="lista-dias" role="list">
-          <button class="tarjeta-dia" type="button" role="listitem"
-                  data-accion="seleccionar-dia" data-dia="Miércoles" data-materia="Historia">
+          <a class="tarjeta-dia" href="horario-fisica.html" role="listitem">
             <span class="tarjeta-dia-icono" aria-hidden="true">
               <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
                 <rect x="3" y="4" width="18" height="18" rx="2" ry="2"/>
@@ -145,11 +144,26 @@
                 <line x1="3" y1="10" x2="21" y2="10"/>
               </svg>
             </span>
-            <span class="tarjeta-dia-nombre">Miércoles</span>
+            <span class="tarjeta-dia-nombre">Martes</span>
             <svg class="tarjeta-dia-flecha" viewBox="0 0 24 24" aria-hidden="true">
               <polyline points="9 18 15 12 9 6"/>
             </svg>
-          </button>
+          </a>
+
+          <a class="tarjeta-dia" href="horario-fisica.html" role="listitem">
+            <span class="tarjeta-dia-icono" aria-hidden="true">
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                <rect x="3" y="4" width="18" height="18" rx="2" ry="2"/>
+                <line x1="16" y1="2" x2="16" y2="6"/>
+                <line x1="8" y1="2" x2="8" y2="6"/>
+                <line x1="3" y1="10" x2="21" y2="10"/>
+              </svg>
+            </span>
+            <span class="tarjeta-dia-nombre">Jueves</span>
+            <svg class="tarjeta-dia-flecha" viewBox="0 0 24 24" aria-hidden="true">
+              <polyline points="9 18 15 12 9 6"/>
+            </svg>
+          </a>
         </div>
       </section>
 

@@ -3,7 +3,7 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>Reservar Tutoría — Inglés — Centro de Tutorías</title>
+  <title>Reservar Tutoría — Matemática — Centro de Tutorías</title>
 
   <!-- Fuente Inter: <link> en lugar de @import para evitar error CORS en file:// -->
   <link rel="preconnect" href="https://fonts.googleapis.com" />
@@ -14,8 +14,8 @@
   <link rel="stylesheet" href="estilos-reserva.css" />
 </head>
 
-<!-- .tema-rojo inyecta --color-tema y --color-tema-claro para Inglés -->
-<body class="tema-rojo">
+<!-- .tema-naranja inyecta --color-tema y --color-tema-claro para Matemática -->
+<body class="tema-naranja">
 
   <!-- ════════════════════════════════════════════════════
        ENCABEZADO NARANJA (idéntico al resto de la plataforma)
@@ -123,36 +123,23 @@
         <div class="tarjeta-materia-resumen" style="margin-top: 10px; margin-bottom: 14px;">
           <span class="materia-resumen-icono" aria-hidden="true">
             <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
-              <path d="M4 19.5A2.5 2.5 0 0 1 6.5 17H20"/>
-              <path d="M6.5 2H20v20H6.5A2.5 2.5 0 0 1 4 19.5v-15A2.5 2.5 0 0 1 6.5 2z"/>
+              <rect x="3" y="3" width="7" height="7" rx="1"/>
+              <rect x="14" y="3" width="7" height="7" rx="1"/>
+              <rect x="3" y="14" width="7" height="7" rx="1"/>
+              <line x1="14" y1="17.5" x2="21" y2="17.5"/>
+              <line x1="17.5" y1="14" x2="17.5" y2="21"/>
             </svg>
           </span>
           <div class="materia-resumen-textos">
-            <span class="materia-resumen-nombre">Inglés</span>
-            <span class="materia-resumen-profesor">Prof. John Smith</span>
+            <span class="materia-resumen-nombre">Matemática</span>
+            <span class="materia-resumen-profesor">Prof. Martín Galeano</span>
           </div>
         </div>
 
-        <!-- Lista de días disponibles para Inglés -->
+        <!-- Lista de días disponibles para Matemática -->
         <div class="lista-dias" role="list">
-          <button class="tarjeta-dia" type="button" role="listitem"
-                  data-accion="seleccionar-dia" data-dia="Martes" data-materia="Inglés">
-            <span class="tarjeta-dia-icono" aria-hidden="true">
-              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
-                <rect x="3" y="4" width="18" height="18" rx="2" ry="2"/>
-                <line x1="16" y1="2" x2="16" y2="6"/>
-                <line x1="8" y1="2" x2="8" y2="6"/>
-                <line x1="3" y1="10" x2="21" y2="10"/>
-              </svg>
-            </span>
-            <span class="tarjeta-dia-nombre">Martes</span>
-            <svg class="tarjeta-dia-flecha" viewBox="0 0 24 24" aria-hidden="true">
-              <polyline points="9 18 15 12 9 6"/>
-            </svg>
-          </button>
 
-          <button class="tarjeta-dia" type="button" role="listitem"
-                  data-accion="seleccionar-dia" data-dia="Jueves" data-materia="Inglés">
+          <a class="tarjeta-dia" href="horario-matematica.html" role="listitem">
             <span class="tarjeta-dia-icono" aria-hidden="true">
               <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
                 <rect x="3" y="4" width="18" height="18" rx="2" ry="2"/>
@@ -161,11 +148,27 @@
                 <line x1="3" y1="10" x2="21" y2="10"/>
               </svg>
             </span>
-            <span class="tarjeta-dia-nombre">Jueves</span>
+            <span class="tarjeta-dia-nombre">Lunes</span>
             <svg class="tarjeta-dia-flecha" viewBox="0 0 24 24" aria-hidden="true">
               <polyline points="9 18 15 12 9 6"/>
             </svg>
-          </button>
+          </a>
+
+          <a class="tarjeta-dia" href="horario-matematica.html" role="listitem">
+            <span class="tarjeta-dia-icono" aria-hidden="true">
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                <rect x="3" y="4" width="18" height="18" rx="2" ry="2"/>
+                <line x1="16" y1="2" x2="16" y2="6"/>
+                <line x1="8" y1="2" x2="8" y2="6"/>
+                <line x1="3" y1="10" x2="21" y2="10"/>
+              </svg>
+            </span>
+            <span class="tarjeta-dia-nombre">Miércoles</span>
+            <svg class="tarjeta-dia-flecha" viewBox="0 0 24 24" aria-hidden="true">
+              <polyline points="9 18 15 12 9 6"/>
+            </svg>
+          </a>
+
         </div>
       </section>
 
