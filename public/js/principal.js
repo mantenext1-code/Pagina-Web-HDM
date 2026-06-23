@@ -1,36 +1,51 @@
-let indiceCarrusel = 0;
-let totalDiapositivas = 6;
+/* ── CLASE CARRUSEL ── */
+class Carrusel {
+  constructor(idPista, selectorPuntos) {
+    this.pista = document.getElementById(idPista);
+    this.selectorPuntos = selectorPuntos;
+    this.indice = 0;
+    this.total = 0;
 
-function iniciarCarrusel() {
-  let pista = document.getElementById('carrusel-pista');
-  if (!pista) { return; }
+    if (!this.pista) { return; }
 
-  let diapositivas = pista.querySelectorAll('.diapositiva');
-  if (diapositivas.length > 0) {
-    totalDiapositivas = diapositivas.length;
+    let diapositivas = this.pista.querySelectorAll('.diapositiva');
+    if (diapositivas.length > 0) {
+      this.total = diapositivas.length;
+    }
+  }
+
+  ir(n) {
+    if (n < 0) { n = this.total - 1; }
+    if (n >= this.total) { n = 0; }
+
+    this.indice = n;
+    this.pista.style.transform = 'translateX(-' + (this.indice * 100) + '%)';
+    this._actualizarPuntos();
+  }
+
+  siguiente() {
+    this.ir(this.indice + 1);
+  }
+
+  anterior() {
+    this.ir(this.indice - 1);
+  }
+
+  _actualizarPuntos() {
+    let puntos = document.querySelectorAll(this.selectorPuntos);
+    for (let i = 0; i < puntos.length; i++) {
+      puntos[i].classList.remove('punto-carrusel--activo');
+    }
+    if (puntos[this.indice]) {
+      puntos[this.indice].classList.add('punto-carrusel--activo');
+    }
   }
 }
 
-function irDiapositiva(n) {
-  if (n < 0) { n = totalDiapositivas - 1; }
-  if (n >= totalDiapositivas) { n = 0; }
+let carrusel = new Carrusel('carrusel-pista', '[data-accion="carrusel-ir"]');
 
-  indiceCarrusel = n;
 
-  let pista = document.getElementById('carrusel-pista');
-  if (pista) {
-    pista.style.transform = 'translateX(-' + (indiceCarrusel * 100) + '%)';
-  }
-
-  let puntos = document.querySelectorAll('[data-accion="carrusel-ir"]');
-  for (let i = 0; i < puntos.length; i++) {
-    puntos[i].classList.remove('punto-carrusel--activo');
-  }
-  if (puntos[indiceCarrusel]) {
-    puntos[indiceCarrusel].classList.add('punto-carrusel--activo');
-  }
-}
-
+/* ── FORMULARIO LOGIN ── */
 function FormularioLogin() {
   let formulario = document.getElementById('formulario-acceso');
   if (!formulario) { return; }
@@ -71,6 +86,9 @@ function FormularioLogin() {
     }
   });
 }
+
+
+/* ── FORMULARIO REGISTRO ── */
 function FormularioRegistro() {
   const formulario = document.getElementById('formulario-registro');
   if (!formulario) { return; }
@@ -124,6 +142,8 @@ function FormularioRegistro() {
   });
 }
 
+
+/* ── EVENTOS DE CLICK GENERALES ── */
 document.addEventListener('click', function (evento) {
   let elemento = evento.target.closest('[data-accion]');
   if (!elemento) { return; }
@@ -159,17 +179,17 @@ document.addEventListener('click', function (evento) {
   }
 
   if (accion === 'carrusel-anterior') {
-    irDiapositiva(indiceCarrusel - 1);
+    carrusel.anterior();
     return;
   }
 
   if (accion === 'carrusel-siguiente') {
-    irDiapositiva(indiceCarrusel + 1);
+    carrusel.siguiente();
     return;
   }
 
   if (accion === 'carrusel-ir') {
-    irDiapositiva(parseInt(valor));
+    carrusel.ir(parseInt(valor, 10));
     return;
   }
 
@@ -188,9 +208,32 @@ document.addEventListener('click', function (evento) {
     return;
   }
 
-
   if (accion === 'notificaciones') {
     window.location.href = 'notificaciones.html';
+    return;
+  }
+
+  if (accion === 'ver-notificacion') {
+    let materia = elemento.dataset.materia || 'esta materia';
+    alert('Abriendo detalle de la notificación de ' + materia + '.');
+    return;
+  }
+
+  if (accion === 'unirse-sesion') {
+    let materiaSesion = elemento.dataset.materia || 'la sesión';
+    alert('Uniéndote a la clase de ' + materiaSesion + '. ¡Buena suerte!');
+    return;
+  }
+
+  if (accion === 'cancelar-sesion') {
+    let materiaCancelar = elemento.dataset.materia || 'esta sesión';
+    let confirmar = confirm(
+      '¿Estás seguro de que querés cancelar la sesión de ' +
+      materiaCancelar + '?\n\nEsta acción no se puede deshacer.'
+    );
+    if (confirmar) {
+      alert('Sesión de ' + materiaCancelar + ' cancelada correctamente.');
+    }
     return;
   }
 
@@ -222,44 +265,9 @@ document.addEventListener('click', function (evento) {
     return;
   }
 
-});
-
-document.addEventListener('click', function (evento) {
-  let elemento = evento.target.closest('[data-accion]');
-  if (!elemento) { return; }
-
-  if (elemento.dataset.accion === 'publicar-mensaje') {
+  if (accion === 'publicar-mensaje') {
     return;
   }
-});
-
-let formularioForo = document.getElementById('formulario-foro');
-
-if (formularioForo) {
-  formularioForo.addEventListener('submit', function (evento) {
-    evento.preventDefault();
-
-    let datos = new FormData(formularioForo);
-    let mensaje = datos.get('mensaje').trim();
-
-    if (!mensaje) {
-      alert('Por favor, escribí tu mensaje antes de publicar.');
-      return;
-    }
-
-    alert('Mensaje publicado correctamente.\n"' + mensaje + '"');
-    formularioForo.reset();
-  });
-}
-FormularioRegistro();
-FormularioLogin();
-iniciarCarrusel();
-
-document.addEventListener('click', function (evento) {
-  let elemento = evento.target.closest('[data-accion]');
-  if (!elemento) { return; }
-
-  let accion = elemento.dataset.accion;
 
   if (accion === 'guardar-perfil') {
     let campoNombre = document.getElementById('campo-nombre');
@@ -293,4 +301,44 @@ document.addEventListener('click', function (evento) {
     alert('Centro de ayuda: esta sección estará disponible próximamente.');
     return;
   }
+
+  if (accion === 'alternar-notificacion') {
+    let opcion = elemento.dataset.opcion || 'esta opción';
+    let activado = elemento.checked;
+    let nombresMapa = {
+      'recordatorios': 'Recordatorios de tutorías',
+      'cambios-horario': 'Cambios de horario',
+      'nuevos-tutores': 'Nuevos tutores disponibles'
+    };
+    let etiqueta = nombresMapa[opcion] || opcion;
+    let estadoTexto = activado ? 'activada' : 'desactivada';
+    alert('Preferencia actualizada:\n"' + etiqueta + '" fue ' + estadoTexto + '.');
+    return;
+  }
 });
+
+
+/* ── FORMULARIO FORO ── */
+let formularioForo = document.getElementById('formulario-foro');
+
+if (formularioForo) {
+  formularioForo.addEventListener('submit', function (evento) {
+    evento.preventDefault();
+
+    let datos = new FormData(formularioForo);
+    let mensaje = datos.get('mensaje').trim();
+
+    if (!mensaje) {
+      alert('Por favor, escribí tu mensaje antes de publicar.');
+      return;
+    }
+
+    alert('Mensaje publicado correctamente.\n"' + mensaje + '"');
+    formularioForo.reset();
+  });
+}
+
+
+/* ── INICIO ── */
+FormularioRegistro();
+FormularioLogin();
