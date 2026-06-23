@@ -5,36 +5,20 @@
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>Inicio — Centro de Tutorías</title>
-
-  <!-- Fuente Inter: <link> en lugar de @import para evitar error CORS en file:// -->
   <link rel="preconnect" href="https://fonts.googleapis.com" />
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
   <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet" />
-
-  <!-- Estilos de la plataforma interna (menú + horarios) -->
   <link rel="stylesheet" href="../css/plataforma.css" />
 </head>
 
 <body>
 
-  <!-- ════════════════════════════════════════════════════
-       ENCABEZADO NARANJA
-       <header> es el elemento semántico correcto para la
-       cabecera principal. aria-label la describe para
-       lectores de pantalla.
-  ════════════════════════════════════════════════════ -->
   <header class="encabezado-plataforma" aria-label="Encabezado principal">
 
-    <!-- Fila superior: título + campana + botón Salir -->
     <div class="encabezado-fila-superior">
       <h1 class="encabezado-titulo">Centro de Tutorías</h1>
       <div class="encabezado-acciones">
 
-        <!-- Campana de notificaciones -->
-        <!--
-          aria-label en botones sin texto visible es obligatorio
-          para accesibilidad — describe el botón a lectores de pantalla.
-        -->
         <button class="boton-campana" aria-label="Notificaciones" data-accion="notificaciones">
           <svg viewBox="0 0 24 24" aria-hidden="true">
             <path d="M18 8A6 6 0 0 0 6 8c0 7-3 9-3 9h18s-3-2-3-9" />
@@ -42,17 +26,18 @@
           </svg>
         </button>
 
-        <!-- Botón Salir → redirige a login.html mediante JS -->
+        <button class="boton-icono" aria-label="Configuración" data-accion="configuracion">
+          <svg viewBox="0 0 24 24" aria-hidden="true">
+            <circle cx="7.5" cy="15.5" r="5.5" />
+            <path d="M21 2l-9.6 9.6" />
+            <path d="M15.5 7.5 19 4" />
+          </svg>
+        </button>
         <button class="boton-salir" data-accion="salir">Salir</button>
 
       </div>
     </div>
 
-    <!-- Barra de navegación con pestañas -->
-    <!--
-      <nav> es el elemento semántico para barras de navegación.
-      role="tablist" indica que las pestañas son un grupo de opciones.
-    -->
     <nav class="barra-navegacion barra-navegacion--menu" aria-label="Secciones principales" role="tablist">
 
       <button class="pestana-nav pestana-nav--activa" role="tab" aria-selected="true" data-accion="nav"
@@ -66,42 +51,17 @@
 
       <button class="pestana-nav" role="tab" aria-selected="false" data-accion="nav" data-valor="foro">Foro</button>
 
-      <!-- Ícono llave / configuración -->
-      <button class="icono-navegacion" aria-label="Configuración" data-accion="configuracion">
-        <svg viewBox="0 0 24 24" aria-hidden="true">
-          <circle cx="7.5" cy="15.5" r="5.5" />
-          <path d="M21 2l-9.6 9.6" />
-          <path d="M15.5 7.5 19 4" />
-        </svg>
-      </button>
-
     </nav>
 
   </header>
 
-
-  <!-- ════════════════════════════════════════════════════
-       CONTENIDO PRINCIPAL
-       <main> agrupa todo el contenido principal.
-  ════════════════════════════════════════════════════ -->
   <main class="contenido-menu" role="main">
 
-
-    <!-- ──────────────────────────────────────────────
-         CARRUSEL DE BANNERS
-         Estructura:
-           .carrusel (posición relativa para flechas)
-             .carrusel-visor (overflow:hidden = "ventana")
-               .carrusel-pista (se mueve con translateX)
-                 .diapositiva × 6
-             .carrusel-puntos (puntos indicadores)
-    ────────────────────────────────────────────────── -->
     <section aria-label="Carrusel de materias">
       <div class="carrusel" id="carrusel">
         <div class="carrusel-visor">
           <div class="carrusel-pista" id="carrusel-pista">
 
-            <!-- DIAPOSITIVA 1: Matemáticas -->
             <div class="diapositiva" style="--color-diapositiva: #F5A623;">
               <button class="diapositiva-flecha-anterior" aria-label="Diapositiva anterior"
                 data-accion="carrusel-anterior">
@@ -111,7 +71,6 @@
               </button>
               <div class="diapositiva-contenido">
                 <div class="diapositiva-caja-icono">
-                  <!-- Ícono: símbolo de gráfica para Matemáticas -->
                   <svg viewBox="0 0 24 24" aria-hidden="true">
                     <polyline points="3 17 9 11 13 15 22 4" />
                     <polyline points="22 4 22 10" />
@@ -132,7 +91,6 @@
               </button>
             </div>
 
-            <!-- DIAPOSITIVA 2: Física -->
             <div class="diapositiva" style="--color-diapositiva: #26A69A;">
               <button class="diapositiva-flecha-anterior" aria-label="Diapositiva anterior"
                 data-accion="carrusel-anterior">
@@ -142,7 +100,6 @@
               </button>
               <div class="diapositiva-contenido">
                 <div class="diapositiva-caja-icono">
-                  <!-- Ícono: átomo para Física -->
                   <svg viewBox="0 0 24 24" aria-hidden="true">
                     <circle cx="12" cy="12" r="2" />
                     <ellipse cx="12" cy="12" rx="10" ry="4" transform="rotate(0 12 12)" />
@@ -164,7 +121,6 @@
               </button>
             </div>
 
-            <!-- DIAPOSITIVA 3: Química -->
             <div class="diapositiva" style="--color-diapositiva: #7B1FA2;">
               <button class="diapositiva-flecha-anterior" aria-label="Diapositiva anterior"
                 data-accion="carrusel-anterior">
@@ -174,7 +130,6 @@
               </button>
               <div class="diapositiva-contenido">
                 <div class="diapositiva-caja-icono">
-                  <!-- Ícono: matraz de laboratorio para Química -->
                   <svg viewBox="0 0 24 24" aria-hidden="true">
                     <path d="M9 3h6v6l3 9H6l3-9V3z" />
                     <line x1="6" y1="14" x2="18" y2="14" />
@@ -194,8 +149,7 @@
               </button>
             </div>
 
-            <!-- DIAPOSITIVA 4: Inglés -->
-            <div class="diapositiva" style="--color-diapositiva: #1565C0;">
+            <div class="diapositiva" style="--color-diapositiva: #EF4444;">
               <button class="diapositiva-flecha-anterior" aria-label="Diapositiva anterior"
                 data-accion="carrusel-anterior">
                 <svg viewBox="0 0 24 24" aria-hidden="true">
@@ -204,7 +158,6 @@
               </button>
               <div class="diapositiva-contenido">
                 <div class="diapositiva-caja-icono">
-                  <!-- Ícono: globo terráqueo para Inglés -->
                   <svg viewBox="0 0 24 24" aria-hidden="true">
                     <circle cx="12" cy="12" r="10" />
                     <line x1="2" y1="12" x2="22" y2="12" />
@@ -226,8 +179,7 @@
               </button>
             </div>
 
-            <!-- DIAPOSITIVA 5: Literatura -->
-            <div class="diapositiva" style="--color-diapositiva: #2E7D32;">
+            <div class="diapositiva" style="--color-diapositiva: #3B82F6;">
               <button class="diapositiva-flecha-anterior" aria-label="Diapositiva anterior"
                 data-accion="carrusel-anterior">
                 <svg viewBox="0 0 24 24" aria-hidden="true">
@@ -236,7 +188,6 @@
               </button>
               <div class="diapositiva-contenido">
                 <div class="diapositiva-caja-icono">
-                  <!-- Ícono: libro abierto para Literatura -->
                   <svg viewBox="0 0 24 24" aria-hidden="true">
                     <path d="M2 6s2-2 5-2 5 2 5 2v14s-2-1-5-1-5 1-5 1V6z" />
                     <path d="M12 6s2-2 5-2 5 2 5 2v14s-2-1-5-1-5 1-5 1V6z" />
@@ -257,8 +208,7 @@
               </button>
             </div>
 
-            <!-- DIAPOSITIVA 6: Historia -->
-            <div class="diapositiva" style="--color-diapositiva: #BF360C;">
+            <div class="diapositiva" style="--color-diapositiva: #EAB308;">
               <button class="diapositiva-flecha-anterior" aria-label="Diapositiva anterior"
                 data-accion="carrusel-anterior">
                 <svg viewBox="0 0 24 24" aria-hidden="true">
@@ -267,7 +217,6 @@
               </button>
               <div class="diapositiva-contenido">
                 <div class="diapositiva-caja-icono">
-                  <!-- Ícono: reloj antiguo para Historia -->
                   <svg viewBox="0 0 24 24" aria-hidden="true">
                     <circle cx="12" cy="12" r="10" />
                     <polyline points="12 6 12 12 16 14" />
@@ -287,10 +236,9 @@
               </button>
             </div>
 
-          </div><!-- /carrusel-pista -->
-        </div><!-- /carrusel-visor -->
+          </div>
+        </div>
 
-        <!-- Puntos indicadores -->
         <div class="carrusel-puntos" id="carrusel-puntos" aria-label="Indicador de diapositivas">
           <button class="punto-carrusel punto-carrusel--activo" data-accion="carrusel-ir" data-valor="0"
             aria-label="Diapositiva 1"></button>
@@ -301,22 +249,14 @@
           <button class="punto-carrusel" data-accion="carrusel-ir" data-valor="5" aria-label="Diapositiva 6"></button>
         </div>
 
-      </div><!-- /carrusel -->
+      </div>
     </section>
 
-
-    <!-- ──────────────────────────────────────────────
-         SECCIÓN TUTORÍAS DESTACADAS
-         <section> agrupa contenido temático relacionado.
-         aria-labelledby conecta la sección con su título
-         visible para lectores de pantalla.
-    ────────────────────────────────────────────────── -->
     <section aria-labelledby="titulo-destacadas">
       <h2 class="titulo-seccion" id="titulo-destacadas">Tutorías Destacadas</h2>
 
       <div class="lista-tarjetas">
 
-        <!-- Tarjeta 1: Matemáticas — borde naranja -->
         <article class="tarjeta-tutoria" style="--color-tarjeta: #F5A623;">
           <div class="tarjeta-encabezado">
             <div class="tarjeta-icono">
@@ -333,7 +273,6 @@
           </div>
 
           <div class="tarjeta-detalles">
-            <!-- Ícono calendario: días -->
             <div class="tarjeta-fila-detalle">
               <svg viewBox="0 0 24 24" aria-hidden="true">
                 <rect x="3" y="4" width="18" height="18" rx="2" />
@@ -343,7 +282,6 @@
               </svg>
               <span>Lunes y Miércoles</span>
             </div>
-            <!-- Ícono reloj: horarios -->
             <div class="tarjeta-fila-detalle">
               <svg viewBox="0 0 24 24" aria-hidden="true">
                 <circle cx="12" cy="12" r="10" />
@@ -351,7 +289,6 @@
               </svg>
               <span>2 horarios</span>
             </div>
-            <!-- Ícono ubicación: lugar -->
             <div class="tarjeta-fila-detalle">
               <svg viewBox="0 0 24 24" aria-hidden="true">
                 <path d="M21 10c0 7-9 13-9 13S3 17 3 10a9 9 0 1 1 18 0z" />
@@ -366,7 +303,6 @@
           </a>
         </article>
 
-        <!-- Tarjeta 2: Física — borde verde/teal -->
         <article class="tarjeta-tutoria" style="--color-tarjeta: #26A69A;">
           <div class="tarjeta-encabezado">
             <div class="tarjeta-icono">
@@ -414,7 +350,6 @@
           </a>
         </article>
 
-        <!-- Tarjeta 3: Química — borde morado -->
         <article class="tarjeta-tutoria" style="--color-tarjeta: #7B1FA2;">
           <div class="tarjeta-encabezado">
             <div class="tarjeta-icono">
@@ -460,22 +395,16 @@
           </a>
         </article>
 
-      </div><!-- /lista-tarjetas -->
+      </div>
     </section>
 
-
-    <!-- ──────────────────────────────────────────────
-         SECCIÓN "¿NECESITAS AYUDA?"
-    ────────────────────────────────────────────────── -->
     <section class="seccion-ayuda" aria-labelledby="titulo-ayuda">
       <h2 class="titulo-ayuda" id="titulo-ayuda">¿Necesitas Ayuda?</h2>
 
       <div class="tarjetas-ayuda">
 
-        <!-- Tarjeta Correo -->
         <div class="tarjeta-contacto">
           <div class="contacto-icono" style="background-color: #F5A623;">
-            <!-- Ícono sobre/correo -->
             <svg viewBox="0 0 24 24" aria-hidden="true">
               <rect x="2" y="4" width="20" height="16" rx="2" />
               <path d="m2 7 10 7 10-7" />
@@ -487,10 +416,8 @@
           </a>
         </div>
 
-        <!-- Tarjeta Teléfono -->
         <div class="tarjeta-contacto">
           <div class="contacto-icono" style="background-color: #26A69A;">
-            <!-- Ícono teléfono -->
             <svg viewBox="0 0 24 24" aria-hidden="true">
               <path d="M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07
                        A19.5 19.5 0 0 1 4.69 13a19.79 19.79 0 0 1-3.07-8.67
@@ -506,16 +433,11 @@
           </a>
         </div>
 
-      </div><!-- /tarjetas-ayuda -->
+      </div>
     </section>
 
+  </main>
 
-  </main><!-- /contenido-menu -->
-
-
-  <!-- ════════════════════════════════════════════════════
-       PIE DE PÁGINA MARRÓN
-  ════════════════════════════════════════════════════ -->
   <footer class="pie-pagina">
     <p>©2026 Centro de Tutorías — Todos los derechos reservados.<br>
       Comprometidos con tu éxito académico.</p>

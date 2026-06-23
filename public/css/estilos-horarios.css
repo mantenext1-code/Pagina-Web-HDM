@@ -1,100 +1,68 @@
-/*
- * ════════════════════════════════════════════════════════════════
- * estilos-reserva.css — Estilos para el flujo "Reservar Tutoría"
- * Paso 2: Seleccionar día
- *
- * Cubre: matematica.html, fisica.html, quimica.html,
- * ingles.html, literatura.html, historia.html
- *
- * Fuente: Inter (cargada vía <link> en cada HTML)
- * Resolución de referencia: 430px × 932px (iPhone 14 Pro Max)
- *
- * SISTEMA DE TEMAS DE COLOR:
- * Cada materia define su color de acento sobreescribiendo UNA
- * sola variable CSS (--color-tema) mediante una clase utilitaria
- * (.tema-naranja, .tema-verde, etc.) aplicada en el <body>.
- * Toda la estructura HTML es 100% idéntica entre páginas; solo
- * cambia esa clase y el contenido textual.
- * ════════════════════════════════════════════════════════════════
- */
-
-
-/* ════════════════════════════════════════════════════════════════
-   VARIABLES CSS GLOBALES
-════════════════════════════════════════════════════════════════ */
 :root {
-  --color-fondo:           #F5E5C0;
-  --color-marca:           #F5A623;
-  --color-marca-icono:     #BF6A02;
-  --color-marca-claro:     #FFF3E0;
-  --color-blanco:          #FFFFFF;
-  --color-texto-oscuro:    #1C1C1E;
-  --color-texto-medio:     #4A4A4A;
-  --color-texto-claro:     #6B6B6B;
-  --color-borde-tabla:     #E8E0D0;
-  --color-fondo-pie:       #3E2723;
-  --color-texto-pie:       #FFCC80;
+  --color-fondo: #F5E5C0;
+  --color-marca: #F5A623;
+  --color-marca-icono: #BF6A02;
+  --color-marca-claro: #FFF3E0;
+  --color-blanco: #FFFFFF;
+  --color-texto-oscuro: #1C1C1E;
+  --color-texto-medio: #4A4A4A;
+  --color-texto-claro: #6B6B6B;
+  --color-borde-tabla: #E8E0D0;
+  --color-fondo-pie: #3E2723;
+  --color-texto-pie: #FFCC80;
 
-  --radio-pequeno:   6px;
-  --radio-mediano:   12px;
-  --radio-grande:    16px;
-  --radio-capsula:   50px;
+  --radio-pequeno: 6px;
+  --radio-mediano: 12px;
+  --radio-grande: 16px;
+  --radio-capsula: 50px;
 
   --sombra-tarjeta: 0 2px 12px rgba(0, 0, 0, 0.10);
-  --sombra-boton:   0 2px 8px  rgba(0, 0, 0, 0.18);
+  --sombra-boton: 0 2px 8px rgba(0, 0, 0, 0.18);
 
-  /*
-   * --color-tema es la variable "dinámica": cada clase .tema-*
-   * la sobreescribe con el color de acento de su materia.
-   * Por defecto cae en el naranja de marca.
-   */
-  --color-tema:       var(--color-marca);
+  --color-tema: var(--color-marca);
   --color-tema-claro: var(--color-marca-claro);
 }
 
-
-/* ════════════════════════════════════════════════════════════════
-   CLASES UTILITARIAS DE TEMA — una por materia
-   Se aplican en el <body> (ej. <body class="tema-naranja">)
-════════════════════════════════════════════════════════════════ */
 .tema-naranja {
-  --color-tema:       #F97316;
+  --color-tema: #F97316;
   --color-tema-claro: #FFEDD5;
 }
 
 .tema-verde {
-  --color-tema:       #10B981;
+  --color-tema: #10B981;
   --color-tema-claro: #D1FAE5;
 }
 
 .tema-morado {
-  --color-tema:       #8B5CF6;
+  --color-tema: #8B5CF6;
   --color-tema-claro: #EDE9FE;
 }
 
 .tema-rojo {
-  --color-tema:       #EF4444;
+  --color-tema: #EF4444;
   --color-tema-claro: #FEE2E2;
 }
 
 .tema-azul {
-  --color-tema:       #3B82F6;
+  --color-tema: #3B82F6;
   --color-tema-claro: #DBEAFE;
 }
 
 .tema-amarillo {
-  --color-tema:       #EAB308;
+  --color-tema: #EAB308;
   --color-tema-claro: #FEF9C3;
 }
 
-
-/* ════════════════════════════════════════════════════════════════
-   RESET UNIVERSAL
-════════════════════════════════════════════════════════════════ */
-*, *::before, *::after {
+*,
+*::before,
+*::after {
   box-sizing: border-box;
   margin: 0;
   padding: 0;
+}
+
+a {
+  text-decoration: none;
 }
 
 body {
@@ -104,10 +72,6 @@ body {
   min-height: 100vh;
 }
 
-
-/* ════════════════════════════════════════════════════════════════
-   ENCABEZADO NARANJA (idéntico al resto de la plataforma)
-════════════════════════════════════════════════════════════════ */
 .encabezado-plataforma {
   background-color: var(--color-marca);
   position: sticky;
@@ -181,10 +145,6 @@ body {
   opacity: 0.75;
 }
 
-
-/* ════════════════════════════════════════════════════════════════
-   BARRA DE NAVEGACIÓN
-════════════════════════════════════════════════════════════════ */
 .barra-navegacion {
   display: flex;
   align-items: center;
@@ -218,10 +178,6 @@ body {
   font-weight: 700;
 }
 
-
-/* ════════════════════════════════════════════════════════════════
-   CONTENIDO PRINCIPAL — RESERVA
-════════════════════════════════════════════════════════════════ */
 .contenido-reserva {
   max-width: 480px;
   margin: 0 auto;
@@ -231,8 +187,6 @@ body {
   gap: 18px;
 }
 
-
-/* ── Tarjeta blanca contenedora de todo el flujo ── */
 .tarjeta-reserva {
   background-color: var(--color-blanco);
   border-radius: var(--radio-grande);
@@ -243,7 +197,6 @@ body {
   gap: 16px;
 }
 
-/* ── Encabezado del flujo: ícono + título + subtítulo ── */
 .reserva-encabezado {
   display: flex;
   flex-direction: column;
@@ -290,10 +243,6 @@ body {
   line-height: 1.5;
 }
 
-
-/* ════════════════════════════════════════════════════════════════
-   INDICADOR DE PASOS (1. Materia — 2. Día — 3. Horario — 4. Dato)
-════════════════════════════════════════════════════════════════ */
 .indicador-pasos {
   display: flex;
   align-items: flex-start;
@@ -310,7 +259,6 @@ body {
   position: relative;
 }
 
-/* Línea conectora entre círculos */
 .paso:not(:last-child)::after {
   content: '';
   position: absolute;
@@ -360,17 +308,12 @@ body {
   font-weight: 700;
 }
 
-
-/* ════════════════════════════════════════════════════════════════
-   SECCIÓN "SELECCIONAR DÍA"
-════════════════════════════════════════════════════════════════ */
 .reserva-seccion-titulo {
   font-size: 0.875rem;
   font-weight: 700;
   color: var(--color-texto-oscuro);
 }
 
-/* ── Tarjeta resumen de la materia elegida en el Paso 1 ── */
 .tarjeta-materia-resumen {
   display: flex;
   align-items: center;
@@ -415,20 +358,18 @@ body {
   color: var(--color-texto-oscuro);
 }
 
-.materia-resumen-profesor {
+.materia-resumen-dia {
   font-size: 0.75rem;
   color: var(--color-texto-medio);
 }
 
-
-/* ── Lista de tarjetas de día seleccionables ── */
-.lista-dias {
+.lista-horarios {
   display: flex;
   flex-direction: column;
   gap: 10px;
 }
 
-.tarjeta-dia {
+.tarjeta-horario {
   display: flex;
   align-items: center;
   gap: 12px;
@@ -443,13 +384,13 @@ body {
   transition: border-color 0.15s, background-color 0.15s;
 }
 
-.tarjeta-dia:hover,
-.tarjeta-dia:focus-visible {
+.tarjeta-horario:hover,
+.tarjeta-horario:focus-visible {
   border-color: var(--color-tema);
   background-color: var(--color-tema-claro);
 }
 
-.tarjeta-dia-icono {
+.tarjeta-horario-icono {
   width: 30px;
   height: 30px;
   min-width: 30px;
@@ -461,7 +402,7 @@ body {
   flex-shrink: 0;
 }
 
-.tarjeta-dia-icono svg {
+.tarjeta-horario-icono svg {
   width: 16px;
   height: 16px;
   stroke: var(--color-tema);
@@ -471,14 +412,14 @@ body {
   stroke-linejoin: round;
 }
 
-.tarjeta-dia-nombre {
+.tarjeta-horario-hora {
   font-size: 0.9375rem;
   font-weight: 600;
   color: var(--color-texto-oscuro);
   flex: 1;
 }
 
-.tarjeta-dia-flecha {
+.tarjeta-horario-flecha {
   width: 16px;
   height: 16px;
   stroke: var(--color-texto-claro);
@@ -489,10 +430,6 @@ body {
   flex-shrink: 0;
 }
 
-
-/* ════════════════════════════════════════════════════════════════
-   BOTÓN VOLVER
-════════════════════════════════════════════════════════════════ */
 .boton-volver {
   display: inline-flex;
   align-items: center;
@@ -522,10 +459,6 @@ body {
   opacity: 0.7;
 }
 
-
-/* ════════════════════════════════════════════════════════════════
-   PIE DE PÁGINA MARRÓN
-════════════════════════════════════════════════════════════════ */
 .pie-pagina {
   background-color: var(--color-fondo-pie);
   color: var(--color-texto-pie);
@@ -535,10 +468,6 @@ body {
   line-height: 1.6;
 }
 
-
-/* ════════════════════════════════════════════════════════════════
-   MEDIA QUERY MÓVIL ≤ 768px
-════════════════════════════════════════════════════════════════ */
 @media (max-width: 768px) {
   .contenido-reserva {
     padding: 16px 12px 28px;
@@ -554,10 +483,6 @@ body {
   }
 }
 
-
-/* ════════════════════════════════════════════════════════════════
-   MEDIA QUERY MUY ANGOSTA ≤ 360px
-════════════════════════════════════════════════════════════════ */
 @media (max-width: 360px) {
   .paso:not(:last-child)::after {
     left: calc(50% + 14px);
