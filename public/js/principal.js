@@ -169,7 +169,7 @@ document.addEventListener('click', function (evento) {
   }
 
   if (accion === 'carrusel-ir') {
-    irDiapositiva(parseInt(valor, 10));
+    irDiapositiva(parseInt(valor));
     return;
   }
 
@@ -191,30 +191,6 @@ document.addEventListener('click', function (evento) {
 
   if (accion === 'notificaciones') {
     window.location.href = 'notificaciones.html';
-    return;
-  }
-
-  if (accion === 'ver-notificacion') {
-    let materia = elemento.dataset.materia || 'esta materia';
-    alert('Abriendo detalle de la notificación de ' + materia + '.');
-    return;
-  }
-
-  if (accion === 'unirse-sesion') {
-    let materiaSesion = elemento.dataset.materia || 'la sesión';
-    alert('Uniéndote a la clase de ' + materiaSesion + '. ¡Buena suerte!');
-    return;
-  }
-
-  if (accion === 'cancelar-sesion') {
-    let materiaCancelar = elemento.dataset.materia || 'esta sesión';
-    let confirmar = confirm(
-      '¿Estás seguro de que querés cancelar la sesión de ' +
-      materiaCancelar + '?\n\nEsta acción no se puede deshacer.'
-    );
-    if (confirmar) {
-      alert('Sesión de ' + materiaCancelar + ' cancelada correctamente.');
-    }
     return;
   }
 
@@ -315,20 +291,6 @@ document.addEventListener('click', function (evento) {
   if (accion === 'centro-ayuda') {
     evento.preventDefault();
     alert('Centro de ayuda: esta sección estará disponible próximamente.');
-    return;
-  }
-
-  if (accion === 'alternar-notificacion') {
-    let opcion = elemento.dataset.opcion || 'esta opción';
-    let activado = elemento.checked;
-    let nombresMapa = {
-      'recordatorios': 'Recordatorios de tutorías',
-      'cambios-horario': 'Cambios de horario',
-      'nuevos-tutores': 'Nuevos tutores disponibles'
-    };
-    let etiqueta = nombresMapa[opcion] || opcion;
-    let estadoTexto = activado ? 'activada' : 'desactivada';
-    alert('Preferencia actualizada:\n"' + etiqueta + '" fue ' + estadoTexto + '.');
     return;
   }
 });

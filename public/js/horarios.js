@@ -12,13 +12,6 @@ document.addEventListener('click', function (evento) {
     return;
   }
 
-  if (accion === 'seleccionar-horario') {
-    let dia = elemento.dataset.dia || '';
-    let hora = elemento.dataset.hora || '';
-    alert('Horario seleccionado:\n' + dia + ' — ' + hora + '\n\nPróximamente: paso 4 (ingreso de datos).');
-    return;
-  }
-
   if (accion === 'nav') {
     if (valor === 'inicio') { window.location.href = '../../html/menu.html'; return; }
     if (valor === 'horarios') { window.location.href = '../../html/horarios.html'; return; }
