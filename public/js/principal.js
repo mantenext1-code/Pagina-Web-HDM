@@ -1,42 +1,22 @@
-/*
- * ════════════════════════════════════════════════════════════════
- * principal.js — Lógica JavaScript centralizada del proyecto
- *               "Centro de Tutorías — Portal Estudiantil"
- *
- * Cubre: login.html, registro.html, menu.html, horarios.html,
- *        tutorias.html, notificaciones.html
- *
- * Técnica: Vanilla JS clásico (sin módulos, sin import/export)
- *          para garantizar funcionamiento en file:// local.
- *          Delegación de eventos en document: un solo listener
- *          maneja todos los clics filtrando por data-accion.
- *
- * CAMBIOS RESPECTO A LA VERSIÓN ANTERIOR:
- *   1. inicializarFormularioAcceso()  → redirige a menu.html tras el éxito
- *   2. inicializarFormularioRegistro() → redirige a login.html tras el éxito
- *   3. Acción 'notificaciones'        → redirige a notificaciones.html
- *   4. Acción 'nav' valor 'tutorias'  → redirige a tutorias.html
- *   5. Acciones nuevas de tutorias.html y notificaciones.html
- * ════════════════════════════════════════════════════════════════
- */
+
 
 
 /* ══════════════════════════════════════════════════════════════
    ESTADO DEL CARRUSEL
 ══════════════════════════════════════════════════════════════ */
-var indiceCarrusel = 0;
-var totalDiapositivas = 6;
-var temporizadorAutoplay;
+let indiceCarrusel = 0;
+let totalDiapositivas = 6;
+let temporizadorAutoplay;
 
 
 /* ──────────────────────────────────────────────────────────────
    iniciarCarrusel()
 ────────────────────────────────────────────────────────────── */
 function iniciarCarrusel() {
-  var pista = document.getElementById('carrusel-pista');
+  let pista = document.getElementById('carrusel-pista');
   if (!pista) { return; }
 
-  var diapositivas = pista.querySelectorAll('.diapositiva');
+  let diapositivas = pista.querySelectorAll('.diapositiva');
   if (diapositivas.length > 0) {
     totalDiapositivas = diapositivas.length;
   }
@@ -56,13 +36,13 @@ function irDiapositiva(n) {
 
   indiceCarrusel = n;
 
-  var pista = document.getElementById('carrusel-pista');
+  let pista = document.getElementById('carrusel-pista');
   if (pista) {
     pista.style.transform = 'translateX(-' + (indiceCarrusel * 100) + '%)';
   }
 
-  var puntos = document.querySelectorAll('[data-accion="carrusel-ir"]');
-  for (var i = 0; i < puntos.length; i++) {
+  let puntos = document.querySelectorAll('[data-accion="carrusel-ir"]');
+  for (let i = 0; i < puntos.length; i++) {
     puntos[i].classList.remove('punto-carrusel--activo');
   }
   if (puntos[indiceCarrusel]) {
@@ -82,9 +62,9 @@ function detenerAutoplay() {
 /* ══════════════════════════════════════════════════════════════
    NAVEGACIÓN POR PESTAÑAS
 ══════════════════════════════════════════════════════════════ */
-function activarPestana(pestanaPresionada) {
-  var todasLasPestanas = document.querySelectorAll('[data-accion="nav"]');
-  for (var i = 0; i < todasLasPestanas.length; i++) {
+function actiletPestana(pestanaPresionada) {
+  let todasLasPestanas = document.querySelectorAll('[data-accion="nav"]');
+  for (let i = 0; i < todasLasPestanas.length; i++) {
     todasLasPestanas[i].classList.remove('pestana-nav--activa');
     todasLasPestanas[i].setAttribute('aria-selected', 'false');
   }
@@ -99,114 +79,107 @@ function activarPestana(pestanaPresionada) {
       después del alert de éxito para que el usuario sea
       redirigido automáticamente al menú principal.
 ══════════════════════════════════════════════════════════════ */
-function inicializarFormularioAcceso() {
-  var formulario = document.getElementById('formulario-acceso');
+function FormularioLogin() {
+  let formulario = document.getElementById('formulario-acceso');
   if (!formulario) { return; }
 
-  formulario.addEventListener('submit', function (evento) {
+  formulario.addEventListener('submit', async (evento) => {
     evento.preventDefault();
 
-    var datos = new FormData(this);
-    var correo = datos.get('correo').trim();
-    var clave = datos.get('clave');
+    let correo = document.getElementById('campo-correo').value;
+    let contraseña = document.getElementById('campo-clave').value;
 
-    if (!correo || !clave) {
+    const comprobacionCorreo = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+    if (!correo || !contraseña) {
       alert('Por favor, completá todos los campos.');
-      return;
     }
-
-    var regexCorreo = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
-    if (!regexCorreo.test(correo)) {
+    else if (!comprobacionCorreo.test(correo)) {
       alert('El formato del correo no es válido.');
-      return;
     }
-
-    console.log('Acceso enviado:', { correo: correo });
-    window.location.href = 'menu.html';
+    else {
+      const respuesta = await fetch('http://localhost:3000/api/usuarios/mysql', {
+        method: 'GET',
+        headers: {
+          'Content-Type': 'application/json'
+        }
+      });
+      let alerta = true
+      const datos = await respuesta.json();
+      datos.forEach(Usuario => {
+        if (Usuario.correo === correo && Usuario.contraseña === contraseña) {
+          alert('✅ Usuario logueado exitosamente!');
+          formulario.reset();
+          window.location.href = 'menu.html';
+          alerta = false;
+        }
+      })
+      if (alerta == true) {
+        alert('❌ Usuario o contraseña incorrectos')
+      }
+    }
   });
 }
-
-
-/* ══════════════════════════════════════════════════════════════
-   VALIDACIÓN DEL FORMULARIO DE REGISTRO
-   ✅ CORRECCIÓN: se agrega window.location.href = 'login.html'
-      después del alert de éxito para que el usuario sea
-      redirigido al login a completar el ingreso.
-══════════════════════════════════════════════════════════════ */
-function inicializarFormularioRegistro() {
-  var formulario = document.getElementById('formulario-registro');
+function FormularioRegistro() {
+  const formulario = document.getElementById('formulario-registro');
   if (!formulario) { return; }
-
-  formulario.addEventListener('submit', async function (evento) {
+  formulario.addEventListener('submit', async (evento) => {
     evento.preventDefault();
     const Usuario = {
       nombre: document.getElementById('campo-nombre').value,
       correo: document.getElementById('campo-correo').value,
       contraseña: document.getElementById('campo-clave').value
     }
-    var claveRep = datos.get('clave-repetida');
-    var terminosEl = document.getElementById('casilla-terminos');
-    var terminos = terminosEl ? terminosEl.checked : false;
+    let claveRep = document.getElementById('campo-clave-repetida').value;
+    let terminosEl = document.getElementById('casilla-terminos');
+    let terminos = terminosEl ? terminosEl.checked : false;
+
+    let formCorreo = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
 
     if (!Usuario.nombre || !Usuario.correo || !Usuario.contraseña || !claveRep) {
       alert('Por favor, completá todos los campos.');
-      return;
     }
-
-    var regexCorreo = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
-    if (!regexCorreo.test(correo)) {
+    else if (!formCorreo.test(Usuario.correo)) {
       alert('El formato del correo no es válido.');
-      return;
     }
-
-    if (clave.length < 6) {
+    else if (Usuario.contraseña.length < 6) {
       alert('La contraseña debe tener al menos 6 caracteres.');
-      return;
     }
-
-    if (clave !== claveRep) {
+    else if (Usuario.contraseña !== claveRep) {
       alert('Las contraseñas no coinciden.');
-      return;
     }
-
-    if (!terminos) {
+    else if (!terminos) {
       alert('Debés aceptar los términos y condiciones para continuar.');
-      return;
     }
-
-    try {
-      const respuesta = await fetch('http://localhost:3000/Tutorias_db', {
-        method: 'POST',
-        headers: {
-          'Content-Type': 'application/json'
-        },
-        body: JSON.stringify(Usuario)
-      });
-
-      if (respuesta.ok) {
-        alert('✅ Usuario guardado exitosamente!');
-        formulario.reset();
+    else {
+      try {
+        const respuesta = await fetch('http://localhost:3000/api/usuarios/mysql', {
+          method: 'POST',
+          headers: {
+            'Content-Type': 'application/json'
+          },
+          body: JSON.stringify(Usuario)
+        });
+        if (respuesta.ok) {
+          alert('✅ Usuario guardado exitosamente!');
+          formulario.reset();
+          window.location.href = 'login.html';
+        }
+      } catch (error) {
+        console.error('Error:', error);
+        alert('❌ Error al guardar el usuario');
       }
-    } catch (error) {
-      console.error('Error:', error);
-      alert('❌ Error al guardar el usuario');
     }
-
-    console.log('Registro enviado:', { nombre: nombre, correo: correo });
-    window.location.href = 'login.html';
   });
 }
 
-/* ══════════════════════════════════════════════════════════════
-   DELEGACIÓN DE EVENTOS — CLIC GLOBAL
-   Un solo listener maneja TODOS los clics de la app.
-══════════════════════════════════════════════════════════════ */
+
+
 document.addEventListener('click', function (evento) {
-  var elemento = evento.target.closest('[data-accion]');
+  let elemento = evento.target.closest('[data-accion]');
   if (!elemento) { return; }
 
-  var accion = elemento.dataset.accion;
-  var valor = elemento.dataset.valor;
+  let accion = elemento.dataset.accion;
+  let valor = elemento.dataset.valor;
 
   /* ── Botón Salir ── */
   if (accion === 'salir') {
@@ -263,7 +236,7 @@ document.addEventListener('click', function (evento) {
 
   /* ── Pestañas de navegación ── */
   if (accion === 'nav') {
-    activarPestana(elemento);
+    actiletPestana(elemento);
     if (valor === 'inicio') {
       window.location.href = 'menu.html';
     } else if (valor === 'horarios') {
@@ -280,8 +253,8 @@ document.addEventListener('click', function (evento) {
     return;
   }
 
-  /* ── Botón Reservar Tutoría (menu.html) ── */
-  if (accion === 'reservar') {
+  /* ── Botón Reserlet Tutoría (menu.html) ── */
+  if (accion === 'reserlet') {
     alert('Reserva de tutoría de "' + valor + '": próximamente.');
     return;
   }
@@ -306,22 +279,22 @@ document.addEventListener('click', function (evento) {
 
   /* ── Ver detalle de una notificación dentro de tutorías ── */
   if (accion === 'ver-notificacion') {
-    var materia = elemento.dataset.materia || 'esta materia';
+    let materia = elemento.dataset.materia || 'esta materia';
     alert('Abriendo detalle de la notificación de ' + materia + '.');
     return;
   }
 
   /* ── Unirse a una clase ── */
   if (accion === 'unirse-sesion') {
-    var materiaSesion = elemento.dataset.materia || 'la sesión';
+    let materiaSesion = elemento.dataset.materia || 'la sesión';
     alert('Uniéndote a la clase de ' + materiaSesion + '. ¡Buena suerte!');
     return;
   }
 
   /* ── Cancelar una sesión ── */
   if (accion === 'cancelar-sesion') {
-    var materiaCancelar = elemento.dataset.materia || 'esta sesión';
-    var confirmar = confirm(
+    let materiaCancelar = elemento.dataset.materia || 'esta sesión';
+    let confirmar = confirm(
       '¿Estás seguro de que querés cancelar la sesión de ' +
       materiaCancelar + '?\n\nEsta acción no se puede deshacer.'
     );
@@ -333,7 +306,7 @@ document.addEventListener('click', function (evento) {
 
   /* ── Agendar una sesión ── */
   if (accion === 'agendar-sesion') {
-    var materiaAgendar = elemento.dataset.materia || 'la materia';
+    let materiaAgendar = elemento.dataset.materia || 'la materia';
     alert('Agendando sesión de ' + materiaAgendar + '. Se enviará confirmación por correo.');
     return;
   }
@@ -349,11 +322,11 @@ document.addEventListener('click', function (evento) {
    * apariencia visual sin recargar la página.
    */
   if (accion === 'marcar-leida') {
-    var tarjeta = elemento.closest('.tarjeta-aviso');
+    let tarjeta = elemento.closest('.tarjeta-aviso');
     if (tarjeta) {
       tarjeta.classList.add('tarjeta-aviso--leida');
       /* Oculta el punto de "no leído" dentro de la misma tarjeta */
-      var punto = tarjeta.querySelector('.indicador-no-leido');
+      let punto = tarjeta.querySelector('.indicador-no-leido');
       if (punto) { punto.style.display = 'none'; }
     }
     return;
@@ -364,14 +337,14 @@ document.addEventListener('click', function (evento) {
    * Botón global en el encabezado de la sección.
    */
   if (accion === 'marcar-todas-leidas') {
-    var todasLasTarjetas = document.querySelectorAll('.tarjeta-aviso');
-    for (var t = 0; t < todasLasTarjetas.length; t++) {
+    let todasLasTarjetas = document.querySelectorAll('.tarjeta-aviso');
+    for (let t = 0; t < todasLasTarjetas.length; t++) {
       todasLasTarjetas[t].classList.add('tarjeta-aviso--leida');
-      var puntito = todasLasTarjetas[t].querySelector('.indicador-no-leido');
+      let puntito = todasLasTarjetas[t].querySelector('.indicador-no-leido');
       if (puntito) { puntito.style.display = 'none'; }
     }
     /* Actualiza el contador del encabezado a cero */
-    var contador = document.getElementById('contador-no-leidas');
+    let contador = document.getElementById('contador-no-leidas');
     if (contador) { contador.textContent = '0 nuevas'; }
     return;
   }
@@ -388,7 +361,7 @@ document.addEventListener('click', function (evento) {
    bloque principal y evitar conflictos en Git.
 ══════════════════════════════════════════════════════════════ */
 document.addEventListener('click', function (evento) {
-  var elemento = evento.target.closest('[data-accion]');
+  let elemento = evento.target.closest('[data-accion]');
   if (!elemento) { return; }
 
   /* ── Publicar mensaje en el foro ── */
@@ -402,14 +375,14 @@ document.addEventListener('click', function (evento) {
 });
 
 /* ── Formulario de nuevo mensaje en el foro ── */
-var formularioForo = document.getElementById('formulario-foro');
+let formularioForo = document.getElementById('formulario-foro');
 
 if (formularioForo) {
   formularioForo.addEventListener('submit', function (evento) {
     evento.preventDefault();
 
-    var datos = new FormData(formularioForo);
-    var mensaje = datos.get('mensaje').trim();
+    let datos = new FormData(formularioForo);
+    let mensaje = datos.get('mensaje').trim();
 
     if (!mensaje) {
       alert('Por favor, escribí tu mensaje antes de publicar.');
@@ -420,12 +393,8 @@ if (formularioForo) {
     formularioForo.reset();
   });
 }
-
-/* ══════════════════════════════════════════════════════════════
-   INICIALIZACIÓN AL CARGAR LA PÁGINA
-══════════════════════════════════════════════════════════════ */
-inicializarFormularioAcceso();
-inicializarFormularioRegistro();
+FormularioRegistro();
+FormularioLogin();
 iniciarCarrusel();
 
 
@@ -435,25 +404,25 @@ iniciarCarrusel();
    principal y evitar conflictos en el repositorio.
 ══════════════════════════════════════════════════════════════ */
 document.addEventListener('click', function (evento) {
-  var elemento = evento.target.closest('[data-accion]');
+  let elemento = evento.target.closest('[data-accion]');
   if (!elemento) { return; }
 
-  var accion = elemento.dataset.accion;
+  let accion = elemento.dataset.accion;
 
   /* ── Guardar cambios de perfil ── */
   if (accion === 'guardar-perfil') {
-    var campoNombre = document.getElementById('campo-nombre');
-    var campoCorreo = document.getElementById('campo-correo');
+    let campoNombre = document.getElementById('campo-nombre');
+    let campoCorreo = document.getElementById('campo-correo');
 
-    var nombre = campoNombre ? campoNombre.value.trim() : '';
-    var correo = campoCorreo ? campoCorreo.value.trim() : '';
+    let nombre = campoNombre ? campoNombre.value.trim() : '';
+    let correo = campoCorreo ? campoCorreo.value.trim() : '';
 
     if (!nombre || !correo) {
       alert('Por favor, completá todos los campos antes de guardar.');
       return;
     }
 
-    var regexCorreo = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+    let regexCorreo = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
     if (!regexCorreo.test(correo)) {
       alert('El formato del correo electrónico no es válido.');
       return;
@@ -478,15 +447,15 @@ document.addEventListener('click', function (evento) {
 
   /* ── Interruptor de notificación (toggle) ── */
   if (accion === 'alternar-notificacion') {
-    var opcion = elemento.dataset.opcion || 'esta opción';
-    var activado = elemento.checked;
-    var nombresMapa = {
+    let opcion = elemento.dataset.opcion || 'esta opción';
+    let activado = elemento.checked;
+    let nombresMapa = {
       'recordatorios': 'Recordatorios de tutorías',
       'cambios-horario': 'Cambios de horario',
       'nuevos-tutores': 'Nuevos tutores disponibles'
     };
-    var etiqueta = nombresMapa[opcion] || opcion;
-    var estadoTexto = activado ? 'activada' : 'desactivada';
+    let etiqueta = nombresMapa[opcion] || opcion;
+    let estadoTexto = activado ? 'activada' : 'desactivada';
     alert('Preferencia actualizada:\n"' + etiqueta + '" fue ' + estadoTexto + '.');
     return;
   }

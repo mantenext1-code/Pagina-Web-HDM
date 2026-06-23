@@ -22,15 +22,15 @@ const poolMySQL = mysql.createPool({
 });
 
 app.get('/', (req, res) => {
-    res.sendFile(path.join(__dirname, 'public', 'index.html'));
+    res.sendFile(path.join(__dirname, 'public', 'login.html'));
 });
 
-app.post('/api/usuarios', async (req, res) => {
-    const { nombre, correo, clave } = req.body;
+app.post('/api/usuarios/mysql', async (req, res) => {
+    const { nombre, correo, contraseña } = req.body;
     try {
         const [result] = await poolMySQL.execute(
-            'INSERT INTO usuarios (nombre, correo, clave) VALUES (?, ?, ?)',
-            [nombre, correo, clave]
+            'INSERT INTO usuarios (nombre, correo, contraseña) VALUES (?, ?, ?)',
+            [nombre, correo, contraseña]
         );
         res.json({
             mensaje: 'Usuario guardado en MariaDB',
@@ -41,28 +41,28 @@ app.post('/api/usuarios', async (req, res) => {
     }
 });
 
-app.get('/api/usuarios', async (req, res) => {
+app.get('/api/usuarios/mysql', async (req, res) => {
     const [rows] = await poolMySQL.execute('SELECT * FROM usuarios');
     res.json(rows);
 });
 
-app.get('/api/usuarios/:id', async (req, res) => {
+app.get('/api/usuarios/mysql/:id', async (req, res) => {
     const [rows] = await poolMySQL.execute('SELECT * FROM usuarios WHERE id=?', [req.params.id]);
     res.json(rows);
 });
 
-app.delete('/api/usuarios/:id', async (req, res) => {
+app.delete('/api/usuarios/mysql/:id', async (req, res) => {
     await poolMySQL.execute('DELETE FROM usuarios WHERE id = ?', [req.params.id]);
     res.json({ mensaje: 'Usuario eliminado' });
 });
 
-app.put('/api/usuarios/:id', async (req, res) => {
+app.put('/api/usuarios/mysql/:id', async (req, res) => {
     const { id } = req.params;
-    const { nombre, correo } = req.body;
+    const { nombre, correo, contraseña } = req.body;
 
     const [result] = await poolMySQL.execute(
-        'UPDATE usuarios SET nombre = ?, correo = ? WHERE id = ?',
-        [nombre, correo, id]
+        'UPDATE usuarios SET nombre = ?, correo = ?, contraseña = ? WHERE id = ?',
+        [nombre, correo, contraseña, id]
     );
 
     if (result.affectedRows === 0) {
