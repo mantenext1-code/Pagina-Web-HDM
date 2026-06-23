@@ -5,13 +5,9 @@
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>Registro — Centro de Tutorías</title>
-
-  <!-- Fuente Inter: <link> en lugar de @import para evitar error CORS en file:// -->
   <link rel="preconnect" href="https://fonts.googleapis.com" />
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
   <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet" />
-
-  <!-- Estilos de la interfaz de acceso (login + registro) -->
   <link rel="stylesheet" href="../css/acceso.css" />
 </head>
 
@@ -20,10 +16,8 @@
   <main role="main">
     <div class="envoltura-tarjeta">
 
-      <!-- ZONA ENCABEZADO -->
       <header class="zona-encabezado">
         <div class="caja-logo" aria-hidden="true">
-          <!-- SVG libro abierto — reproducción del ícono del Figma -->
           <svg viewBox="0 0 24 24" fill="none" stroke="#fff" stroke-width="2" stroke-linecap="round"
             stroke-linejoin="round">
             <path d="M2 6s2-2 5-2 5 2 5 2v14s-2-1-5-1-5 1-5 1V6z" />
@@ -35,17 +29,14 @@
         <p class="subtitulo-encabezado">Crear Nueva Cuenta</p>
       </header>
 
-      <!-- SECCIÓN FORMULARIO DE REGISTRO -->
       <section class="tarjeta-formulario">
         <h2 class="titulo-tarjeta">Registrarse</h2>
 
         <form id="formulario-registro" novalidate>
 
-          <!-- Campo: Nombre Completo -->
           <div class="grupo-campo">
             <label class="etiqueta-campo" for="campo-nombre">Nombre Completo</label>
             <div class="envoltorio-campo">
-              <!-- Ícono persona/usuario -->
               <svg viewBox="0 0 24 24" aria-hidden="true">
                 <circle cx="12" cy="8" r="4" />
                 <path d="M4 20c0-4 3.6-7 8-7s8 3 8 7" />
@@ -55,11 +46,9 @@
             </div>
           </div>
 
-          <!-- Campo: Correo Electrónico -->
           <div class="grupo-campo">
             <label class="etiqueta-campo" for="campo-correo">Correo Electrónico</label>
             <div class="envoltorio-campo">
-              <!-- Ícono sobre/correo -->
               <svg viewBox="0 0 24 24" aria-hidden="true">
                 <rect x="2" y="4" width="20" height="16" rx="2" />
                 <path d="m2 7 10 7 10-7" />
@@ -69,11 +58,9 @@
             </div>
           </div>
 
-          <!-- Campo: Contraseña -->
           <div class="grupo-campo">
             <label class="etiqueta-campo" for="campo-clave">Contraseña</label>
             <div class="envoltorio-campo">
-              <!-- Ícono candado -->
               <svg viewBox="0 0 24 24" aria-hidden="true">
                 <rect x="5" y="11" width="14" height="10" rx="2" />
                 <path d="M8 11V7a4 4 0 0 1 8 0v4" />
@@ -81,18 +68,12 @@
               <input class="campo-texto" id="campo-clave" type="password" name="clave" placeholder="••••••••"
                 autocomplete="new-password" data-accion="campo" data-valor="clave" />
             </div>
-            <!--
-              <span> y no <label> porque no está vinculado a ningún
-              control de formulario — es solo texto informativo.
-            -->
             <span class="ayuda-campo">Mínimo 6 caracteres</span>
           </div>
 
-          <!-- Campo: Confirmar Contraseña -->
           <div class="grupo-campo">
             <label class="etiqueta-campo" for="campo-clave-repetida">Confirmar Contraseña</label>
             <div class="envoltorio-campo">
-              <!-- Ícono candado -->
               <svg viewBox="0 0 24 24" aria-hidden="true">
                 <rect x="5" y="11" width="14" height="10" rx="2" />
                 <path d="M8 11V7a4 4 0 0 1 8 0v4" />
@@ -102,13 +83,6 @@
             </div>
           </div>
 
-          <!-- Fila: Acepto términos y condiciones -->
-          <!--
-            El <label> for="casilla-terminos" conecta todo el bloque de
-            texto al checkbox. Tocando cualquier parte del texto (incluidos
-            los enlaces naranjas) se activa la casilla — salvo en los
-            propios <a>, que tienen su propio comportamiento.
-          -->
           <div class="fila-terminos">
             <label for="casilla-terminos">
               <input type="checkbox" id="casilla-terminos" data-accion="campo" data-valor="terminos" />

@@ -1,56 +1,19 @@
-/*
- * ════════════════════════════════════════════════════════════════
- * acceso.css — Estilos para las interfaces de inicio de sesión
- *              y registro del Centro de Tutorías.
- *
- * Cubre: login.html y registro.html
- * Fuente: Inter (cargada via <link> en el HTML)
- * Resolución de referencia: 430px × 932px (iPhone 14 Pro Max)
- * ════════════════════════════════════════════════════════════════
- */
-
-
-/* ════════════════════════════════════════════════════════════════
-   VARIABLES CSS — Tokens del diseño extraídos del Figma.
-   Si el cliente cambia el naranja, se toca UNA sola línea aquí
-   y el cambio se propaga a toda la interfaz automáticamente.
-════════════════════════════════════════════════════════════════ */
 :root {
   --color-fondo-pagina: #F5E5C0;
-  /* crema: fondo de toda la página          */
   --color-fondo-tarjeta: #FFFFFF;
-  /* blanco: tarjeta del formulario           */
   --color-marca: #F5A623;
-  /* naranja: botones, enlaces, casilla       */
   --color-texto-titulo: #1C1C1E;
-  /* casi negro: títulos y valores            */
   --color-texto-cuerpo: #3A3A3C;
-  /* gris oscuro: etiquetas de campo          */
   --color-texto-secundario: #6B6B6B;
-  /* gris medio: subtítulo del encabezado     */
   --color-borde-campo: #D1D1D6;
-  /* gris claro: borde de campos en reposo    */
   --color-marcador: #AEAEB2;
-  /* gris suave: texto de marcador (placeholder) */
   --color-icono-campo: #AEAEB2;
-  /* gris suave: íconos dentro del campo      */
-
-  /* Radios geométricos extraídos del Figma */
   --radio-campo: 8px;
   --radio-tarjeta: 16px;
   --radio-boton: 12px;
   --radio-logo: 16px;
 }
 
-
-/* ════════════════════════════════════════════════════════════════
-   RESET UNIVERSAL
-   box-sizing:border-box hace que padding y border se cuenten
-   DENTRO del ancho del elemento. Sin esto, un campo de 100%
-   + padding se desborda del contenedor en móvil.
-   El reset de margin/padding elimina los espacios que los
-   navegadores agregan por defecto (cada uno los pone diferente).
-════════════════════════════════════════════════════════════════ */
 *,
 *::before,
 *::after {
@@ -59,13 +22,6 @@
   padding: 0;
 }
 
-
-/* ════════════════════════════════════════════════════════════════
-   BODY
-   Flexbox centra la tarjeta tanto horizontal (justify-content)
-   como verticalmente (align-items).
-   min-height:100vh = ocupa al menos toda la altura de la ventana.
-════════════════════════════════════════════════════════════════ */
 body {
   font-family: 'Inter', sans-serif;
   background-color: var(--color-fondo-pagina);
@@ -73,19 +29,9 @@ body {
   display: flex;
   justify-content: center;
   align-items: flex-start;
-  /* alineado arriba para que el scroll sea natural en móvil */
   padding: 2rem 1rem;
-  /* margen exterior para que la tarjeta no toque los bordes */
 }
 
-
-/* ════════════════════════════════════════════════════════════════
-   CONTENEDOR PRINCIPAL DE LA TARJETA
-   "width:90% + max-width:420px" es el patrón fluido estándar:
-   · 90%   → en móvil la tarjeta tiene margen a los lados
-   · 420px → en escritorio no crece demasiado (medida del Figma)
-   overflow:hidden recorta el radio de borde en todos sus hijos.
-════════════════════════════════════════════════════════════════ */
 .envoltura-tarjeta {
   width: 90%;
   max-width: 420px;
@@ -93,13 +39,8 @@ body {
   overflow: hidden;
   display: flex;
   flex-direction: column;
-  /* apila encabezado crema + sección blanca verticalmente */
 }
 
-
-/* ────────────────────────────────────────────────────────────────
-   ZONA ENCABEZADO (fondo crema con logo)
-──────────────────────────────────────────────────────────────── */
 .zona-encabezado {
   background-color: var(--color-fondo-pagina);
   padding: 2rem 1.5rem 1.5rem;
@@ -109,7 +50,6 @@ body {
   gap: 0.5rem;
 }
 
-/* Caja naranja cuadrada con el ícono de libro */
 .caja-logo {
   width: 56px;
   height: 56px;
@@ -133,7 +73,6 @@ body {
 
 .titulo-encabezado {
   font-size: 1.25rem;
-  /* 20px — título principal del app */
   font-weight: 700;
   color: var(--color-texto-titulo);
   text-align: center;
@@ -141,18 +80,11 @@ body {
 
 .subtitulo-encabezado {
   font-size: 0.8125rem;
-  /* 13px — subtítulo secundario */
   font-weight: 400;
   color: var(--color-texto-secundario);
   text-align: center;
 }
 
-
-/* ────────────────────────────────────────────────────────────────
-   TARJETA BLANCA DEL FORMULARIO
-   padding:2rem da espacio interno generoso para que los campos
-   "respiren". gap:1.25rem entre grupos crea ritmo visual uniforme.
-──────────────────────────────────────────────────────────────── */
 .tarjeta-formulario {
   background-color: var(--color-fondo-tarjeta);
   border-radius: var(--radio-tarjeta) var(--radio-tarjeta) 0 0;
@@ -164,48 +96,33 @@ body {
 
 .titulo-tarjeta {
   font-size: 1.125rem;
-  /* 18px */
   font-weight: 700;
   color: var(--color-texto-titulo);
   text-align: center;
 }
 
-
-/* ────────────────────────────────────────────────────────────────
-   GRUPOS DE CAMPO: etiqueta + campo de texto
-──────────────────────────────────────────────────────────────── */
 .grupo-campo {
   display: flex;
   flex-direction: column;
   gap: 0.375rem;
-  /* 6px entre la etiqueta y el campo */
 }
 
 .etiqueta-campo {
   font-size: 0.875rem;
-  /* 14px — legible en móvil sin ser grande */
   font-weight: 500;
   color: var(--color-texto-cuerpo);
 }
 
-/* Texto de ayuda debajo del campo (ej. "Mínimo 6 caracteres") */
 .ayuda-campo {
   font-size: 0.75rem;
-  /* 12px — secundario, no debe competir con la etiqueta */
   color: var(--color-texto-secundario);
   margin-top: 0.25rem;
 }
 
-/*
- * position:relative en el envoltorio permite posicionar el ícono SVG
- * "encima" del campo usando position:absolute, sin sacarlo del flujo
- * del campo (no ocupa espacio propio).
- */
 .envoltorio-campo {
   position: relative;
 }
 
-/* Ícono decorativo posicionado dentro del campo */
 .envoltorio-campo svg {
   position: absolute;
   left: 12px;
@@ -219,33 +136,21 @@ body {
   stroke-linecap: round;
   stroke-linejoin: round;
   pointer-events: none;
-  /* el ícono NO intercepta toques del usuario */
 }
 
-/*
- * font-size:1rem (16px) es OBLIGATORIO en campos de texto para móvil.
- * iOS Safari hace zoom automático cuando font-size < 16px al enfocar
- * un campo. Esto desplaza el layout y confunde al usuario.
- * -webkit-appearance:none elimina estilos nativos del navegador.
- */
 .campo-texto {
   width: 100%;
-  /* ocupa todo el ancho del contenedor padre */
   height: 48px;
-  /* área de toque cómoda para dedos en móvil */
   padding-left: 40px;
-  /* espacio para el ícono izquierdo */
   padding-right: 12px;
   font-family: 'Inter', sans-serif;
   font-size: 1rem;
-  /* 16px — evita zoom automático en iOS */
   color: var(--color-texto-titulo);
   background-color: #FFFFFF;
   border: 1px solid var(--color-borde-campo);
   border-radius: var(--radio-campo);
   outline: none;
   -webkit-appearance: none;
-  /* prefijo para Safari/iOS */
   appearance: none;
   transition: border-color 0.15s;
 }
@@ -259,10 +164,6 @@ body {
   border-color: var(--color-marca);
 }
 
-
-/* ────────────────────────────────────────────────────────────────
-   FILA RECORDARME (solo login)
-──────────────────────────────────────────────────────────────── */
 .fila-recordar {
   display: flex;
   align-items: center;
@@ -270,7 +171,6 @@ body {
   gap: 8px;
 }
 
-/* Etiqueta del checkbox "Recordarme" */
 .etiqueta-recordar {
   display: flex;
   align-items: center;
@@ -280,12 +180,10 @@ body {
   color: var(--color-texto-cuerpo);
 }
 
-/* Ocultar el checkbox nativo para usar el personalizado */
 .etiqueta-recordar input[type="checkbox"] {
   display: none;
 }
 
-/* Casilla personalizada */
 .casilla-personalizada {
   width: 16px;
   height: 16px;
@@ -314,15 +212,6 @@ body {
   transform: rotate(-45deg) translateY(-1px);
 }
 
-
-/* ────────────────────────────────────────────────────────────────
-   FILA TÉRMINOS Y CONDICIONES (solo registro)
-──────────────────────────────────────────────────────────────── */
-/*
- * align-items:flex-start alinea la casilla con la primera línea
- * del texto. Con center la casilla quedaría flotando en el medio
- * de un bloque de texto de dos líneas.
- */
 .fila-terminos {
   display: flex;
   align-items: flex-start;
@@ -350,7 +239,6 @@ body {
   align-items: center;
   justify-content: center;
   margin-top: 2px;
-  /* alineación visual con la primera línea del texto */
   background-color: transparent;
   transition: background-color 0.15s, border-color 0.15s;
 }
@@ -372,15 +260,10 @@ body {
 
 .texto-terminos {
   font-size: 0.875rem;
-  /* 14px */
   color: var(--color-texto-cuerpo);
   line-height: 1.5;
 }
 
-
-/* ────────────────────────────────────────────────────────────────
-   ENLACE NARANJA (¿Olvidaste tu contraseña?, términos)
-──────────────────────────────────────────────────────────────── */
 .enlace-naranja {
   color: var(--color-marca);
   font-weight: 500;
@@ -393,12 +276,6 @@ body {
   opacity: 0.80;
 }
 
-
-/* ────────────────────────────────────────────────────────────────
-   BOTÓN PRIMARIO NARANJA
-   type="submit" vincula el botón al <form> padre y permite
-   enviar el formulario con la tecla Enter del teclado.
-──────────────────────────────────────────────────────────────── */
 .boton-principal {
   width: 100%;
   height: 52px;
@@ -406,7 +283,6 @@ body {
   color: #FFFFFF;
   font-family: 'Inter', sans-serif;
   font-size: 1rem;
-  /* 16px — no dispara zoom en iOS (es un botón, no un campo) */
   font-weight: 600;
   border: none;
   border-radius: var(--radio-boton);
@@ -422,10 +298,6 @@ body {
   opacity: 0.80;
 }
 
-
-/* ────────────────────────────────────────────────────────────────
-   PIE DE TARJETA (enlace "¿No tienes cuenta?")
-──────────────────────────────────────────────────────────────── */
 .pie-tarjeta {
   font-size: 0.875rem;
   color: var(--color-texto-secundario);
@@ -442,11 +314,6 @@ body {
   text-decoration: underline;
 }
 
-/* ════════════════════════════════════════════════════════════════
-   MEDIA QUERY — MÓVIL (≤ 768px)
-   La mayoría del diseño ya es fluido. Estos ajustes refinan
-   detalles en pantallas más pequeñas.
-════════════════════════════════════════════════════════════════ */
 @media (max-width: 768px) {
   body {
     padding: 1.5rem 0.75rem;
@@ -455,7 +322,6 @@ body {
 
   .envoltura-tarjeta {
     width: 100%;
-    /* en móvil pequeño la tarjeta ocupa todo el ancho útil */
   }
 
   .zona-encabezado {
@@ -464,7 +330,6 @@ body {
 
   .tarjeta-formulario {
     padding: 1.5rem;
-    /* reducimos el padding interior en pantalla chica */
     gap: 1rem;
   }
 
@@ -472,11 +337,8 @@ body {
     font-size: 1rem;
   }
 
-  /* font-size en campos NUNCA puede bajar de 16px en móvil.
-     Esta regla refuerza el valor base en caso de herencia accidental. */
   .campo-texto {
     font-size: 1rem;
-    /* 16px — obligatorio para evitar zoom en iOS */
     height: 48px;
   }
 

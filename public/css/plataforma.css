@@ -1,59 +1,44 @@
-/*
- * ════════════════════════════════════════════════════════════════
- * plataforma.css — Estilos para las interfaces internas de la
- *                  aplicación del Centro de Tutorías.
- *
- * Cubre: menu.html, horarios.html, tutorias.html,
- *        notificaciones.html
- * Fuente: Inter (cargada via <link> en el HTML)
- * Resolución de referencia: 430px × 932px (iPhone 14 Pro Max)
- * ════════════════════════════════════════════════════════════════
- */
-
-
-/* ════════════════════════════════════════════════════════════════
-   VARIABLES CSS
-════════════════════════════════════════════════════════════════ */
 :root {
-  --color-fondo:           #F5E5C0;
-  --color-marca:           #F5A623;
-  --color-marca-icono:     #BF6A02;
-  --color-marca-claro:     #FFF3E0;
-  --color-blanco:          #FFFFFF;
-  --color-texto-oscuro:    #1C1C1E;
-  --color-texto-medio:     #4A4A4A;
-  --color-texto-claro:     #6B6B6B;
-  --color-borde-tabla:     #E8E0D0;
-  --color-fondo-pie:       #3E2723;
-  --color-texto-pie:       #FFCC80;
+  --color-fondo: #F5E5C0;
+  --color-marca: #F5A623;
+  --color-marca-icono: #BF6A02;
+  --color-marca-claro: #FFF3E0;
+  --color-blanco: #FFFFFF;
+  --color-texto-oscuro: #1C1C1E;
+  --color-texto-medio: #4A4A4A;
+  --color-texto-claro: #6B6B6B;
+  --color-borde-tabla: #E8E0D0;
+  --color-fondo-pie: #3E2723;
+  --color-texto-pie: #FFCC80;
 
   --color-tarjeta-naranja: #F5A623;
   --color-tarjeta-verde: #26A69A;
   --color-tarjeta-morado: #7B1FA2;
 
-  --color-pildora-mat:     #F5A623;
-  --color-pildora-fis:     #26A69A;
-  --color-pildora-qui:     #7B1FA2;
+  --color-pildora-mat: #F5A623;
+  --color-pildora-fis: #26A69A;
+  --color-pildora-qui: #7B1FA2;
 
-  --radio-pequeno:   6px;
-  --radio-mediano:   12px;
-  --radio-grande:    16px;
-  --radio-capsula:   50px;
+  --radio-pequeno: 6px;
+  --radio-mediano: 12px;
+  --radio-grande: 16px;
+  --radio-capsula: 50px;
 
   --sombra-tarjeta: 0 2px 12px rgba(0, 0, 0, 0.10);
   --sombra-boton: 0 2px 8px rgba(0, 0, 0, 0.18);
 }
 
-
-/* ════════════════════════════════════════════════════════════════
-   RESET UNIVERSAL
-════════════════════════════════════════════════════════════════ */
 *,
 *::before,
 *::after {
   box-sizing: border-box;
   margin: 0;
   padding: 0;
+}
+
+a {
+  text-decoration: none;
+  padding: 10px 8px 4px 12px;
 }
 
 body {
@@ -63,10 +48,6 @@ body {
   min-height: 100vh;
 }
 
-
-/* ════════════════════════════════════════════════════════════════
-   ENCABEZADO NARANJA
-════════════════════════════════════════════════════════════════ */
 .encabezado-plataforma {
   background-color: var(--color-marca);
   position: sticky;
@@ -160,10 +141,6 @@ body {
   opacity: 0.75;
 }
 
-
-/* ════════════════════════════════════════════════════════════════
-   BARRA DE NAVEGACIÓN
-════════════════════════════════════════════════════════════════ */
 .barra-navegacion {
   display: flex;
   align-items: center;
@@ -226,10 +203,6 @@ body {
   stroke-linejoin: round;
 }
 
-
-/* ════════════════════════════════════════════════════════════════
-   CONTENIDO PRINCIPAL — MENÚ
-════════════════════════════════════════════════════════════════ */
 .contenido-menu {
   display: flex;
   flex-direction: column;
@@ -239,10 +212,6 @@ body {
   margin: 0 auto;
 }
 
-
-/* ════════════════════════════════════════════════════════════════
-   CARRUSEL
-════════════════════════════════════════════════════════════════ */
 .carrusel {
   position: relative;
   border-radius: var(--radio-grande);
@@ -263,12 +232,10 @@ body {
 .diapositiva {
   min-width: 100%;
   background-color: #FAFAF5;
-  background-image: repeating-linear-gradient(
-    to bottom,
-    transparent 0px,
-    transparent 31px,
-    #C5CAE9 32px
-  );
+  background-image: repeating-linear-gradient(to bottom,
+      transparent 0px,
+      transparent 31px,
+      #C5CAE9 32px);
   border-left: 6px solid var(--color-diapositiva, #F5A623);
   padding: 24px 20px 20px;
   display: flex;
@@ -395,10 +362,6 @@ body {
   transform: scale(1.25);
 }
 
-
-/* ════════════════════════════════════════════════════════════════
-   SECCIÓN TUTORÍAS DESTACADAS
-════════════════════════════════════════════════════════════════ */
 .titulo-seccion {
   font-size: 1.125rem;
   font-weight: 700;
@@ -511,16 +474,11 @@ body {
   opacity: 0.80;
 }
 
-/* Estado deshabilitado: sin cupos disponibles */
 .boton-reservar:disabled {
   opacity: 0.45;
   cursor: not-allowed;
 }
 
-
-/* ════════════════════════════════════════════════════════════════
-   SECCIÓN ¿NECESITAS AYUDA?
-════════════════════════════════════════════════════════════════ */
 .seccion-ayuda {
   background-color: #FFF9E6;
   border-radius: var(--radio-grande);
@@ -590,10 +548,6 @@ body {
   word-break: break-all;
 }
 
-
-/* ════════════════════════════════════════════════════════════════
-   CONTENIDO PRINCIPAL — HORARIOS
-════════════════════════════════════════════════════════════════ */
 .contenido-horarios {
   max-width: 520px;
   margin: 0 auto;
@@ -645,10 +599,6 @@ body {
   padding-left: 42px;
 }
 
-
-/* ════════════════════════════════════════════════════════════════
-   TABLA DE HORARIOS
-════════════════════════════════════════════════════════════════ */
 .tarjeta-tabla {
   background-color: var(--color-blanco);
   border-radius: var(--radio-grande);
@@ -722,10 +672,6 @@ body {
   white-space: nowrap;
 }
 
-
-/* ════════════════════════════════════════════════════════════════
-   SECCIÓN ¡IMPORTANTE! + DURACIÓN
-════════════════════════════════════════════════════════════════ */
 .seccion-importante {
   display: flex;
   flex-direction: column;
@@ -791,10 +737,6 @@ body {
   line-height: 1.6;
 }
 
-
-/* ════════════════════════════════════════════════════════════════
-   PIE DE PÁGINA MARRÓN
-════════════════════════════════════════════════════════════════ */
 .pie-pagina {
   background-color: var(--color-fondo-pie);
   padding: 20px 16px;
@@ -807,10 +749,6 @@ body {
   line-height: 1.6;
 }
 
-
-/* ════════════════════════════════════════════════════════════════
-   SECCIÓN TUTORÍAS — tutorias.html
-════════════════════════════════════════════════════════════════ */
 .contenido-tutorias {
   max-width: 520px;
   margin: 0 auto;
@@ -885,9 +823,9 @@ body {
   stroke-linejoin: round;
 }
 
-  .subtitulo-pagina {
-    padding-left: 0;
-  }
+.subtitulo-pagina {
+  padding-left: 0;
+}
 
 .notificacion-textos {
   flex: 1;
@@ -1021,9 +959,20 @@ body {
   flex-shrink: 0;
 }
 
-.etiqueta-estado--confirmada   { background-color: #E8F5E9; color: #2E7D32; }
-.etiqueta-estado--pendiente    { background-color: #FFF8E1; color: #E65100; }
-.etiqueta-estado--reprogramada { background-color: #E8EAF6; color: #283593; }
+.etiqueta-estado--confirmada {
+  background-color: #E8F5E9;
+  color: #2E7D32;
+}
+
+.etiqueta-estado--pendiente {
+  background-color: #FFF8E1;
+  color: #E65100;
+}
+
+.etiqueta-estado--reprogramada {
+  background-color: #E8EAF6;
+  color: #283593;
+}
 
 .sesion-detalles {
   display: flex;
@@ -1069,7 +1018,9 @@ body {
   transition: opacity 0.15s;
 }
 
-.boton-accion:active { opacity: 0.75; }
+.boton-accion:active {
+  opacity: 0.75;
+}
 
 .boton-accion--principal {
   background-color: var(--color-sesion, var(--color-marca));
@@ -1082,10 +1033,6 @@ body {
   border: 1.5px solid var(--color-sesion, var(--color-marca)) !important;
 }
 
-
-/* ════════════════════════════════════════════════════════════════
-   SECCIÓN NOTIFICACIONES — notificaciones.html
-════════════════════════════════════════════════════════════════ */
 .contenido-notificaciones {
   max-width: 520px;
   margin: 0 auto;
@@ -1128,7 +1075,9 @@ body {
   transition: opacity 0.15s;
 }
 
-.boton-marcar-todas:active { opacity: 0.65; }
+.boton-marcar-todas:active {
+  opacity: 0.65;
+}
 
 .lista-avisos {
   display: flex;
@@ -1191,10 +1140,21 @@ body {
   stroke-linejoin: round;
 }
 
-.aviso-circulo--naranja { background-color: var(--color-marca); }
-.aviso-circulo--verde   { background-color: var(--color-tarjeta-verde); }
-.aviso-circulo--morado  { background-color: var(--color-tarjeta-morado); }
-.aviso-circulo--rojo    { background-color: #E53935; }
+.aviso-circulo--naranja {
+  background-color: var(--color-marca);
+}
+
+.aviso-circulo--verde {
+  background-color: var(--color-tarjeta-verde);
+}
+
+.aviso-circulo--morado {
+  background-color: var(--color-tarjeta-morado);
+}
+
+.aviso-circulo--rojo {
+  background-color: #E53935;
+}
 
 .aviso-textos {
   flex: 1;
@@ -1268,12 +1228,10 @@ body {
   stroke: #2E7D32;
 }
 
-
-/* ════════════════════════════════════════════════════════════════
-   MEDIA QUERY — MÓVIL (≤ 768px)
-════════════════════════════════════════════════════════════════ */
 @media (max-width: 768px) {
-  .encabezado-titulo { font-size: 1rem; }
+  .encabezado-titulo {
+    font-size: 1rem;
+  }
 
   .contenido-menu {
     padding: 16px 12px 28px;
@@ -1291,18 +1249,26 @@ body {
     min-width: 54px;
   }
 
-  .diapositiva-materia { font-size: 1.0625rem; }
+  .diapositiva-materia {
+    font-size: 1.0625rem;
+  }
 
-  .tarjetas-ayuda { flex-direction: column; }
+  .tarjetas-ayuda {
+    flex-direction: column;
+  }
 
   .contenido-horarios {
     padding: 20px 12px 36px;
     gap: 18px;
   }
 
-  .titulo-pagina { font-size: 1.125rem; }
+  .titulo-pagina {
+    font-size: 1.125rem;
+  }
 
-  .subtitulo-pagina { padding-left: 0; }
+  .subtitulo-pagina {
+    padding-left: 0;
+  }
 
   .boton-salir {
     padding: 5px 12px;
@@ -1319,20 +1285,36 @@ body {
     gap: 16px;
   }
 
-  .aviso-titulo { font-size: 0.875rem; }
+  .aviso-titulo {
+    font-size: 0.875rem;
+  }
+
+  .contenido-foro {
+    padding: 20px 12px 36px;
+    gap: 18px;
+  }
+
+  .foro-texto-comentario {
+    padding-left: 0;
+  }
+
+  .foro-boton-publicar {
+    align-self: stretch;
+    width: 100%;
+  }
+
+  .contenido-configuracion {
+    padding: 20px 12px 36px;
+    gap: 16px;
+  }
 }
 
 @media (max-width: 360px) {
-  .sesion-acciones { flex-direction: column; }
+  .sesion-acciones {
+    flex-direction: column;
+  }
 }
 
-/* ════════════════════════════════════════════════════════════════
-   FORO (foro.html)
-   Prefijo .foro- en todos los selectores específicos para no
-   colisionar con los demás módulos al hacer merge.
-════════════════════════════════════════════════════════════════ */
-
-/* Contenedor principal — mismo patrón que .contenido-horarios */
 .contenido-foro {
   max-width: 520px;
   margin: 0 auto;
@@ -1342,7 +1324,6 @@ body {
   gap: 20px;
 }
 
-/* Caja naranja del ícono burbuja de diálogo */
 .icono-seccion-foro {
   width: 36px;
   height: 36px;
@@ -1357,24 +1338,16 @@ body {
 .icono-seccion-foro svg {
   width: 20px;
   height: 20px;
-  /* fill sólido blanco porque el ícono de burbuja es relleno, no contorno */
   fill: var(--color-blanco);
   stroke: none;
 }
 
-/* ── FORMULARIO DE NUEVO MENSAJE ── */
 .foro-formulario {
   display: flex;
   flex-direction: column;
   gap: 10px;
 }
 
-/*
- * <textarea> con font-size:1rem obligatorio.
- * iOS Safari hace zoom automático en campos con font-size < 16px.
- * resize:vertical permite agrandar verticalmente pero NO
- * horizontalmente, evitando que rompa el layout de la página.
- */
 .foro-area-texto {
   width: 100%;
   padding: 14px;
@@ -1396,7 +1369,6 @@ body {
   font-size: 0.9375rem;
 }
 
-/* Botón Publicar — mismos tokens que .boton-reservar de plataforma.css */
 .foro-boton-publicar {
   align-self: flex-end;
   height: 44px;
@@ -1416,8 +1388,6 @@ body {
   opacity: 0.80;
 }
 
-/* ── LISTA DE COMENTARIOS ── */
-/* Reseteamos bullets y sangría nativos del <ul> */
 .foro-lista-comentarios {
   list-style: none;
   padding: 0;
@@ -1427,7 +1397,6 @@ body {
   gap: 12px;
 }
 
-/* Tarjeta individual de comentario */
 .foro-comentario {
   background-color: var(--color-blanco);
   border-radius: var(--radio-grande);
@@ -1439,14 +1408,12 @@ body {
   box-shadow: var(--sombra-tarjeta);
 }
 
-/* Fila superior: avatar + nombre + hora */
 .foro-comentario-cabecera {
   display: flex;
   align-items: center;
   gap: 10px;
 }
 
-/* Círculo gris con ícono de persona naranja */
 .foro-avatar {
   width: 38px;
   height: 38px;
@@ -1481,13 +1448,11 @@ body {
   color: var(--color-texto-oscuro);
 }
 
-/* <time> es el elemento semántico HTML5 para fechas y horas */
 .foro-hora-comentario {
   font-size: 0.75rem;
   color: var(--color-texto-claro);
 }
 
-/* Texto del comentario alineado con el nombre (avatar 38px + gap 10px) */
 .foro-texto-comentario {
   font-size: 0.875rem;
   color: var(--color-texto-medio);
@@ -1495,13 +1460,11 @@ body {
   padding-left: 48px;
 }
 
-/* Comentario sancionado: cursiva + tono más suave */
 .foro-texto-comentario--sancionado {
   font-style: italic;
   color: var(--color-texto-claro);
 }
 
-/* ── BLOQUE ¡IMPORTANTE! ── */
 .foro-bloque-importante {
   text-align: center;
   padding: 4px 0;
@@ -1514,7 +1477,6 @@ body {
   letter-spacing: 0.01em;
 }
 
-/* ── TARJETA DE AVISO DE RESPETO ── */
 .foro-tarjeta-aviso {
   background-color: var(--color-blanco);
   border-radius: var(--radio-grande);
@@ -1526,7 +1488,6 @@ body {
   box-shadow: var(--sombra-tarjeta);
 }
 
-/* Círculo naranja pálido con ícono persona+escudo */
 .foro-aviso-icono {
   width: 46px;
   height: 46px;
@@ -1567,33 +1528,6 @@ body {
   line-height: 1.6;
 }
 
-/* ── MEDIA QUERY MÓVIL ≤ 768px ── */
-@media (max-width: 768px) {
-  .contenido-foro {
-    padding: 20px 12px 36px;
-    gap: 18px;
-  }
-
-  /* En pantallas muy angostas quitamos la sangría del texto */
-  .foro-texto-comentario {
-    padding-left: 0;
-  }
-
-  /* El botón Publicar ocupa todo el ancho en móvil */
-  .foro-boton-publicar {
-    align-self: stretch;
-    width: 100%;
-  }
-}
-
-
-/* ════════════════════════════════════════════════════════════════
-   CONFIGURACIÓN (configuracion.html)
-   Prefijo .bloque-configuracion en todos los selectores
-   específicos para no colisionar con los demás módulos.
-════════════════════════════════════════════════════════════════ */
-
-/* ── Contenedor principal ── */
 .contenido-configuracion {
   max-width: 520px;
   margin: 0 auto;
@@ -1603,7 +1537,6 @@ body {
   gap: 20px;
 }
 
-/* ── Ícono de engranaje en el encabezado de sección ── */
 .icono-seccion-configuracion {
   display: flex;
   align-items: center;
@@ -1621,7 +1554,6 @@ body {
   stroke-linejoin: round;
 }
 
-/* ── Bloque de sección (tarjeta blanca) ── */
 .bloque-configuracion {
   background-color: var(--color-blanco);
   border-radius: var(--radio-grande);
@@ -1629,7 +1561,6 @@ body {
   overflow: hidden;
 }
 
-/* ── Encabezado del bloque: franja con ícono + título ── */
 .bloque-config-encabezado {
   display: flex;
   align-items: center;
@@ -1638,7 +1569,6 @@ body {
   border-bottom: 1.5px solid var(--color-borde-tabla);
 }
 
-/* Círculo naranja con ícono blanco */
 .icono-bloque-config {
   width: 36px;
   height: 36px;
@@ -1667,7 +1597,6 @@ body {
   color: var(--color-texto-oscuro);
 }
 
-/* ── Cuerpo del bloque ── */
 .bloque-config-cuerpo {
   padding: 16px;
   display: flex;
@@ -1675,13 +1604,11 @@ body {
   gap: 14px;
 }
 
-/* Variante para el bloque de enlaces (menos gap) */
 .bloque-config-cuerpo--enlaces {
   gap: 0;
   padding: 0;
 }
 
-/* ── Campo de formulario (etiqueta + entrada) ── */
 .campo-formulario {
   display: flex;
   flex-direction: column;
@@ -1694,11 +1621,6 @@ body {
   color: var(--color-texto-medio);
 }
 
-/*
- * .entrada-texto — campo de texto/email.
- * font-size: 1rem obligatorio para evitar el zoom
- * automático de iOS Safari en campos con < 16px.
- */
 .entrada-texto {
   width: 100%;
   height: 48px;
@@ -1723,7 +1645,6 @@ body {
   color: var(--color-texto-claro);
 }
 
-/* ── Botón principal naranja (guardar) ── */
 .boton-guardar-cambios {
   width: 100%;
   height: 48px;
@@ -1743,7 +1664,6 @@ body {
   opacity: 0.80;
 }
 
-/* ── Fila de interruptor (toggle) ── */
 .fila-interruptor {
   display: flex;
   align-items: center;
@@ -1778,11 +1698,6 @@ body {
   line-height: 1.4;
 }
 
-/*
- * Palanca (toggle switch) — construida con CSS puro.
- * El <input type="checkbox"> está oculto; el <span class="interruptor-riel">
- * actúa como riel visual y su ::before es el pulgar móvil.
- */
 .interruptor-palanca {
   position: relative;
   display: inline-flex;
@@ -1809,7 +1724,6 @@ body {
   position: relative;
 }
 
-/* Pulgar del interruptor */
 .interruptor-riel::before {
   content: '';
   position: absolute;
@@ -1819,20 +1733,18 @@ body {
   height: 22px;
   border-radius: 50%;
   background-color: var(--color-blanco);
-  box-shadow: 0 1px 4px rgba(0,0,0,0.20);
+  box-shadow: 0 1px 4px rgba(0, 0, 0, 0.20);
   transition: transform 0.2s;
 }
 
-/* Estado activado */
-.interruptor-casilla:checked + .interruptor-riel {
+.interruptor-casilla:checked+.interruptor-riel {
   background-color: var(--color-marca);
 }
 
-.interruptor-casilla:checked + .interruptor-riel::before {
+.interruptor-casilla:checked+.interruptor-riel::before {
   transform: translateX(22px);
 }
 
-/* ── Botón secundario (contorno naranja) ── */
 .boton-secundario-config {
   width: 100%;
   height: 48px;
@@ -1851,7 +1763,6 @@ body {
   background-color: var(--color-marca-claro);
 }
 
-/* ── Enlaces de soporte ── */
 .enlace-soporte {
   display: block;
   padding: 14px 16px;
@@ -1871,26 +1782,6 @@ body {
   background-color: var(--color-marca-claro);
 }
 
-/* ── Media query móvil ≤ 768px ── */
-@media (max-width: 768px) {
-  .contenido-configuracion {
-    padding: 20px 12px 36px;
-    gap: 16px;
-  }
-}
-
-/* ── Ícono llave inglesa en la barra de navegación ──
- *
- * .icono-nav-configuracion es el botón que contiene el SVG
- * de la llave inglesa del Figma. Se posiciona al extremo
- * derecho de la barra usando margin-left: auto.
- *
- * A diferencia de .pestana-nav (que muestra texto con fondo
- * redondeado al activarse), este ícono muestra el estado
- * activo con un círculo semitransparente detrás del SVG,
- * igual al tratamiento visual que tienen los botones de
- * acción en la fila superior del encabezado.
- */
 .icono-nav-configuracion {
   margin-left: auto;
   background: none;
@@ -1906,13 +1797,11 @@ body {
 }
 
 .icono-nav-configuracion svg {
-  /* Dimensiones exactas del Figma: 30×31 */
   width: 30px;
   height: 31px;
   display: block;
 }
 
-/* Estado activo: círculo blanco semitransparente detrás del ícono */
 .icono-nav-configuracion--activo {
   background-color: rgba(255, 255, 255, 0.22);
 }
