@@ -15,9 +15,6 @@
 
 <body>
 
-  <!-- ════════════════════════════════════════════════════
-       ENCABEZADO NARANJA
-  ════════════════════════════════════════════════════ -->
   <header class="encabezado-plataforma" aria-label="Encabezado principal">
 
     <div class="encabezado-fila-superior">
@@ -31,6 +28,13 @@
           </svg>
         </button>
 
+        <button class="boton-icono" aria-label="Configuración" data-accion="configuracion">
+          <svg viewBox="0 0 24 24" aria-hidden="true">
+            <circle cx="7.5" cy="15.5" r="5.5" />
+            <path d="M21 2l-9.6 9.6" />
+            <path d="M15.5 7.5 19 4" />
+          </svg>
+        </button>
         <button class="boton-salir" data-accion="salir">Salir</button>
 
       </div>
@@ -42,44 +46,21 @@
 
       <button class="pestana-nav" role="tab" aria-selected="false" data-accion="nav"
         data-valor="horarios">Horarios</button>
-
-      <!-- Pestaña activa: Tutorías -->
       <button class="pestana-nav pestana-nav--activa" role="tab" aria-selected="true" data-accion="nav"
         data-valor="tutorias">Tutorías</button>
 
       <button class="pestana-nav" role="tab" aria-selected="false" data-accion="nav" data-valor="foro">Foro</button>
-
-      <button class="icono-navegacion" aria-label="Configuración" data-accion="configuracion">
-        <svg viewBox="0 0 24 24" aria-hidden="true">
-          <circle cx="7.5" cy="15.5" r="5.5" />
-          <path d="M21 2l-9.6 9.6" />
-          <path d="M15.5 7.5 19 4" />
-        </svg>
-      </button>
 
     </nav>
 
   </header>
 
 
-  <!-- ════════════════════════════════════════════════════
-       CONTENIDO PRINCIPAL — SECCIÓN TUTORÍAS
-       Usa .contenido-menu para heredar el layout y el
-       espaciado ya definidos en plataforma.css
-  ════════════════════════════════════════════════════ -->
   <main class="contenido-menu" role="main">
 
-
-    <!-- ──────────────────────────────────────────────
-         ENCABEZADO DE LA SECCIÓN
-         Reutiliza las clases de horarios.html:
-         .encabezado-seccion, .fila-titulo, .icono-calendario,
-         .titulo-pagina y .subtitulo-pagina
-    ────────────────────────────────────────────────── -->
     <section aria-labelledby="titulo-tutorias-pagina">
       <div class="encabezado-seccion">
         <div class="fila-titulo">
-          <!-- Ícono SVG de libro abierto inline -->
           <svg class="icono-calendario" viewBox="0 0 24 24" aria-hidden="true">
             <path d="M2 6s2-2 5-2 5 2 5 2v14s-2-1-5-1-5 1-5 1V6z" />
             <path d="M12 6s2-2 5-2 5 2 5 2v14s-2-1-5-1-5 1-5 1V6z" />
@@ -96,25 +77,15 @@
     </section>
 
 
-    <!-- ──────────────────────────────────────────────
-         LISTA COMPLETA DE TUTORÍAS
-         Reutiliza íntegramente las clases de plataforma.css:
-         .lista-tarjetas, .tarjeta-tutoria, .tarjeta-encabezado,
-         .tarjeta-icono, .tarjeta-titulos, .tarjeta-materia,
-         .tarjeta-profesor, .tarjeta-detalles,
-         .tarjeta-fila-detalle y .boton-reservar
-    ────────────────────────────────────────────────── -->
     <section aria-labelledby="titulo-lista-tutorias">
       <h2 class="titulo-seccion" id="titulo-lista-tutorias">Tutorías disponibles</h2>
 
       <div class="lista-tarjetas">
 
 
-        <!-- ══ TARJETA 1: MATEMÁTICAS — naranja ══ -->
         <article class="tarjeta-tutoria" style="--color-tarjeta: #F5A623;" aria-label="Tutoría de Matemáticas">
           <div class="tarjeta-encabezado">
             <div class="tarjeta-icono">
-              <!-- SVG gráfica de tendencia — Matemáticas -->
               <svg viewBox="0 0 24 24" aria-hidden="true">
                 <polyline points="3 17 9 11 13 15 22 4" />
                 <polyline points="22 4 22 10" />
@@ -128,7 +99,6 @@
           </div>
 
           <div class="tarjeta-detalles">
-            <!-- Días — ícono calendario SVG -->
             <div class="tarjeta-fila-detalle">
               <svg viewBox="0 0 24 24" aria-hidden="true">
                 <rect x="3" y="4" width="18" height="18" rx="2" />
@@ -138,7 +108,6 @@
               </svg>
               <span>Lunes y Miércoles</span>
             </div>
-            <!-- Horarios — ícono reloj SVG -->
             <div class="tarjeta-fila-detalle">
               <svg viewBox="0 0 24 24" aria-hidden="true">
                 <circle cx="12" cy="12" r="10" />
@@ -146,7 +115,6 @@
               </svg>
               <span>2 horarios</span>
             </div>
-            <!-- Ubicación — ícono pin SVG -->
             <div class="tarjeta-fila-detalle">
               <svg viewBox="0 0 24 24" aria-hidden="true">
                 <path d="M21 10c0 7-9 13-9 13S3 17 3 10a9 9 0 1 1 18 0z" />
@@ -161,12 +129,9 @@
           </a>
         </article>
 
-
-        <!-- ══ TARJETA 2: FÍSICA — verde/teal ══ -->
         <article class="tarjeta-tutoria" style="--color-tarjeta: #26A69A;" aria-label="Tutoría de Física">
           <div class="tarjeta-encabezado">
             <div class="tarjeta-icono">
-              <!-- SVG átomo — Física -->
               <svg viewBox="0 0 24 24" aria-hidden="true">
                 <circle cx="12" cy="12" r="2" />
                 <ellipse cx="12" cy="12" rx="10" ry="4" transform="rotate(0 12 12)" />
@@ -211,12 +176,9 @@
           </a>
         </article>
 
-
-        <!-- ══ TARJETA 3: QUÍMICA — morado ══ -->
         <article class="tarjeta-tutoria" style="--color-tarjeta: #7B1FA2;" aria-label="Tutoría de Química">
           <div class="tarjeta-encabezado">
             <div class="tarjeta-icono">
-              <!-- SVG matraz de laboratorio — Química -->
               <svg viewBox="0 0 24 24" aria-hidden="true">
                 <path d="M9 3h6v6l3 9H6l3-9V3z" />
                 <line x1="6" y1="14" x2="18" y2="14" />
@@ -259,12 +221,9 @@
           </a>
         </article>
 
-
-        <!-- ══ TARJETA 4: INGLÉS — azul oscuro — SIN CUPOS ══ -->
-        <article class="tarjeta-tutoria" style="--color-tarjeta: #1565C0;" aria-label="Tutoría de Inglés">
+        <article class="tarjeta-tutoria" style="--color-tarjeta: #EF4444;" aria-label="Tutoría de Inglés">
           <div class="tarjeta-encabezado">
             <div class="tarjeta-icono">
-              <!-- SVG globo terráqueo — Inglés -->
               <svg viewBox="0 0 24 24" aria-hidden="true">
                 <circle cx="12" cy="12" r="10" />
                 <line x1="2" y1="12" x2="22" y2="12" />
@@ -307,13 +266,9 @@
             Reservar Tutoría
           </a>
         </article>
-
-
-        <!-- ══ TARJETA 5: LITERATURA — verde oscuro — SIN CUPOS ══ -->
-        <article class="tarjeta-tutoria" style="--color-tarjeta: #2E7D32;" aria-label="Tutoría de Literatura">
+        <article class="tarjeta-tutoria" style="--color-tarjeta: #3B82F6;" aria-label="Tutoría de Literatura">
           <div class="tarjeta-encabezado">
             <div class="tarjeta-icono">
-              <!-- SVG libro abierto — Literatura -->
               <svg viewBox="0 0 24 24" aria-hidden="true">
                 <path d="M2 6s2-2 5-2 5 2 5 2v14s-2-1-5-1-5 1-5 1V6z" />
                 <path d="M12 6s2-2 5-2 5 2 5 2v14s-2-1-5-1-5 1-5 1V6z" />
@@ -358,11 +313,9 @@
         </article>
 
 
-        <!-- ══ TARJETA 6: HISTORIA — rojo oscuro — SIN CUPOS ══ -->
-        <article class="tarjeta-tutoria" style="--color-tarjeta: #BF360C;" aria-label="Tutoría de Historia">
+        <article class="tarjeta-tutoria" style="--color-tarjeta: #EAB308;" aria-label="Tutoría de Historia">
           <div class="tarjeta-encabezado">
             <div class="tarjeta-icono">
-              <!-- SVG reloj — Historia -->
               <svg viewBox="0 0 24 24" aria-hidden="true">
                 <circle cx="12" cy="12" r="10" />
                 <polyline points="12 6 12 12 16 14" />
@@ -406,22 +359,14 @@
         </article>
 
 
-      </div><!-- /lista-tarjetas -->
+      </div>
     </section>
 
-
-  </main><!-- /contenido-menu -->
-
-
-  <!-- ════════════════════════════════════════════════════
-       PIE DE PÁGINA MARRÓN
-  ════════════════════════════════════════════════════ -->
+  </main>
   <footer class="pie-pagina">
     <p>©2026 Centro de Tutorías — Todos los derechos reservados.<br>
       Comprometidos con tu éxito académico.</p>
   </footer>
-
-  <!-- JS unificado del proyecto — al final del <body> para que el DOM exista -->
   <script src="../js/principal.js"></script>
 
 </body>

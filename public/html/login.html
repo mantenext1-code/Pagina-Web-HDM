@@ -5,29 +5,19 @@
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>Inicio de Sesión — Centro de Tutorías</title>
-
-  <!-- Fuente Inter: <link> en lugar de @import para evitar error CORS en file:// -->
   <link rel="preconnect" href="https://fonts.googleapis.com" />
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
   <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet" />
-
-  <!-- Estilos de la interfaz de acceso (login + registro) -->
   <link rel="stylesheet" href="../css/acceso.css" />
 </head>
 
 <body>
 
-  <!--
-    <main> es el elemento semántico HTML5 correcto para el contenido
-    principal. role="main" refuerza esto para lectores de pantalla.
-  -->
   <main role="main">
     <div class="envoltura-tarjeta">
 
-      <!-- ZONA ENCABEZADO: logo + nombre del app -->
       <header class="zona-encabezado">
         <div class="caja-logo" aria-hidden="true">
-          <!-- SVG libro abierto — reproducción del ícono del Figma -->
           <svg viewBox="0 0 24 24" fill="none" stroke="#fff" stroke-width="2" stroke-linecap="round"
             stroke-linejoin="round">
             <path d="M2 6s2-2 5-2 5 2 5 2v14s-2-1-5-1-5 1-5 1V6z" />
@@ -39,27 +29,14 @@
         <p class="subtitulo-encabezado">Portal Estudiantil</p>
       </header>
 
-      <!-- SECCIÓN FORMULARIO DE ACCESO -->
-      <!--
-        <form novalidate> desactiva la validación nativa del navegador
-        para que nuestro JS controle los mensajes de error de forma
-        consistente en Chrome, Safari y Firefox.
-      -->
       <section class="tarjeta-formulario">
         <h2 class="titulo-tarjeta">Iniciar Sesión</h2>
 
         <form id="formulario-acceso" novalidate>
 
-          <!-- Campo: Correo Electrónico -->
           <div class="grupo-campo">
-            <!--
-              for="campo-correo" conecta este <label> con el <input>
-              correspondiente. Al tocar la etiqueta el foco va al campo —
-              mejora la UX especialmente en móvil.
-            -->
             <label class="etiqueta-campo" for="campo-correo">Correo Electrónico</label>
             <div class="envoltorio-campo">
-              <!-- Ícono sobre/correo -->
               <svg viewBox="0 0 24 24" aria-hidden="true">
                 <rect x="2" y="4" width="20" height="16" rx="2" />
                 <path d="m2 7 10 7 10-7" />
@@ -69,11 +46,9 @@
             </div>
           </div>
 
-          <!-- Campo: Contraseña -->
           <div class="grupo-campo">
             <label class="etiqueta-campo" for="campo-clave">Contraseña</label>
             <div class="envoltorio-campo">
-              <!-- Ícono candado -->
               <svg viewBox="0 0 24 24" aria-hidden="true">
                 <rect x="5" y="11" width="14" height="10" rx="2" />
                 <path d="M8 11V7a4 4 0 0 1 8 0v4" />
@@ -83,27 +58,17 @@
             </div>
           </div>
 
-          <!-- Fila: Recordarme + ¿Olvidaste tu contraseña? -->
           <div class="fila-recordar">
             <label class="etiqueta-recordar">
               <input type="checkbox" data-accion="campo" data-valor="recordar" />
               <span class="casilla-personalizada"></span>
               Recordarme
             </label>
-            <!--
-              data-accion="recuperar-clave" identifica este enlace en el JS
-              sin necesidad de IDs ni clases adicionales.
-            -->
             <a class="enlace-naranja" href="#" data-accion="recuperar-clave">
               ¿Olvidaste tu contraseña?
             </a>
           </div>
 
-          <!--
-            type="submit" vincula el botón al <form> padre.
-            Permite enviar el formulario con la tecla Enter del teclado,
-            además del toque/clic — comportamiento esperado en móvil.
-          -->
           <button class="boton-principal" type="submit" data-accion="acceso">
             <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="#fff" stroke-width="2.5"
               stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
