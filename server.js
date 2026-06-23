@@ -9,7 +9,22 @@ const PORT = process.env.PORT || 3000;
 
 app.use(cors());
 app.use(express.json());
+
+/*
+ * CORRECCIÓN DE RUTAS ESTÁTICAS
+ *
+ * Antes solo había:
+ *   app.use(express.static('public'))
+ * Eso sirve public/ como raíz, así que:
+ *   localhost:3000/registro.html  →  busca public/registro.html  ❌ NO EXISTE
+ *   localhost:3000/html/registro.html  →  busca public/html/registro.html  ✓
+ *
+ * Solución: agregar un segundo static que sirve public/html/ también como raíz.
+ * Así localhost:3000/registro.html encuentra public/html/registro.html directamente.
+ * El primer static sigue funcionando para css/, js/ y demás carpetas en public/.
+ */
 app.use(express.static('public'));
+app.use(express.static(path.join(__dirname, 'public', 'html')));
 
 const poolMySQL = mysql.createPool({
     host: process.env.DB_HOST,
@@ -21,10 +36,12 @@ const poolMySQL = mysql.createPool({
     connectionLimit: 10
 });
 
+/* Ruta raíz → sirve login.html directamente */
 app.get('/', (req, res) => {
-    res.sendFile(path.join(__dirname, 'public', 'login.html'));
+    res.sendFile(path.join(__dirname, 'public', 'html', 'login.html'));
 });
 
+/* ── API REST usuarios MySQL ── */
 app.post('/api/usuarios/mysql', async (req, res) => {
     const { nombre, correo, contraseña } = req.body;
     try {
