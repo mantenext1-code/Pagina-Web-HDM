@@ -103,16 +103,19 @@ function FormularioLogin() {
           'Content-Type': 'application/json'
         }
       });
+      let alerta = true
       const datos = await respuesta.json();
       datos.forEach(Usuario => {
         if (Usuario.correo === correo && Usuario.contraseña === contraseña) {
           alert('✅ Usuario logueado exitosamente!');
           formulario.reset();
           window.location.href = 'menu.html';
-        } else {
-          alert('❌ Usuario o contraseña incorrectos');
+          alerta = false;
         }
       })
+      if (alerta == true) {
+        alert('❌ Usuario o contraseña incorrectos')
+      }
     }
   });
 }
