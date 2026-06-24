@@ -203,6 +203,11 @@ document.addEventListener('click', function (evento) {
     return;
   }
 
+  if (accion === 'configuracion') {
+    window.location.href = '../html/configuracion.html';
+    return;
+  }
+
   if (accion === 'notificaciones') {
     window.location.href = 'notificaciones.html';
     return;
