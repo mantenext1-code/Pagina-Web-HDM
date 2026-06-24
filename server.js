@@ -10,6 +10,7 @@ const PORT = process.env.PORT || 3000;
 app.use(cors());
 app.use(express.json());
 app.use(express.static('public'));
+app.use(express.static(path.join(__dirname, 'public', 'html')));
 
 const poolMySQL = mysql.createPool({
     host: process.env.DB_HOST,
@@ -22,7 +23,7 @@ const poolMySQL = mysql.createPool({
 });
 
 app.get('/', (req, res) => {
-    res.sendFile(path.join(__dirname, 'public', 'login.html'));
+    res.sendFile(path.join(__dirname, 'public', 'html', 'login.html'));
 });
 
 app.post('/api/usuarios/mysql', async (req, res) => {
