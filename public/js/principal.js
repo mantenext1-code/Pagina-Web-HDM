@@ -302,20 +302,14 @@ document.addEventListener('click', function (evento) {
     return;
   }
 
-  if (accion === 'alternar-notificacion') {
-    let opcion = elemento.dataset.opcion || 'esta opción';
-    let activado = elemento.checked;
-    let nombresMapa = {
-      'recordatorios': 'Recordatorios de tutorías',
-      'cambios-horario': 'Cambios de horario',
-      'nuevos-tutores': 'Nuevos tutores disponibles'
-    };
-    let etiqueta = nombresMapa[opcion] || opcion;
-    let estadoTexto = activado ? 'activada' : 'desactivada';
-    alert('Preferencia actualizada:\n"' + etiqueta + '" fue ' + estadoTexto + '.');
+  if (accion === 'configuracion') {
+    window.location.href = 'configuracion.html';
     return;
   }
+
 });
+  
+
 
 
 /* ── FORMULARIO FORO ── */
