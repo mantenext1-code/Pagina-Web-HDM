@@ -1,4 +1,3 @@
-/* ── CLASE CARRUSEL ── */
 class Carrusel {
   constructor(idPista, selectorPuntos) {
     this.pista = document.getElementById(idPista);
@@ -44,8 +43,6 @@ class Carrusel {
 
 let carrusel = new Carrusel('carrusel-pista', '[data-accion="carrusel-ir"]');
 
-
-/* ── FORMULARIO LOGIN ── */
 function FormularioLogin() {
   let formulario = document.getElementById('formulario-acceso');
   if (!formulario) { return; }
@@ -88,7 +85,6 @@ function FormularioLogin() {
 }
 
 
-/* ── FORMULARIO REGISTRO ── */
 function FormularioRegistro() {
   const formulario = document.getElementById('formulario-registro');
   if (!formulario) { return; }
@@ -143,7 +139,6 @@ function FormularioRegistro() {
 }
 
 
-/* ── EVENTOS DE CLICK GENERALES ── */
 document.addEventListener('click', function (evento) {
   let elemento = evento.target.closest('[data-accion]');
   if (!elemento) { return; }
@@ -205,6 +200,11 @@ document.addEventListener('click', function (evento) {
     } else if (valor === 'configuracion') {
       window.location.href = 'configuracion.html';
     }
+    return;
+  }
+
+  if (accion === 'configuracion') {
+    window.location.href = '../html/configuracion.html';
     return;
   }
 
@@ -312,7 +312,7 @@ document.addEventListener('click', function (evento) {
 
 
 
-/* ── FORMULARIO FORO ── */
+
 let formularioForo = document.getElementById('formulario-foro');
 
 if (formularioForo) {
